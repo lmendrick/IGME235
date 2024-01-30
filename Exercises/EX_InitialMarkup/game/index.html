@@ -5,17 +5,36 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Dig Dug</title>
+	<link rel="icon" type="image/x-icon" href="images/taizo_hori.png">
 
 	<style>
 		h1 {
 			color: red;
-			font-family: sans-serif;
+			font-family: Arial, Helvetica, sans-serif;
 			border-bottom: 1px solid blue;
+		}
+
+		h2 {
+			color: #e63415;
+			margin-left: 25px;
+		}
+
+		body {
+			background-color: #ebb434;
+		}
+
+		p{
+			margin-left: 100px;
 		}
 
 		blockquote {
 			background-color: lightgray;
 			padding: 1rem;
+		}
+
+		img.over {
+			float:right; 
+			margin: 0 12px;
 		}
 	</style>
 
@@ -24,16 +43,33 @@
 <body>
 
 	<main>
+		<!-- <img src="images/dig-dug.png"
+		width="400"
+		height="auto"
+		alt="Dig Dug Logo" title="Dig Dug Logo"> -->
+
+
+		<!-- <img src="images/dig-dug.svg" alt="Dig Dug Logo SVG" title="Dig Dug Logo SVG"> -->
+		<object data="images/dig-dug.svg" type="image/svg+xml" aria-label="This image is supposed to exist">
+			<img src="images/dig-dug.png" width="400" height="auto" alt="Dig Dug Logo" title="Dig Dug Logo" />
+		</object>
+
 		<h1>Dig Dug</h1>
 
 		<!-- <img src="https://cdn.mobygames.com/covers/3946515-dig-dug-pc-booter-front-cover.jpg" alt="DigDug cover" title="DigDug cover"> -->
 
-		<img src="dig-dug-burnt.png" alt="DigDug Screenshot" title="DigDug Screenshot">
+		<img src="images/dig-dug-burnt.png" alt="Dig Dug Screenshot" title="Dig Dug Screenshot">
+
+		<img src="images/fygar_inflate.jpg" alt="Fygar Inflating" title="Fygar Inflating" class="over">
+
+		<br>
+
+		<a href="big/pic1.html">Big Image</a>
 
 		<hr>
 		<br>
 
-		<h1>Publishing Info</h1>
+		<h2>Publishing Info</h2>
 
 		<ul>
 			<li><strong>Published by:</strong> Atari, Inc.</li>
@@ -45,7 +81,7 @@
 		<br>
 
 
-		<h1>Description</h1>
+		<h2>Description</h2>
 
 		<p><u>Dig Dug</u> is a 1-1 player arcade game in which you have to use your shovel to dig your way through the
 			earth.<br>
@@ -59,7 +95,7 @@
 		<hr>
 		<br>
 
-		<h1>Game Categories</h1>
+		<h2>Game Categories</h2>
 
 		<ul>
 			<li><strong>Genre:</strong> Action</li>
@@ -71,7 +107,7 @@
 		<hr>
 		<br>
 
-		<h1>Quote</h1>
+		<h2>Quote</h2>
 		<blockquote>
 			This definitely goes under the heading of "Games That Were Made While a Programmer Was on Drugs," or at
 			least
@@ -84,8 +120,8 @@
 	<hr>
 	<br>
 
-	<footer>
-		<h1>Source</h1>
+	<footer id="footer">
+		<h2>Source</h2>
 		<a href="https://www.mobygames.com/game/arcade/dig-dug" target="_blank">Moby Games</a>
 	</footer>
 
