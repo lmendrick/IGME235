@@ -1,0 +1,54 @@
+h1 {
+    color: red;
+    border-bottom: 1px solid #1f509f;
+    font-family: 'Press Start 2P', monospace;
+    text-align: center;
+}
+
+h2 {
+    color: #DB5D01;
+    margin-left: 25px;
+    font-family: 'Pixelify Sans', sans-serif;
+}
+
+body {
+    background-color: #e3d7cb;
+    font-family: 'Open Sans', sans-serif;
+}
+
+p,
+blockquote,
+ul,
+ol {
+    margin-left: 100px;
+}
+
+blockquote {
+    background-color: #f7ba6a;
+    padding: 1rem;
+}
+
+img.over {
+    float: right;
+    margin: 0 12px;
+}
+
+footer {
+    background-color: #f7ba6a;
+}
+
+a {
+    color: #DB5D01;
+}
+
+a:active {
+    color: #DB5D01;
+}
+
+a:visited {
+    color: #E68930;
+}
+
+a:hover {
+    color: red
+}
