@@ -1,19 +1,25 @@
 h1 {
-    color: red;
-    border-bottom: 1px solid #1f509f;
-    font-family: 'Press Start 2P', monospace;
+    color: #76040A;
+    border-bottom: 1px solid #34090D;
+    font-family: 'Average', serif;
     text-align: center;
 }
 
 h2 {
-    color: #DB5D01;
+    color: #34090D;
     margin-left: 25px;
-    font-family: 'Pixelify Sans', sans-serif;
+    font-family: 'Average', serif;
 }
 
 body {
-    background-color: #e3d7cb;
-    font-family: 'Open Sans', sans-serif;
+    background-color: #BDC7D3;
+    font-family: 'Average', serif;
+}
+
+p,
+ul,
+ol {
+    color: #15191F
 }
 
 p,
@@ -24,7 +30,7 @@ ol {
 }
 
 blockquote {
-    background-color: #f7ba6a;
+    background-color: #8C97A6;
     padding: 1rem;
 }
 
@@ -33,20 +39,16 @@ img.over {
     margin: 0 12px;
 }
 
-footer {
-    background-color: #f7ba6a;
-}
-
 a {
-    color: #DB5D01;
+    color: #76040A;
 }
 
 a:active {
-    color: #DB5D01;
+    color: #76040A;
 }
 
 a:visited {
-    color: #E68930;
+    color: #34090D;
 }
 
 a:hover {
