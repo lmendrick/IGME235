@@ -1,6 +1,16 @@
+main,
+header,
+footer {
+    border: 1px solid black;
+    margin: 0 auto;
+    width: 80vw;
+    padding: 1rem;
+    background-color: #e3d7cb;
+}
+
+
 h1 {
     color: red;
-    border-bottom: 1px solid #1f509f;
     font-family: 'Press Start 2P', monospace;
     text-align: center;
 }
@@ -12,7 +22,7 @@ h2 {
 }
 
 body {
-    background-color: #e3d7cb;
+    background-color: #922b02;
     font-family: 'Open Sans', sans-serif;
 }
 
@@ -52,4 +62,3 @@ a:hover {
 a:active {
     color: #DB5D01;
 }
-
