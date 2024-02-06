@@ -37,11 +37,7 @@ footer {
     background-color: #f7ba6a;
 }
 
-a {
-    color: #DB5D01;
-}
-
-a:active {
+a:link {
     color: #DB5D01;
 }
 
@@ -52,3 +48,8 @@ a:visited {
 a:hover {
     color: red
 }
+
+a:active {
+    color: #DB5D01;
+}
+
