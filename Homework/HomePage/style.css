@@ -56,8 +56,8 @@ img.over {
     
 } */
 
-a.over {
-    text-align: right;
+#linkedin {
+    float: right;
 }
 
 a:link {
