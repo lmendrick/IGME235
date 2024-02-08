@@ -1,0 +1,36 @@
+/* Do everything in this file */
+
+h2 {
+    border-bottom: 1px solid red;
+    clear: both;
+}
+
+figure {
+    float: right;
+    width: 40%;
+}
+
+figure img {
+    width: max-content;
+}
+
+figcaption {
+    margin-left: 10%;
+}
+
+#tetlist div {
+
+    width: 50%;
+    float: left;
+    border: 1px solid blue;
+
+}
+
+footer {
+    clear: both;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: -5;
+}
+

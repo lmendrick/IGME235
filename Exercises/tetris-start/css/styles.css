@@ -1,34 +1,49 @@
-/* Do everything in this file */
-
-h2 {
-    border-bottom: 1px solid red;
-    clear: both;
+figure {
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-figure {
-    float: right;
-    width: 40%;
-    img {
-        width: max-content;
-    }
-    figcaption {
-        margin-left: 10%;
-    }
+figure img {
+    width: 100%;
+}
+
+header, main, footer {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #tetlist {
-    div {
-        width: 50%;
-        float: left;
-        border: 1px solid blue;
-    }
+    display: flex;
+    flex-flow: row wrap;
 }
 
-footer {
-    clear: both;
-    position: fixed;
-    top: 0;
-    right: 0;
-    z-index: -5;
+.tet {
+    flex: 1 0 450px;
+    border: 1px solid black;
 }
+
+.tet img {
+    width: 60%;
+}
+
+span {
+    display: block;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    font-weight: bold;
+    font-size: large;
+}
+
+.tet div {
+    text-align: center;
+}
+
+.aliases {
+    text-align: left;
+    margin: 1em;
+}
+
+
 
