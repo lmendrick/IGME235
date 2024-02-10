@@ -13,7 +13,6 @@ h1 {
     color: #6B4D57;
     font-family: 'Press Start 2P', monospace;
     text-align: center;
-    /* border-bottom: 1px solid; */
 }
 
 h2 {
@@ -37,7 +36,6 @@ ol {
 
 p {
     margin-left: 100px;
-    /* margin-right: 350px; */
     width: 60%;
     
 }
@@ -52,12 +50,17 @@ img.over {
     margin: 0 12px;
 }
 
-/* footer {
-    
-} */
 
 #linkedin {
     float: right;
+}
+
+a.projects {
+    font-weight: bold;
+}
+
+#name {
+    font-weight: bolder;
 }
 
 a:link {
