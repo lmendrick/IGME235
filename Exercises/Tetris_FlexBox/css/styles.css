@@ -24,7 +24,7 @@ header, main, footer {
     border: 1px solid black;
 }
 
-.tet img {
+img.tet {
     width: 60%;
 }
 
@@ -36,13 +36,21 @@ span {
     font-size: large;
 }
 
-.tet div {
+div.tet {
     text-align: center;
 }
 
-.aliases {
+div.aliases {
     text-align: left;
     margin: 1em;
+}
+
+img.long {
+    width: 80%;
+}
+
+img.square {
+    width: 40%;
 }
 
 
