@@ -1,8 +1,8 @@
-body {
+/* body {
     margin: 1rem;
-}
+} */
 
-#wrapper {
+/* #wrapper {
     display: grid;
     grid-template-areas:
     "title" 
@@ -10,51 +10,36 @@ body {
     "intro" 
     "content" 
     "footer";
-}
+} */
 
-@media screen and (min-width: 850px) {
-    #wrapper {
-        grid-template-rows: 345px auto auto auto;
-        grid-template-columns: 500px 1fr 1fr;
-        grid-template-areas:
-            "title      preview"
-            "intro      intro"
-            "content    content"
-            "footer     footer";
-    }
-}
-
-h1.logo {
-    grid-area: logo; 
-    width: 500px;
-    height: 345px;
-    background: url(../media/Syphon_filter_logo.png) no-repeat;
-    text-indent: -9999px;
+.wrapper {
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr; 
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr; 
+    gap: 10px 10px; 
+    grid-template-areas: 
+      "title title preview"
+      "intro intro distance"
+      "characters characters distance"
+      "maneuverability maneuverability missions"
+      "storytelling storytelling storytelling";
 }
 
 
 
-#title {
-    grid-area: title;
-}
 
-#title h2 {
-    
-   
-}
+.title { grid-area: title; border: 1px solid black;}
+.intro { grid-area: intro; border-radius: 25px; border: 2px solid yellow;}
+.characters { grid-area: characters; border-radius: 25px; border: 2px solid yellow;}
+.maneuverability { grid-area: maneuverability; border-radius: 25px; border: 2px solid yellow;}
+.storytelling { grid-area: storytelling; border-radius: 25px; border: 2px solid yellow;}
+.distance { grid-area: distance; border-radius: 25px; border: 2px solid yellow;}
+.missions { grid-area: missions; border-radius: 25px; border: 2px solid yellow;}
+.preview { grid-area: preview; }
 
-#introduction { 
-    grid-area: intro; 
-    margin: 2rem;
-}
-
-#preview {
-    grid-area: preview;
-}
-
-#content {
-    grid-area: content;
-    /* display: grid;
-    grid-template-columns: repeat(4, 100px);
-    grid-template-rows: repeat(4, 100px); */
-}
+html, body , .wrapper {
+    height: 100%;
+    margin: 0;
+    background-color:darkblue;
+    color:white
+  }
