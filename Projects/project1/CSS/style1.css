@@ -1,0 +1,60 @@
+body {
+    margin: 1rem;
+}
+
+#wrapper {
+    display: grid;
+    grid-template-areas:
+    "title" 
+    "preview" 
+    "intro" 
+    "content" 
+    "footer";
+}
+
+@media screen and (min-width: 850px) {
+    #wrapper {
+        grid-template-rows: 345px auto auto auto;
+        grid-template-columns: 500px 1fr 1fr;
+        grid-template-areas:
+            "title      preview"
+            "intro      intro"
+            "content    content"
+            "footer     footer";
+    }
+}
+
+h1.logo {
+    grid-area: logo; 
+    width: 500px;
+    height: 345px;
+    background: url(../media/Syphon_filter_logo.png) no-repeat;
+    text-indent: -9999px;
+}
+
+
+
+#title {
+    grid-area: title;
+}
+
+#title h2 {
+    
+   
+}
+
+#introduction { 
+    grid-area: intro; 
+    margin: 2rem;
+}
+
+#preview {
+    grid-area: preview;
+}
+
+#content {
+    grid-area: content;
+    /* display: grid;
+    grid-template-columns: repeat(4, 100px);
+    grid-template-rows: repeat(4, 100px); */
+}
