@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Midterm Notes</title>
+    <style>
+        body {
+            background-color:darkgray;
+        }
+    </style>
+</head>
+<body>
+    <h1>235 Midterm Notes</h1>
+
+    <br>
+
+    <h2>Common Web Professionals</h2>
+<ul>
+    <li><strong>Information Architect</strong> - Organizes content/site diagrams</li>
+    <li><strong>Content Strategist</strong> - Makes sure content supports brand</li>
+    <li><strong>UX Designer</strong> - Makes site easier to use using UI/visual</li>
+    <li><strong>Graphic Designer</strong> - Creates logos, graphics, color, etc</li>
+    <li><strong>Frontend Developer</strong> - HTML, CSS, JavaScript</li>
+    <li><strong>Backend Developer</strong> - Server code, databases</li>
+    <li><strong>Full-Stack Developer</strong> - Does both</li>
+    <li><strong>Project Manager</strong> - Guides dev to meet business goals</li>
+    <li><strong>SEO Specialist</strong> - Search engine optimization</li>
+    <li><strong>Multimedia Producer</strong> - Sound, video, interactivity</li>
+</ul>
+
+<h2>Organization that oversees the web and who founded it</h2>
+<p>The World Wide Web Consortium (W3C), founded by Tim Berners Lee</p>
+
+<h2>Systems and technologies that get us connected to web servers</h2>
+<ul>
+    <li><strong>Server</strong> - Apache, Microsoft IIS</li>
+    <li><strong>Database</strong> - MySQL, Oracle</li>
+    <li><strong>POP3/IMAP/SMTP</strong> - transferring/storing email</li>
+    <li><strong>FTP</strong> - Used to transfer files from machine to machine</li>
+    <li><strong>SSH</strong> - Provides secure shell for remote access</li>
+    <li><strong>HTTP</strong> - Powers the web, allows documents to be linked and served</li>
+</ul>
+
+<h2>Default file name that you should use for web pages</h2>
+<p>index.html</p>
+
+<h2>Common HTTP Status Codes</h2>
+<ul>
+    <li>200 - OK</li>
+    <li>301 - Moved Permanently</li>
+    <li>404 - Not Found</li>
+    <li>500 - Internal Server Error</li>
+</ul>
+
+<h2>How the HTTP request/response cycle works</h2>
+<ol>
+    <li>Type in URL/Click a link in the browser</li>
+    <li>Browser sends an HTTP request</li>
+    <li>Server looks for/assembles the requested file and issues response header. Sends file if it found it.</li>
+    <li>Browser parses document, images, stylesheets, contacts the server for each resource</li>
+    <li>Browser assembles all of the images styles and script into web page</li>
+</ol>
+
+<h2>Graceful Degradation</h2>
+<p>Design a fully-enhanced experience first, then create fall-backs for non-supporting browsers</p>
+
+<h2>Progressive Enhancement</h2>
+<p>Start with baseline experience that makes core function available on simple browser, then layer on advanced features</p>
+
+<h2>Responsive Web Design</h2>
+<p>Idea is to serve up one single page to all users but have different style sheet rules based on screen size
+    different style sheet rules based on screen size</p>
+    <p>Phrase coined in 2010 by Ehthan Marcotte</p>
+
+<h2>Naming conventions for web documents</h2>
+<ul>
+    <li>No spaces in filenames</li>
+    <li>Always end HTML filenames with .htm or .html and images with appropriate extension (.jpg .gif .png .svg)</li>
+    <li>Consistently using lowercase</li>
+</ul>
+
+<h2>Parts of HTML Elements</h2>
+<p>Consists of content and the HTML markup that surrounds it</p>
+<p>Elements that don’t have content are called empty or standalone elements</p>
+<ul>
+    <li><code>&lt;div&gt;</code> - block container to group sections</li>
+    <li><code>&lt;span&gt;</code> - inline container to group sections</li>
+</ul>
+
+<h2>Semantic HTML Elements</h2>
+<ul>
+    <li><code>&lt;header&gt;</code></li>
+    <li><code>&lt;footer&gt;</code></li>
+    <li><code>&lt;section&gt;</code></li>
+    <li><code>&lt;main&gt;</code></li>
+    <li><code>&lt;figure&gt;</code></li>
+</ul>
+
+<h2>Generic Elements</h2>
+<ul>
+    <li><code>&lt;div&gt;</code> and <code>&lt;span&gt;</code></li>
+    <li>Attributes: <code>id</code> (prefixed with #) and <code>class</code> (prefixed with .)</li>
+</ul>
+
+
+<h2>Document Object Model</h2>
+<p>DOM gives the document structure. Thought of as outline</p>
+
+<h2>Semantic Markup</h2>
+<p>Meaningful description of the content. Ex: using header instead of div</p>
+
+<h2>The User Agent Style Sheet</h2>
+<p>Built-in to all browsers, displays elements in a default style</p>
+
+<h2>Caching</h2>
+<p>Stores certain data so that future requests can be served faster</p>
+
+<h2>CSS Reset</h2>
+<p>Overrides browser defaults, makes presentation more predictable across browsers, prevents elements from inheriting unexpected styles</p>
+
+<h2>Absolute vs. Relative Links</h2>
+<p><strong>Absolute:</strong> Provides full URL</p>
+<p><strong>Relative:</strong> Describes location of file relative to current document</p>
+
+<h2>Link to a Document Fragment</h2>
+<p>Add id attribute to target element with unique id</p>
+<p>Make link by adding #idname to href in <code>&lt;a&gt;</code></p>
+<p>Example:</p>
+<pre>&lt;h2 id="example"&gt; - Add id to target element
+&lt;a href="#example"&gt;Example Link&lt;/a&gt; - Make link</pre>
+
+<h2>Compatible Image Formats</h2>
+<p>JPEG(raster), GIF(raster), PNG(raster,transparent), SVG(vector), WebP(raster)</p>
+
+<h2>Why we use alt text in image tags</h2>
+<ul>
+    <li>Required to validate</li>
+    <li>Used by screen readers</li>
+    <li>Useful for search engines</li>
+    <li>Displays if images don't load</li>
+</ul>
+
+<h2>Bitmapped images</h2>
+<ul>
+    <li>Raster graphics</li>
+    <li>Made up of pixels</li>
+    <li>Cannot be resized without losing resolution</li>
+</ul>
+
+<h2>Places Where CSS Rules Can Be Applied</h2>
+<ul>
+    <li>Separate text document ending in .css (external)</li>
+    <li>Put between &lt;style&gt; tags in &lt;head&gt; section (embedded)</li>
+</ul>
+
+<h2>CSS Units of Measure</h2>
+<ul>
+    <li><strong>px</strong> - pixel (1/96 of an inch)</li>
+    <li><strong>vh</strong> - viewport height (1/100th of the current window height)</li>
+    <li><strong>rem</strong> - a root em (equal to the em size of the root element)</li>
+    <li><strong>em</strong> - equal to size of current font</li>
+    <li><strong>ex</strong> - equal to height of a lowercase “x” in current font</li>
+    <li><strong>vw</strong> - viewport width (1/100th of current window width)</li>
+    <li><strong>pt</strong> - a point (1/72 of an inch, used in print design)</li>
+</ul>
+
+<h2>CSS Selectors</h2>
+<ul>
+    <li><strong>p</strong> - element selector</li>
+    <li><strong>p, ul, blockquote</strong> - grouped selectors</li>
+    <li><strong>p em</strong> - descendant selector</li>
+    <li><strong>#professor</strong> - ID selector</li>
+    <li><strong>li>a</strong> - Child selector</li>
+    <li><strong>h1+p</strong> - Next-sibling selector</li>
+    <li><strong>h1~h2</strong> - Subsequent-sibling selector</li>
+    <li><strong>.group</strong> - Class selector</li>
+    <li><strong>*</strong> - Universal selector</li>
+</ul>
+
+<h2>ways to specify colors</h2>
+<ul>
+    <li><strong>Black:</strong> <code>#000000</code> (hex), <code>rgb(0,0,0)</code> (rgb)</li>
+    <li><strong>White:</strong> <code>#FFF</code> (shorthand hex), <code>rgb(255,255,255)</code> (rgb)</li>
+    <li><strong>Gray:</strong> <code>silver</code>, <code>rgb(128,128,128)</code> (rgb)</li>
+</ul>
+
+<h2>Basic Types of Positioning</h2>
+<ul>
+    <li><strong>static:</strong> Normal positioning</li>
+    <li><strong>relative:</strong> Moves element to new location and leaves old space as empty area</li>
+    <li><strong>absolute:</strong> Moves to spot related to the viewport or containing element, old space is closed up and has no influence on other elements</li>
+    <li><strong>fixed:</strong> Element is positioned in one spot (even if document scrolls) relative to viewport</li>
+    <li><strong>sticky:</strong> Combination allows element to scroll into a specific position relative to viewport at which point it remains fixed</li>
+</ul>
+
+<h2>Breakpoints</h2>
+<p>Use media queries to introduce style changes based on screen size</p>
+<p>@media screen and (min-width: 850px) {}</p>
+
+<h2>CRAP Design Principles</h2>
+<ul>
+    <li><strong>Contrast:</strong> Unique elements stand apart</li>
+    <li><strong>Repetition:</strong> Cohesiveness</li>
+    <li><strong>Alignment:</strong> Every element visually connected to another element</li>
+    <li><strong>Proximity:</strong> Related elements placed close together</li>
+</ul>
+
+<h2>The .htaccess File</h2>
+<p>Used for apache web server to configure details of website without altering server configuration files. Can be used to load custom error pages, create url redirects, and implement password authentication for specific directories</p>
+
+<h2>Parts of a URL</h2>
+<img src="images/url-parts.jpg" alt="parts of a url diagram">
+
+<h2>Site Design Process Steps</h2>
+<ul>
+    <li>Flexible Grid</li>
+    <li>Flexible Images</li>
+    <li>CSS media queries</li>
+    <li>Viewport meta element</li>
+</ul>
+
+<h2>Types of Navigation</h2>
+<ul>
+    <li><strong>Local:</strong> Subnavigation/page level</li>
+    <li><strong>Global:</strong> Main, primary navigation</li>
+    <li><strong>Embedded:</strong> Within the text itself, such as links</li>
+</ul>
+
+<h2>What is "the fold"?</h2>
+<p>Where the browser window ends but content continues (before scrolling)</p>
+
+<h2>Create a functional link tag</h2>
+<code>&lt;img src="filepath.png" alt="alt text"&gt;</code>
+
+<h2>File Structure and Paths</h2>
+<code>
+    <strong>In same folder:</strong> nameofpage.html<br>
+    <strong>In folder below:</strong> folderbelow/nameofpage.html<br>
+    <strong>In folder above:</strong> (2 folders above) <strong>../../nameofpage.html</strong><br>
+    <strong>Root:</strong> start with <strong>/</strong>
+    <br>
+    <img src="images/filestructure1.png" alt="diagram of file structure">
+    <ul>
+        <li>To get from tapenade to salmon: salmon.html</li>
+        <li>To get from tapenade to couscous: pasta/couscous.html</li>
+        <li>To get from linguine to about: ../../about.html</li>
+    </ul>
+</code>
+
+<h2>Parts of a CSS Style Rule</h2>
+<pre>
+strong { color: red; font-style: italic; }
+
+<strong>strong { color: red; font-style: italic; }</strong> - Style rule
+<strong>strong</strong> - Selector
+<strong>color:red;</strong> - Declaration
+<strong>{ color: red; font-style: italic; }</strong> - Declaration block
+<strong>color</strong> - Property
+<strong>red</strong> - Value
+</pre>
+
+<h2>Specifying a Preferred Font with font-family property</h2>
+<p>font-family: 'Open Sans', sans-serif;</p>
+
+<h2>Parts of CSS box model</h2>
+<img src="images/boxmodel.gif" alt="css box model">
+
+<h2>Flexbox Containers</h2>
+<pre>
+#container { 
+    display: flex; 
+    flex-direction: column; 
+    flex-wrap: wrap;
+}
+</pre>
+<p>Displays items vertically and wraps. You can also use row, row-reverse, nowrap, wrap-reverse to control the layout.</p>
+
+<h2>Grid Containers</h2>
+<pre>
+.grid-container { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr; 
+    grid-template-rows: 1fr 1fr 1fr; 
+    grid-template-areas: "title title title" "content content content" "footer footer footer"; 
+}
+.title { grid-area: title; }
+</pre>
+<p>Defines a 3x3 grid with title at the top, content in the middle, and footer at the bottom.</p>
+
+<h2>CSS ID and Class Selectors</h2>
+<pre>
+ID - #idname {}
+<code>&lt;h1 id="idname"&gt;</code>
+Class - .classname{}
+<code>&lt;h1 class="classname"&gt;</code>
+</pre>
+
+<h2>Descendant Selector</h2>
+<pre>
+selector1 selector2 {}
+</pre>
+
+<h2>Ordered and Unordered Lists</h2>
+<pre>
+Ordered - &lt;ol&gt;&lt;/ol&gt;
+Unordered - &lt;ul&gt;&lt;/ul&gt;
+List items are in &lt;li&gt; tags within
+</pre>
+
+<h2>Link Styles</h2>
+<pre>
+a:link{} - Normal unvisited
+a:visited{} - Visited link
+a:focus{} - When tabbed onto
+a:hover{} - When hovered over 
+a:active{} - When being clicked
+</pre>
+
+<h2>HTML Skeleton</h2>
+
+<code>
+    <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html lang=""&gt;
+    &lt;head&gt;
+        &lt;title&gt;Title&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+</code>
+
+<br>
+<footer>
+    <p>Made by Lucas Mendrick 2024</p>
+</footer>
+</body>
+</html>
