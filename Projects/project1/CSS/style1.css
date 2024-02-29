@@ -12,6 +12,7 @@
     "footer";
 } */
 
+
 .wrapper {
     display: grid; 
     grid-template-columns: 1fr 1fr 1fr; 
@@ -27,9 +28,52 @@
 
 
 
-
 .title { grid-area: title; border: 1px solid black;}
-.intro { grid-area: intro; border-radius: 25px; border: 2px solid yellow;}
+
+
+
+/* INTRO SECTION */
+
+.intro { 
+    grid-area: intro;
+    display: grid;
+    grid-template-columns: 1fr 1fr .25fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "intro_text intro_text intro_images"
+        "intro_text intro_text intro_images"
+        "intro_text intro_text intro_images";
+    border-radius: 25px;
+    border: 2px solid yellow;
+}
+
+.intro_text {
+    grid-area: intro_text;
+    font-size: 1.8rem;
+    margin-right: 5px;
+}
+
+.intro_text p::first-letter {
+    font-size: 5rem;
+    color:yellow;
+}
+
+.intro_images { 
+    grid-area: intro_images;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 1px;
+ }
+
+.intro_images img{
+
+   max-width: 300px;
+   height: auto; 
+   border: 1px solid yellow;
+}
+
 .characters { grid-area: characters; border-radius: 25px; border: 2px solid yellow;}
 .maneuverability { grid-area: maneuverability; border-radius: 25px; border: 2px solid yellow;}
 .storytelling { grid-area: storytelling; border-radius: 25px; border: 2px solid yellow;}
@@ -42,9 +86,13 @@ html, body , .wrapper {
     margin: 0;
     background-color:black;
     color:white
-  }
+}
 
-  .title h1 {
+p {
+    margin-left: 10px;
+}
+
+.title h1 {
     /* grid-area: logo;  */
     margin-left: 10%;
     width: 500px;
@@ -67,7 +115,7 @@ html, body , .wrapper {
     border-left: 1px solid white;
 }
 
-  h2 {
+h2 {
     background-color: darkblue;
     color: yellow;
-  }
+}
