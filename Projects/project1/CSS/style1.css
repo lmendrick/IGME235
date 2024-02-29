@@ -40,6 +40,34 @@
 html, body , .wrapper {
     height: 100%;
     margin: 0;
-    background-color:darkblue;
+    background-color:black;
     color:white
+  }
+
+  .title h1 {
+    /* grid-area: logo;  */
+    margin-left: 10%;
+    width: 500px;
+    height: 200px;
+    background: url(../media/Syphon_filter_logo.png) no-repeat;
+    text-indent: -9999px;
+}
+
+.preview h1 {
+    text-align: left;
+    
+}
+
+#percent{
+    border-bottom: 1px solid white;
+    border-left: 1px solid white;
+}
+
+#psList {
+    border-left: 1px solid white;
+}
+
+  h2 {
+    background-color: darkblue;
+    color: yellow;
   }
