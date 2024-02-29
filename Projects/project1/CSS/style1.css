@@ -24,6 +24,23 @@ body {
 }
 
 
+html, body , .wrapper {
+    height: 100%;
+    margin: 0;
+    background-color:black;
+    color:white
+}
+
+h2 {
+    text-indent: 2%;
+    background-color: darkblue;
+    color: yellow;
+    font-size: 2rem;
+}
+
+p {
+    margin-left: 10px;
+}
 
 .wrapper {
     display: grid; 
@@ -40,7 +57,24 @@ body {
 
 
 
-.title { grid-area: title; border: 1px solid black;}
+/* TITLE SECTION */
+
+.title { grid-area: title; }
+
+.title h1 {
+    margin: auto;
+    width: 500px;
+    height: 250px;
+    background: url(../media/Syphon_filter_logo.png) no-repeat;
+    text-indent: -9999px;
+}
+
+.title h3 {
+    float: right;
+}
+
+
+
 
 
 
@@ -86,32 +120,12 @@ body {
    border: 1px solid yellow;
 }
 
-.characters { grid-area: characters; border-radius: 25px; border: 2px solid yellow;}
-.maneuverability { grid-area: maneuverability; border-radius: 25px; border: 2px solid yellow;}
-.storytelling { grid-area: storytelling; border-radius: 25px; border: 2px solid yellow;}
-.distance { grid-area: distance; border-radius: 25px; border: 2px solid yellow;}
-.missions { grid-area: missions; border-radius: 25px; border: 2px solid yellow;}
-.preview { grid-area: preview; }
 
-html, body , .wrapper {
-    height: 100%;
-    margin: 0;
-    background-color:black;
-    color:white
-}
 
-p {
-    margin-left: 10px;
-}
 
-.title h1 {
-    /* grid-area: logo;  */
-    margin-left: 10%;
-    width: 500px;
-    height: 200px;
-    background: url(../media/Syphon_filter_logo.png) no-repeat;
-    text-indent: -9999px;
-}
+
+
+/* PREVIEW SECTION */
 
 .preview h1 {
     text-align: left;
@@ -125,9 +139,19 @@ p {
 
 #psList {
     border-left: 1px solid white;
+    border-top: 1px solid white;
 }
 
-h2 {
-    background-color: darkblue;
-    color: yellow;
-}
+
+
+.characters { grid-area: characters; border-radius: 25px; border: 2px solid yellow;}
+.maneuverability { grid-area: maneuverability; border-radius: 25px; border: 2px solid yellow;}
+.storytelling { grid-area: storytelling; border-radius: 25px; border: 2px solid yellow;}
+.distance { grid-area: distance; border-radius: 25px; border: 2px solid yellow;}
+.missions { grid-area: missions; border-radius: 25px; border: 2px solid yellow;}
+.preview { grid-area: preview; }
+
+
+
+
+
