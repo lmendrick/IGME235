@@ -12,6 +12,18 @@
     "footer";
 } */
 
+/* FONTS */
+.kdam-thmor pro-regular {
+    font-family: "Kdam Thmor Pro", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Kdam Thmor Pro', sans-serif;
+}
+
+
 
 .wrapper {
     display: grid; 
@@ -51,7 +63,7 @@
 
 .intro_text {
     grid-area: intro_text;
-    font-size: 1.8rem;
+    font-size: 1.43rem;
     margin-right: 5px;
 }
 
