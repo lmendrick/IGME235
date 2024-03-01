@@ -35,7 +35,7 @@ h2 {
     text-indent: 2%;
     background-color: darkblue;
     color: yellow;
-    font-size: 2rem;
+    font-size: 2.5rem;
     text-shadow: -3px 3px 0 black;
 }
 
@@ -49,7 +49,7 @@ p {
     display: grid; 
     grid-template-columns: 1fr 1fr 1fr; 
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr; 
-    gap: 30px 30px; 
+    gap: 50px 30px; 
     grid-template-areas: 
       "title title preview"
       "intro intro distance"
@@ -183,13 +183,13 @@ p {
     grid-area: distance_text;
     font-size: 1.43rem;
     margin-right: 5px;
-    margin-top: -80px;
+    margin-top: -100px;
 }
 
 .distance_images {
     grid-area: distance_images;
     margin: auto;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .distance_images img {
@@ -201,7 +201,7 @@ p {
 .distance_title {
     grid-area: distance_title;
     position: relative;
-    top: -50px;
+    top: -65px;
     margin-left: 20px;
     margin-right: 20px;
 }
@@ -240,7 +240,8 @@ p {
     grid-area: characters_images;
     margin-right: 10px;
     position: relative;
-    top: -20px;
+    top: -40px;
+    margin-bottom: -20px;
  }
 
 .characters_images img{
@@ -253,10 +254,61 @@ p {
 .characters_title {
     grid-area: characters_title;
     position: relative;
-    top: -40px;
+    top: -60px;
     margin-left: 20px;
     margin-bottom: -50px;
 }
+
+
+
+
+
+
+/* MISSIONS SECTION */
+
+.missions {
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr; 
+    grid-template-rows: 1fr 1fr 1fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+      "missions_title missions_title missions_title"
+      "missions_text missions_text missions_text"
+      "missions_images missions_images missions_images"; 
+    grid-area: missions; 
+    border-radius: 25px; 
+    border-left: 2px solid yellow;
+    border-top: 2px solid yellow;
+    border-bottom: 2px solid yellow;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    margin-top: -115px;
+}
+
+.missions_title { 
+    grid-area: missions_title; 
+    position: relative;
+    top: -65px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.missions_text { 
+    grid-area: missions_text; 
+    font-size: 1.43rem;
+    margin-right: 5px;
+    margin-top: -200px;
+}
+
+.missions_images { 
+    grid-area: missions_images; 
+    border: 1px solid yellow;
+    max-width: 275px;
+    height: 225px;
+}
+
+
+
 
 
 
@@ -286,15 +338,15 @@ p {
 .maneuver_title { 
     grid-area: maneuver_title; 
     position: relative;
-    top: -50px;
+    top: -60px;
     margin-left: 20px;
-    margin-right: 20px;
+    margin-right: 10px;
 }
 
 .maneuver_images { 
     grid-area: maneuver_images;
     margin: auto;
-    margin-top: -50px;
+    margin-top: -60px;
     margin-bottom: -20px;
     margin-left: 20px;
 }
@@ -309,7 +361,7 @@ p {
 .maneuver_text { 
     grid-area: maneuver_text; 
     font-size: 1.43rem;
-    margin-top: -70px;
+    margin-top: -80px;
 }
 
 
@@ -320,7 +372,6 @@ p {
 
 
 .storytelling { grid-area: storytelling; border-radius: 25px; border: 2px solid yellow;}
-.missions { grid-area: missions; border-radius: 25px; border: 2px solid yellow;}
 .preview { grid-area: preview; }
 
 
