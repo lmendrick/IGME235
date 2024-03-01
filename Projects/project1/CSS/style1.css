@@ -36,10 +36,13 @@ h2 {
     background-color: darkblue;
     color: yellow;
     font-size: 2rem;
+    text-shadow: -3px 3px 0 black;
 }
 
 p {
     margin-left: 10px;
+    text-align: justify;
+    margin-right: 10px;
 }
 
 .wrapper {
@@ -180,13 +183,13 @@ p {
     grid-area: distance_text;
     font-size: 1.43rem;
     margin-right: 5px;
-    margin-top: -70px;
+    margin-top: -80px;
 }
 
 .distance_images {
     grid-area: distance_images;
     margin: auto;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
 }
 
 .distance_images img {
@@ -195,12 +198,11 @@ p {
     height: 225px;
 }
 
-.distance h2 {
+.distance_title {
     grid-area: distance_title;
     position: relative;
     top: -50px;
     margin-left: 20px;
-    margin-bottom: px;
     margin-right: 20px;
 }
 
@@ -231,7 +233,7 @@ p {
     grid-area: characters_text;
     font-size: 1.43rem;
     margin-right: 5px;
-    margin-top: -60px;
+    margin-top: -70px;
 }
 
 .characters_images { 
@@ -248,19 +250,75 @@ p {
    border: 1px solid yellow;
 }
 
-.characters h2 {
+.characters_title {
     grid-area: characters_title;
     position: relative;
     top: -40px;
     margin-left: 20px;
-    margin-bottom: 40px;
+    margin-bottom: -50px;
+}
+
+
+
+
+/* MANEUVERABILITY SECTION */
+
+.maneuverability {
+    display: grid; 
+    grid-template-columns: .5fr 1fr 1fr; 
+    grid-template-rows: .25fr 1fr 1fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+      "maneuver_title maneuver_title maneuver_title"
+      "maneuver_images maneuver_text maneuver_text"
+      "maneuver_images maneuver_text maneuver_text"; 
+    grid-area: maneuverability;
+    border-radius: 25px; 
+    border-top: 2px solid yellow;
+    border-right: 2px solid yellow;
+    border-bottom: 2px solid yellow;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.maneuver_title { 
+    grid-area: maneuver_title; 
+    position: relative;
+    top: -50px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.maneuver_images { 
+    grid-area: maneuver_images;
+    margin: auto;
+    margin-top: -50px;
+    margin-bottom: -20px;
+    margin-left: 20px;
+}
+
+.maneuver_images img {
+    max-width: 300px;
+    height: auto; 
+    border: 1px solid yellow;
+}
+
+
+.maneuver_text { 
+    grid-area: maneuver_text; 
+    font-size: 1.43rem;
+    margin-top: -70px;
 }
 
 
 
 
 
-.maneuverability { grid-area: maneuverability; border-radius: 25px; border: 2px solid yellow;}
+
+
+
 .storytelling { grid-area: storytelling; border-radius: 25px; border: 2px solid yellow;}
 .missions { grid-area: missions; border-radius: 25px; border: 2px solid yellow;}
 .preview { grid-area: preview; }
