@@ -46,7 +46,7 @@ p {
     display: grid; 
     grid-template-columns: 1fr 1fr 1fr; 
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr; 
-    gap: 10px 10px; 
+    gap: 30px 30px; 
     grid-template-areas: 
       "title title preview"
       "intro intro distance"
@@ -59,7 +59,9 @@ p {
 
 /* TITLE SECTION */
 
-.title { grid-area: title; }
+.title { 
+    grid-area: title; 
+}
 
 .title h1 {
     margin: auto;
@@ -125,6 +127,7 @@ p {
 
 
 
+
 /* PREVIEW SECTION */
 
 .preview h1 {
@@ -142,9 +145,58 @@ p {
     border-top: 1px solid white;
 }
 
+/* CHARACTERS SECTION */
+
+.characters { 
+    grid-area: characters;
+    display: grid;
+    grid-template-columns: 1fr 1fr .25fr; 
+    grid-template-rows: 1fr 1fr 1fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+    "characters_title characters_title characters_images"
+    "characters_text characters_text characters_images"
+    "characters_text characters_text characters_images"; 
+    border-radius: 25px; 
+    border-top: 2px solid yellow;
+    border-right: 2px solid yellow;
+    border-bottom: 2px solid yellow;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+.characters_text {
+    grid-area: characters_text;
+    font-size: 1.43rem;
+    margin-right: 5px;
+    margin-top: -60px;
+}
+
+.characters_images { 
+    grid-area: characters_images;
+    margin-right: 10px;
+    position: relative;
+    top: -20px;
+ }
+
+.characters_images img{
+
+   max-width: 300px;
+   height: auto;
+   border: 1px solid yellow;
+}
+
+.characters h2 {
+    grid-area: characters_title;
+    position: relative;
+    top: -40px;
+    margin-left: 20px;
+}
 
 
-.characters { grid-area: characters; border-radius: 25px; border: 2px solid yellow;}
+
+
+
 .maneuverability { grid-area: maneuverability; border-radius: 25px; border: 2px solid yellow;}
 .storytelling { grid-area: storytelling; border-radius: 25px; border: 2px solid yellow;}
 .distance { grid-area: distance; border-radius: 25px; border: 2px solid yellow;}
