@@ -130,6 +130,11 @@ p {
 
 /* PREVIEW SECTION */
 
+.preview {
+    margin-top: 50px;
+    margin-bottom: -125px;
+}
+
 .preview h1 {
     text-align: left;
     
@@ -145,12 +150,69 @@ p {
     border-top: 1px solid white;
 }
 
+
+
+
+
+/* DISTANCE SECTION */
+
+.distance { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr; 
+    grid-template-rows: .25fr 1fr 1fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+    "distance_title distance_title distance_title"
+    "distance_text distance_text distance_text"
+    "distance_images distance_images distance_images"; 
+    grid-area: distance; 
+    border-radius: 25px; 
+    border-left: 2px solid yellow;
+    border-top: 2px solid yellow;
+    border-bottom: 2px solid yellow;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    margin-top: 175px;
+    margin-bottom: 125px;
+}
+
+.distance_text {
+    grid-area: distance_text;
+    font-size: 1.43rem;
+    margin-right: 5px;
+    margin-top: -70px;
+}
+
+.distance_images {
+    grid-area: distance_images;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+.distance_images img {
+    border: 1px solid yellow;
+    max-width: 275px;
+    height: 225px;
+}
+
+.distance h2 {
+    grid-area: distance_title;
+    position: relative;
+    top: -50px;
+    margin-left: 20px;
+    margin-bottom: px;
+    margin-right: 20px;
+}
+
+
+
+
 /* CHARACTERS SECTION */
 
 .characters { 
     grid-area: characters;
     display: grid;
-    grid-template-columns: 1fr 1fr .25fr; 
+    grid-template-columns: .25r 1fr .25fr; 
     grid-template-rows: 1fr 1fr 1fr; 
     gap: 0px 0px; 
     grid-template-areas: 
@@ -191,6 +253,7 @@ p {
     position: relative;
     top: -40px;
     margin-left: 20px;
+    margin-bottom: 40px;
 }
 
 
@@ -199,7 +262,6 @@ p {
 
 .maneuverability { grid-area: maneuverability; border-radius: 25px; border: 2px solid yellow;}
 .storytelling { grid-area: storytelling; border-radius: 25px; border: 2px solid yellow;}
-.distance { grid-area: distance; border-radius: 25px; border: 2px solid yellow;}
 .missions { grid-area: missions; border-radius: 25px; border: 2px solid yellow;}
 .preview { grid-area: preview; }
 
