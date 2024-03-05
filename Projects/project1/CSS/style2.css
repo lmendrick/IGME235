@@ -21,8 +21,8 @@ html, body, .wrapper {
 
 h2 {
     text-indent: 2%;
-    background-color: darkblue;
-    color: yellow;
+    background-color: darkred;
+    color: white;
     font-size: 2.5rem;
     text-shadow: -3px 3px 0 black;
 }
@@ -56,10 +56,12 @@ p {
 
 .title h1 {
     margin: auto;
-    width: 1000px;
-    height: 425px;
-    background: url(../media/Syphon_Filter.webp) no-repeat;
+    width: 1024px;
+    height: 512px;
+    background: url(../media/part2/BB_Logo.png) no-repeat;
     text-indent: -9999px;
+    background-position: center;
+    background-size: contain;
 }
 
 
@@ -81,7 +83,7 @@ p {
         "intro_text intro_text intro_images"
         "intro_text intro_text intro_images";
     border-radius: 25px;
-    border: 2px solid yellow;
+    border: 2px solid darkred;
 }
 
 .intro_text {
@@ -92,7 +94,7 @@ p {
 
 .intro_text p::first-letter {
     font-size: 5rem;
-    color:yellow;
+    color:darkred;
 }
 
 .intro_images { 
@@ -106,7 +108,7 @@ p {
 
    max-width: 300px;
    height: auto; 
-   border: 1px solid yellow;
+   border: 1px solid darkred;
 }
 
 
@@ -182,9 +184,9 @@ p {
     "distance_images distance_images distance_images"; 
     grid-area: distance; 
     border-radius: 25px; 
-    border-left: 2px solid yellow;
-    border-top: 2px solid yellow;
-    border-bottom: 2px solid yellow;
+    border-left: 2px solid darkred;
+    border-top: 2px solid darkred;
+    border-bottom: 2px solid darkred;
     border-bottom-right-radius: 0;
     border-top-right-radius: 0;
     margin-top: 175px;
@@ -205,7 +207,7 @@ p {
 }
 
 .distance_images img {
-    border: 1px solid yellow;
+    border: 1px solid darkred;
     max-width: 275px;
     height: 225px;
 }
@@ -233,9 +235,9 @@ p {
     "characters_text characters_text characters_images"
     "characters_text characters_text characters_images"; 
     border-radius: 25px; 
-    border-top: 2px solid yellow;
-    border-right: 2px solid yellow;
-    border-bottom: 2px solid yellow;
+    border-top: 2px solid darkred;
+    border-right: 2px solid darkred;
+    border-bottom: 2px solid darkred;
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
 }
@@ -259,7 +261,7 @@ p {
 
    max-width: 300px;
    height: auto;
-   border: 1px solid yellow;
+   border: 1px solid darkred;
 }
 
 .characters_title {
@@ -287,9 +289,9 @@ p {
       "missions_images missions_images missions_images"; 
     grid-area: missions; 
     border-radius: 25px; 
-    border-left: 2px solid yellow;
-    border-top: 2px solid yellow;
-    border-bottom: 2px solid yellow;
+    border-left: 2px solid darkred;
+    border-top: 2px solid darkred;
+    border-bottom: 2px solid darkred;
     border-bottom-right-radius: 0;
     border-top-right-radius: 0;
     margin-top: -115px;
@@ -321,7 +323,7 @@ p {
 }
 
 .missions_images img {
-    border: 1px solid yellow;
+    border: 1px solid darkred;
     max-width: 275px;
     height: 225px;
 }
@@ -344,9 +346,9 @@ p {
       "maneuver_images maneuver_text maneuver_text"; 
     grid-area: maneuverability;
     border-radius: 25px; 
-    border-top: 2px solid yellow;
-    border-right: 2px solid yellow;
-    border-bottom: 2px solid yellow;
+    border-top: 2px solid darkred;
+    border-right: 2px solid darkred;
+    border-bottom: 2px solid darkred;
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
     margin-top: 10px;
@@ -372,7 +374,7 @@ p {
 .maneuver_images img {
     max-width: 300px;
     height: auto; 
-    border: 1px solid yellow;
+    border: 1px solid darkred;
 }
 
 
@@ -394,7 +396,7 @@ p {
       "story_images story_images story_images"; 
     grid-area: storytelling; 
     border-radius: 25px; 
-    border: 2px solid yellow;
+    border: 2px solid darkred;
     margin: 30px;
 }
 
@@ -421,7 +423,7 @@ p {
     width: 265px;
     max-height: 200px;
     height: auto; 
-    border: 1px solid yellow;
+    border: 1px solid darkred;
 }
 
 #image1 {
