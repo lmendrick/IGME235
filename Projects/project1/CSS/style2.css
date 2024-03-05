@@ -1,0 +1,433 @@
+
+/* FONTS */
+.kdam-thmor pro-regular {
+    font-family: "Kdam Thmor Pro", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Kdam Thmor Pro', sans-serif;
+    border-right: 20px solid red;
+}
+
+
+html, body, .wrapper {
+    height: 100%;
+    margin: 0;
+    background-color:black;
+    color:white
+}
+
+h2 {
+    text-indent: 2%;
+    background-color: darkblue;
+    color: yellow;
+    font-size: 2.5rem;
+    text-shadow: -3px 3px 0 black;
+}
+
+p {
+    margin-left: 10px;
+    text-align: justify;
+    margin-right: 10px;
+}
+
+.wrapper {
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr; 
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr; 
+    gap: 50px 30px; 
+    grid-template-areas: 
+      "title title preview"
+      "intro intro distance"
+      "characters characters distance"
+      "maneuverability maneuverability missions"
+      "storytelling storytelling storytelling";
+}
+
+
+
+/* TITLE SECTION */
+
+.title { 
+    grid-area: title; 
+}
+
+.title h1 {
+    margin: auto;
+    width: 1000px;
+    height: 425px;
+    background: url(../media/Syphon_Filter.webp) no-repeat;
+    text-indent: -9999px;
+}
+
+
+
+
+
+
+
+/* INTRO SECTION */
+
+.intro { 
+    grid-area: intro;
+    display: grid;
+    grid-template-columns: 1fr 1fr .25fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "intro_text intro_text intro_images"
+        "intro_text intro_text intro_images"
+        "intro_text intro_text intro_images";
+    border-radius: 25px;
+    border: 2px solid yellow;
+}
+
+.intro_text {
+    grid-area: intro_text;
+    font-size: 1.43rem;
+    margin-right: 5px;
+}
+
+.intro_text p::first-letter {
+    font-size: 5rem;
+    color:yellow;
+}
+
+.intro_images { 
+    grid-area: intro_images;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 1px;
+ }
+
+.intro_images img{
+
+   max-width: 300px;
+   height: auto; 
+   border: 1px solid yellow;
+}
+
+
+
+
+
+
+
+/* PREVIEW SECTION */
+
+.preview {
+    grid-area: preview;
+    /* margin-top: 50px; */
+    margin-bottom: -125px;
+    font-family: sans-serif;
+    border-top: 60px solid red;
+}
+
+.preview h3 {
+    text-align: left;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 2.5em;
+}
+
+#percent{
+    border-bottom: 1px solid white;
+    border-left: 1px solid white;
+    margin-top: 0px;
+    text-indent: 2%;
+    margin-right: 250px;
+    font-size: 3em;
+    padding: 10px;
+}
+
+#psList {
+    border-left: 1px solid white;   
+    margin-top: 0px;
+    margin-right: 20px;
+    margin-bottom: 0px;
+    font-size: 1.5em;
+    line-height: 40px;
+    padding-top: 10px;
+}
+
+#preview_word {
+    font-size: 5em;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.preview_title {
+    margin-right: 350px;
+    border-right: 1px solid white;
+    border-bottom: 1px solid white;
+    padding: 10px;
+    margin-top: -60px;
+}
+
+
+
+
+/* DISTANCE SECTION */
+
+.distance { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr; 
+    grid-template-rows: .25fr 1fr 1fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+    "distance_title distance_title distance_title"
+    "distance_text distance_text distance_text"
+    "distance_images distance_images distance_images"; 
+    grid-area: distance; 
+    border-radius: 25px; 
+    border-left: 2px solid yellow;
+    border-top: 2px solid yellow;
+    border-bottom: 2px solid yellow;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    margin-top: 175px;
+    margin-bottom: 125px;
+}
+
+.distance_text {
+    grid-area: distance_text;
+    font-size: 1.43rem;
+    margin-right: 5px;
+    margin-top: -100px;
+}
+
+.distance_images {
+    grid-area: distance_images;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+.distance_images img {
+    border: 1px solid yellow;
+    max-width: 275px;
+    height: 225px;
+}
+
+.distance_title {
+    grid-area: distance_title;
+    position: relative;
+    top: -65px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+
+
+
+/* CHARACTERS SECTION */
+
+.characters { 
+    grid-area: characters;
+    display: grid;
+    grid-template-columns: .25r 1fr .25fr; 
+    grid-template-rows: 1fr 1fr 1fr; 
+    grid-template-areas: 
+    "characters_title characters_title characters_images"
+    "characters_text characters_text characters_images"
+    "characters_text characters_text characters_images"; 
+    border-radius: 25px; 
+    border-top: 2px solid yellow;
+    border-right: 2px solid yellow;
+    border-bottom: 2px solid yellow;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+.characters_text {
+    grid-area: characters_text;
+    font-size: 1.43rem;
+    margin-right: 5px;
+    margin-top: -70px;
+}
+
+.characters_images { 
+    grid-area: characters_images;
+    margin-right: 10px;
+    position: relative;
+    top: -40px;
+    margin-bottom: -20px;
+ }
+
+.characters_images img{
+
+   max-width: 300px;
+   height: auto;
+   border: 1px solid yellow;
+}
+
+.characters_title {
+    grid-area: characters_title;
+    position: relative;
+    top: -60px;
+    margin-left: 20px;
+    margin-bottom: -50px;
+}
+
+
+
+
+
+
+/* MISSIONS SECTION */
+
+.missions {
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr; 
+    grid-template-rows: .1fr 1fr .5fr;  
+    grid-template-areas: 
+      "missions_title missions_title missions_title"
+      "missions_text missions_text missions_text"
+      "missions_images missions_images missions_images"; 
+    grid-area: missions; 
+    border-radius: 25px; 
+    border-left: 2px solid yellow;
+    border-top: 2px solid yellow;
+    border-bottom: 2px solid yellow;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    margin-top: -115px;
+    margin-bottom: -30px;
+    margin-right: -10px;
+
+}
+
+.missions_title { 
+    grid-area: missions_title; 
+    position: relative;
+    top: -65px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.missions_text { 
+    grid-area: missions_text; 
+    font-size: 1.43rem;
+    margin-right: 5px;
+    margin-top: -100px;
+}
+
+.missions_images { 
+    grid-area: missions_images; 
+    margin: auto;
+    margin-bottom: 20px;
+
+}
+
+.missions_images img {
+    border: 1px solid yellow;
+    max-width: 275px;
+    height: 225px;
+}
+
+
+
+
+
+
+
+/* MANEUVERABILITY SECTION */
+
+.maneuverability {
+    display: grid; 
+    grid-template-columns: .5fr 1fr 1fr; 
+    grid-template-rows: .25fr 1fr 1fr; 
+    grid-template-areas: 
+      "maneuver_title maneuver_title maneuver_title"
+      "maneuver_images maneuver_text maneuver_text"
+      "maneuver_images maneuver_text maneuver_text"; 
+    grid-area: maneuverability;
+    border-radius: 25px; 
+    border-top: 2px solid yellow;
+    border-right: 2px solid yellow;
+    border-bottom: 2px solid yellow;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    margin-top: 10px;
+
+}
+
+.maneuver_title { 
+    grid-area: maneuver_title; 
+    position: relative;
+    top: -60px;
+    margin-left: 20px;
+    margin-right: 10px;
+}
+
+.maneuver_images { 
+    grid-area: maneuver_images;
+    margin: auto;
+    margin-top: -60px;
+    margin-bottom: -110px;
+    margin-left: 20px;
+}
+
+.maneuver_images img {
+    max-width: 300px;
+    height: auto; 
+    border: 1px solid yellow;
+}
+
+
+.maneuver_text { 
+    grid-area: maneuver_text; 
+    font-size: 1.43rem;
+    margin-top: -80px;
+}
+
+
+
+/* STORYTELLING SECTION */
+.storytelling {
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr; 
+    grid-template-rows: 1fr 1fr; 
+    grid-template-areas: 
+      "story_title story_text story_text"
+      "story_images story_images story_images"; 
+    grid-area: storytelling; 
+    border-radius: 25px; 
+    border: 2px solid yellow;
+    margin: 30px;
+}
+
+.story_title { 
+    grid-area: story_title; 
+    margin: 30px;
+}
+
+.story_text { 
+    grid-area: story_text; 
+    margin: 20px;
+    font-size: 1.43rem;
+}
+
+.story_images { 
+    grid-area: story_images; 
+    margin-left: -21px;
+    margin-right: -50px;
+    margin-bottom: 30px;
+}
+
+.story_images img {
+
+    width: 265px;
+    max-height: 200px;
+    height: auto; 
+    border: 1px solid yellow;
+}
+
+#image1 {
+    border-left: 0;
+}
+
+#image7 {
+    border-right: 0;
+}
