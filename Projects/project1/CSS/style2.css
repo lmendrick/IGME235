@@ -42,13 +42,13 @@ p {
 }
 
 a:link {
-    color: darkred;
+    color: blue;
 }
 a:visited {
-color: brown;
+color: darkblue;
 }
 a:focus {
-color: brown;
+color: darkred;
 }
 a:hover {
     color: red;
