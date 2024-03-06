@@ -1,13 +1,13 @@
 
 /* FONTS */
-.kdam-thmor pro-regular {
-    font-family: "Kdam Thmor Pro", sans-serif;
+.average-regular {
+    font-family: "Average", serif;
     font-weight: 400;
     font-style: normal;
 }
 
 body {
-    font-family: 'Kdam Thmor Pro', sans-serif;
+    font-family: 'Average', sans-serif;
     border-right: 20px solid red;
 }
 
@@ -31,6 +31,22 @@ p {
     margin-left: 10px;
     text-align: justify;
     margin-right: 10px;
+}
+
+a:link {
+    color: darkred;
+}
+a:visited {
+color: brown;
+}
+a:focus {
+color: brown;
+}
+a:hover {
+    color: red;
+}
+a:active {
+    color: white;
 }
 
 .wrapper {
@@ -88,8 +104,9 @@ p {
 
 .intro_text {
     grid-area: intro_text;
-    font-size: 1.43rem;
+    font-size: 1.75rem;
     margin-right: 5px;
+    line-height: 1.25;
 }
 
 .intro_text p::first-letter {
@@ -125,6 +142,7 @@ p {
     margin-bottom: -125px;
     font-family: sans-serif;
     border-top: 60px solid red;
+
 }
 
 .preview h3 {
@@ -135,24 +153,29 @@ p {
 }
 
 #percent{
-    border-bottom: 1px solid white;
-    border-left: 1px solid white;
+    border-bottom: 2px solid white;
+    border-left: 2px solid white;
     margin-top: 0px;
     text-indent: 2%;
     margin-right: 250px;
     font-size: 3em;
-    padding: 10px;
+    padding-top: 30px;
+    padding-bottom: 20px;
 }
 
 #psList {
-    border-left: 1px solid white;   
+    border-left: 2px solid white;   
     margin-top: 0px;
     margin-right: 20px;
     margin-bottom: 0px;
     font-size: 1.5em;
-    line-height: 40px;
+    line-height: 50px;
     padding-top: 10px;
 }
+
+/* #percent, #psList {
+    line-height: 2.3;
+} */
 
 #preview_word {
     font-size: 5em;
@@ -162,8 +185,8 @@ p {
 
 .preview_title {
     margin-right: 350px;
-    border-right: 1px solid white;
-    border-bottom: 1px solid white;
+    border-right: 2px solid white;
+    border-bottom: 2px solid white;
     padding: 10px;
     margin-top: -60px;
 }
@@ -191,11 +214,12 @@ p {
     border-top-right-radius: 0;
     margin-top: 175px;
     margin-bottom: 125px;
+    
 }
 
 .distance_text {
     grid-area: distance_text;
-    font-size: 1.43rem;
+    font-size: 1.7rem;
     margin-right: 5px;
     margin-top: -100px;
 }
@@ -244,7 +268,7 @@ p {
 
 .characters_text {
     grid-area: characters_text;
-    font-size: 1.43rem;
+    font-size: 1.6rem;
     margin-right: 5px;
     margin-top: -70px;
 }
