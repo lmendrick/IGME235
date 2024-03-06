@@ -67,7 +67,8 @@ a:active {
       "intro intro distance"
       "characters characters distance"
       "maneuverability maneuverability missions"
-      "storytelling storytelling storytelling";
+      "storytelling storytelling storytelling"
+      "footer footer footer";
 }
 
 
@@ -171,6 +172,7 @@ a:active {
     font-size: 3em;
     padding-top: 30px;
     padding-bottom: 20px;
+    padding-left: 2%2;
 }
 
 #psList {
@@ -293,7 +295,7 @@ a:active {
 
 .characters_images img{
 
-   max-width: 300px;
+   max-width: 200px;
    height: auto;
    border: 1px solid darkred;
 }
@@ -364,6 +366,7 @@ a:active {
 
 .missions_text li {
     font-size: 1.5rem;
+    margin-left: 10%;
 }
 
 
@@ -410,15 +413,15 @@ a:active {
 }
 
 .maneuver_images img {
-    max-width: 300px;
-    height: auto; 
+    width: 250px;
+    height: 225px;
     border: 1px solid darkred;
 }
 
 
 .maneuver_text { 
     grid-area: maneuver_text; 
-    font-size: 1.43rem;
+    font-size: 1.7rem;
     margin-top: -80px;
 }
 
@@ -446,22 +449,38 @@ a:active {
 .story_text { 
     grid-area: story_text; 
     margin: 20px;
-    font-size: 1.43rem;
+    font-size: 1.6rem;
 }
 
 .story_images { 
     grid-area: story_images; 
+    /* position: relative;
     margin-left: -21px;
-    margin-right: -50px;
+    margin-right: -500px;
     margin-bottom: 30px;
+    width: 1vw;
+    height: auto; */
+    /* padding-left: 0px;
+    padding-right: 0px;
+    margin-right: 0px;
+    margin-left: 0px;
+    width: 300%; */
+    /* grid-column: 1/4; */
+    position: relative;
+    margin:auto;
+    margin-left: -59px;
+    margin-right: -50px;
+    margin-bottom: 20px;
 }
 
 .story_images img {
 
-    width: 265px;
+    width: 270px;
     max-height: 200px;
-    height: auto; 
+    height: auto;
+
     border: 1px solid darkred;
+
 }
 
 #image1 {
@@ -470,4 +489,14 @@ a:active {
 
 #image7 {
     border-right: 0;
+}
+
+footer {
+    grid-area: footer;
+}
+
+footer p {
+    text-align: center;
+    /* justify-content: center;
+    align-items: center; */
 }
