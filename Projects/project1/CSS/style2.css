@@ -22,16 +22,17 @@ html, body, .wrapper {
     height: 100%;
     margin: 0;
     background-color:black;
-    color:white
+    color:rgb(216, 216, 216)
 }
 
 h2 {
     text-indent: 2%;
     background-color: darkred;
     color: white;
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     text-shadow: -3px 3px 0 black;
     font-family: 'Average', serif;
+    letter-spacing: .1rem;
 }
 
 p {
@@ -114,11 +115,13 @@ a:active {
     font-size: 1.75rem;
     margin-right: 5px;
     line-height: 1.25;
+   
 }
 
 .intro_text p::first-letter {
     font-size: 5rem;
     color:darkred;
+    line-height: 0.7;
 }
 
 .intro_images { 
@@ -149,7 +152,7 @@ a:active {
     margin-bottom: -125px;
     font-family: sans-serif;
     border-top: 60px solid red;
-
+    color: white;
 }
 
 .preview h3 {
