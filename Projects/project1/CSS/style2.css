@@ -14,7 +14,7 @@
 
 body {
     font-family: 'Average Sans', sans-serif;
-    border-right: 20px solid darkblue;
+    border-right: 20px solid red;
 }
 
 
@@ -42,13 +42,13 @@ p {
 }
 
 a:link {
-    color: blue;
+    color: darkred;
 }
 a:visited {
-color: darkblue;
+color: darkred;
 }
 a:focus {
-color: darkred;
+color: brown;
 }
 a:hover {
     color: red;
@@ -152,7 +152,7 @@ a:active {
     /* margin-top: 50px; */
     margin-bottom: -125px;
     font-family: sans-serif;
-    border-top: 60px solid darkblue;
+    border-top: 60px solid red;
     color: white;
 }
 
