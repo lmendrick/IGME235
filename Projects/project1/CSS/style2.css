@@ -33,6 +33,7 @@ h2 {
     text-shadow: -3px 3px 0 black;
     font-family: 'Average', serif;
     letter-spacing: .1rem;
+    z-index: 2;
 }
 
 p {
@@ -65,11 +66,12 @@ a:active {
     grid-template-areas: 
       "title title preview"
       "intro intro about"
-      "downgrade downgrade about"
+      "graphics graphics about"
       "development development controls"
       "features features features"
       "footer footer footer";
 }
+
 
 
 
@@ -103,7 +105,7 @@ header {
 
 
 /* NAVBAR */
-.navbar {
+nav {
     grid-area: navbar;
     /* grid-column: 1 / 4; */
 }
@@ -328,17 +330,17 @@ ul.menu {
 
 
 
-/* downgrade SECTION */
+/* graphics SECTION */
 
-.downgrade { 
-    grid-area: downgrade;
+.graphics { 
+    grid-area: graphics;
     display: grid;
     grid-template-columns: .25r 1fr .25fr; 
     grid-template-rows: 1fr 1fr 1fr; 
     grid-template-areas: 
-    "downgrade_title downgrade_title downgrade_images"
-    "downgrade_text downgrade_text downgrade_images"
-    "downgrade_text downgrade_text downgrade_images"; 
+    "graphics_title graphics_title graphics_images"
+    "graphics_text graphics_text graphics_images"
+    "graphics_text graphics_text graphics_images"; 
     border-radius: 25px; 
     border-top: 2px solid darkred;
     border-right: 2px solid darkred;
@@ -347,30 +349,30 @@ ul.menu {
     border-bottom-left-radius: 0px;
 }
 
-.downgrade_text {
-    grid-area: downgrade_text;
+.graphics_text {
+    grid-area: graphics_text;
     font-size: 1.75rem;
     margin-right: 5px;
     margin-top: -70px;
 }
 
-.downgrade_images { 
-    grid-area: downgrade_images;
+.graphics_images { 
+    grid-area: graphics_images;
     margin-right: 10px;
     position: relative;
     top: -40px;
     margin-bottom: -20px;
  }
 
-.downgrade_images img{
+.graphics_images img{
 
    max-width: 200px;
    height: auto;
    border: 1px solid darkred;
 }
 
-.downgrade_title {
-    grid-area: downgrade_title;
+.graphics_title {
+    grid-area: graphics_title;
     position: relative;
     top: -60px;
     margin-left: 20px;
@@ -568,4 +570,91 @@ footer p {
     text-align: center;
     /* justify-content: center;
     align-items: center; */
+}
+
+
+
+
+
+
+/* MOBILE */
+@media screen and (max-width: 850px) {
+    .wrapper {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        gap: 100px;
+        grid-template-areas:
+            "title"
+            "navbar"
+            "preview"
+            "intro"
+            "about"
+            "graphics"
+            "controls"
+            "development"
+            "features"
+            "footer";
+    }
+
+    .menu a {
+        font-size: 2rem;
+    }
+
+    body {
+        border-right: none;
+        margin-left: 20px;
+    }
+
+    .preview {
+        margin-top: -100px;
+        margin-bottom: 100px;
+    }
+
+    
+    .about {
+        margin-top: 0;
+        margin-bottom: 0;
+        grid-template-rows: .25fr .25fr .25fr;
+    }
+
+    .about_images img {
+        max-width: 450px;
+        height: auto;
+    }
+
+
+    .controls {
+        margin-top: 0;
+    }
+    
+    .controls_images img {
+        max-width: 450px;
+        height: auto;
+    }
+
+
+
+    .features {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: .75fr 1fr;
+        margin: 0px;
+    }
+
+    .features_title h2{
+        font-size: 2.25rem;
+    }
+    
+
+    .features_images {
+        /* margin: auto; */
+        margin:auto ;
+        margin-left: 10%;
+        width: 100%;
+        margin-bottom: 40px;
+    }
+
+    #image7 {
+        display: none;
+    }
+    
 }
