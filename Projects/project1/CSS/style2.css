@@ -64,10 +64,10 @@ a:active {
     gap: 50px 30px; 
     grid-template-areas: 
       "title title preview"
-      "intro intro distance"
-      "characters characters distance"
-      "maneuverability maneuverability missions"
-      "storytelling storytelling storytelling"
+      "intro intro about"
+      "downgrade downgrade about"
+      "development development controls"
+      "features features features"
       "footer footer footer";
 }
 
@@ -75,8 +75,20 @@ a:active {
 
 /* TITLE SECTION */
 
+header {
+    grid-area: title;
+}
+
 .title { 
-    grid-area: title; 
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr; 
+    grid-template-rows: 0fr 0fr 0fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+     ". . ."
+     ". . ."
+     "navbar navbar navbar"; 
+    grid-area: title;  
 }
 
 .title h1 {
@@ -90,7 +102,64 @@ a:active {
 }
 
 
+/* NAVBAR */
+.navbar {
+    grid-area: navbar;
+    /* grid-column: 1 / 4; */
+}
 
+ul.menu {
+    list-style: none;
+
+    /* margin-right: 0; */
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    /* border-style: outset; */
+    /* background-color: darkred; */
+}
+
+
+/* .menu li {
+    margin: auto;
+    text-align: center;
+    padding: 2%;
+    padding-right: 5%;
+    padding-left: 5%;
+    background-color: darkred;
+} */
+
+.menu li {
+    flex-grow: 1;
+    text-align: center;
+    font-size: 2rem;
+    /* border-right: 1px solid white; */
+
+}
+
+#last {
+    border-right: none;
+}
+
+.menu a {
+    display: block;
+    background: darkred;
+    padding: 15px;
+    color: white;
+    text-decoration: none;
+    font-family: 'Average', serif;
+    font-size: 2.5rem;
+    letter-spacing: .1rem;
+    text-shadow: -2px 2px 0 black;
+    transition: transform 0.1s ease-in, background-color 0.5s linear;;
+}
+
+.menu a:hover {
+	background: red;
+	color: white;
+    transform:scale(1.1);
+}
 
 
 
@@ -206,50 +275,50 @@ a:active {
 
 
 
-/* DISTANCE SECTION */
+/* about SECTION */
 
-.distance { 
+.about { 
     display: grid; 
     grid-template-columns: 1fr 1fr 1fr; 
     grid-template-rows: .25fr 1fr 1fr; 
     gap: 0px 0px; 
     grid-template-areas: 
-    "distance_title distance_title distance_title"
-    "distance_text distance_text distance_text"
-    "distance_images distance_images distance_images"; 
-    grid-area: distance; 
+    "about_title about_title about_title"
+    "about_text about_text about_text"
+    "about_images about_images about_images"; 
+    grid-area: about; 
     border-radius: 25px; 
     border-left: 2px solid darkred;
     border-top: 2px solid darkred;
     border-bottom: 2px solid darkred;
     border-bottom-right-radius: 0;
     border-top-right-radius: 0;
-    margin-top: 175px;
+    margin-top: 150px;
     margin-bottom: 125px;
     
 }
 
-.distance_text {
-    grid-area: distance_text;
+.about_text {
+    grid-area: about_text;
     font-size: 1.7rem;
     margin-right: 5px;
     margin-top: -100px;
 }
 
-.distance_images {
-    grid-area: distance_images;
+.about_images {
+    grid-area: about_images;
     margin: auto;
     margin-bottom: 20px;
 }
 
-.distance_images img {
+.about_images img {
     border: 1px solid darkred;
     max-width: 275px;
     height: 225px;
 }
 
-.distance_title {
-    grid-area: distance_title;
+.about_title {
+    grid-area: about_title;
     position: relative;
     top: -65px;
     margin-left: 20px;
@@ -259,17 +328,17 @@ a:active {
 
 
 
-/* CHARACTERS SECTION */
+/* downgrade SECTION */
 
-.characters { 
-    grid-area: characters;
+.downgrade { 
+    grid-area: downgrade;
     display: grid;
     grid-template-columns: .25r 1fr .25fr; 
     grid-template-rows: 1fr 1fr 1fr; 
     grid-template-areas: 
-    "characters_title characters_title characters_images"
-    "characters_text characters_text characters_images"
-    "characters_text characters_text characters_images"; 
+    "downgrade_title downgrade_title downgrade_images"
+    "downgrade_text downgrade_text downgrade_images"
+    "downgrade_text downgrade_text downgrade_images"; 
     border-radius: 25px; 
     border-top: 2px solid darkred;
     border-right: 2px solid darkred;
@@ -278,30 +347,30 @@ a:active {
     border-bottom-left-radius: 0px;
 }
 
-.characters_text {
-    grid-area: characters_text;
+.downgrade_text {
+    grid-area: downgrade_text;
     font-size: 1.75rem;
     margin-right: 5px;
     margin-top: -70px;
 }
 
-.characters_images { 
-    grid-area: characters_images;
+.downgrade_images { 
+    grid-area: downgrade_images;
     margin-right: 10px;
     position: relative;
     top: -40px;
     margin-bottom: -20px;
  }
 
-.characters_images img{
+.downgrade_images img{
 
    max-width: 200px;
    height: auto;
    border: 1px solid darkred;
 }
 
-.characters_title {
-    grid-area: characters_title;
+.downgrade_title {
+    grid-area: downgrade_title;
     position: relative;
     top: -60px;
     margin-left: 20px;
@@ -313,17 +382,17 @@ a:active {
 
 
 
-/* MISSIONS SECTION */
+/* controls SECTION */
 
-.missions {
+.controls {
     display: grid; 
     grid-template-columns: 1fr 1fr 1fr; 
     grid-template-rows: .1fr 1fr .5fr;  
     grid-template-areas: 
-      "missions_title missions_title missions_title"
-      "missions_text missions_text missions_text"
-      "missions_images missions_images missions_images"; 
-    grid-area: missions; 
+      "controls_title controls_title controls_title"
+      "controls_text controls_text controls_text"
+      "controls_images controls_images controls_images"; 
+    grid-area: controls; 
     border-radius: 25px; 
     border-left: 2px solid darkred;
     border-top: 2px solid darkred;
@@ -336,35 +405,35 @@ a:active {
 
 }
 
-.missions_title { 
-    grid-area: missions_title; 
+.controls_title { 
+    grid-area: controls_title; 
     position: relative;
     top: -65px;
     margin-left: 20px;
     margin-right: 20px;
 }
 
-.missions_text { 
-    grid-area: missions_text; 
+.controls_text { 
+    grid-area: controls_text; 
     font-size: 1.43rem;
     margin-right: 5px;
     margin-top: -100px;
 }
 
-.missions_images { 
-    grid-area: missions_images; 
+.controls_images { 
+    grid-area: controls_images; 
     margin: auto;
     margin-bottom: 20px;
 
 }
 
-.missions_images img {
+.controls_images img {
     border: 1px solid darkred;
     max-width: 275px;
     height: 225px;
 }
 
-.missions_text li {
+.controls_text li {
     font-size: 1.5rem;
     margin-left: 10%;
 }
@@ -375,17 +444,17 @@ a:active {
 
 
 
-/* MANEUVERABILITY SECTION */
+/* development SECTION */
 
-.maneuverability {
+.development {
     display: grid; 
     grid-template-columns: .5fr 1fr 1fr; 
     grid-template-rows: .25fr 1fr 1fr; 
     grid-template-areas: 
-      "maneuver_title maneuver_title maneuver_title"
-      "maneuver_images maneuver_text maneuver_text"
-      "maneuver_images maneuver_text maneuver_text"; 
-    grid-area: maneuverability;
+      "development_title development_title development_title"
+      "development_images development_text development_text"
+      "development_images development_text development_text"; 
+    grid-area: development;
     border-radius: 25px; 
     border-top: 2px solid darkred;
     border-right: 2px solid darkred;
@@ -396,64 +465,64 @@ a:active {
 
 }
 
-.maneuver_title { 
-    grid-area: maneuver_title; 
+.development_title { 
+    grid-area: development_title; 
     position: relative;
     top: -60px;
     margin-left: 20px;
     margin-right: 10px;
 }
 
-.maneuver_images { 
-    grid-area: maneuver_images;
+.development_images { 
+    grid-area: development_images;
     margin: auto;
     margin-top: -60px;
     margin-bottom: -110px;
     margin-left: 20px;
 }
 
-.maneuver_images img {
+.development_images img {
     width: 250px;
     height: 225px;
     border: 1px solid darkred;
 }
 
 
-.maneuver_text { 
-    grid-area: maneuver_text; 
+.development_text { 
+    grid-area: development_text; 
     font-size: 1.7rem;
     margin-top: -80px;
 }
 
 
 
-/* STORYTELLING SECTION */
-.storytelling {
+/* features SECTION */
+.features {
     display: grid; 
     grid-template-columns: 1fr 1fr 1fr; 
     grid-template-rows: 1fr 1fr; 
     grid-template-areas: 
-      "story_title story_text story_text"
-      "story_images story_images story_images"; 
-    grid-area: storytelling; 
+      "features_title features_text features_text"
+      "features_images features_images features_images"; 
+    grid-area: features; 
     border-radius: 25px; 
     border: 2px solid darkred;
     margin: 30px;
 }
 
-.story_title { 
-    grid-area: story_title; 
+.features_title { 
+    grid-area: features_title; 
     margin: 30px;
 }
 
-.story_text { 
-    grid-area: story_text; 
+.features_text { 
+    grid-area: features_text; 
     margin: 20px;
     font-size: 1.6rem;
 }
 
-.story_images { 
-    grid-area: story_images; 
+.features_images { 
+    grid-area: features_images; 
     /* position: relative;
     margin-left: -21px;
     margin-right: -500px;
@@ -473,7 +542,7 @@ a:active {
     margin-bottom: 20px;
 }
 
-.story_images img {
+.features_images img {
 
     width: 270px;
     max-height: 200px;
