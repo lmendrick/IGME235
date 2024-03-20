@@ -612,6 +612,18 @@ footer p {
         margin-left: 2%;
     }
 
+    h2 {
+        font-size: 2.25rem;
+    }
+
+    /* .preview h3 {
+        font-size: 2.1rem;
+    } */
+    /* #preview_word {
+        font-size: 5rem;
+        margin-left: 0;
+    } */
+
     p {
         font-size: 1.5rem;
     }
@@ -741,6 +753,10 @@ footer p {
         "graphics_title"
         "graphics_text"
         "graphics_images";
+    }
+
+    .graphics_title {
+        margin-bottom: auto;
     }
     .graphics_images {
         margin: auto;
