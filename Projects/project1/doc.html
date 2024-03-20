@@ -20,12 +20,40 @@
     <br>
     <a href="spec.html">Spec Page</a>
 
+    <br>
+    <br>
+
     <h2>Resources Used</h2>
+    <h3>Phase 1:</h3>
     <ul>
+        
         <li><a href="https://fonts.google.com/specimen/Kdam+Thmor+Pro">Kdam Thmor Pro Font</a></li>
         <li><a href="https://www.w3schools.com/css/css_grid.asp">W3Schools Grid Tutorial</a></li>
         <li><a href="https://grid.layoutit.com/">Layoutit!</a></li>
     </ul>
+
+    <br>
+
+    <h3>Phase 2:</h3>
+    <ul>
+        <li><a href="https://fonts.googleapis.com/css2?family=Average&family=Average+Sans&display=swap">Average Font</a></li>
+        <li><a href="https://b0tster.itch.io/bbpsx">Official Game Page (Written Content and Images)</a></li>
+        <li><a href="https://www.theverge.com/2022/1/31/22910985/bloodborne-psx-demake-pc-fangame">Verge Article (Written Content and Image)</a></li>
+        <li><a href="https://www.rockpapershotgun.com/bloodborne-psx-is-a-smart-demake-of-a-fromsoft-classic">Rock Paper Shotgun Article (Written Content)</a></li>
+    </ul>
+    <h4>Other Images:</h4>
+    <ul>
+        <li><a href="https://cdn.mos.cms.futurecdn.net/aWYG3XSkLgmWCqvt8VMEbj-650-80.jpg.webp">About Section Image 1</a></li>
+        <li><a href="https://i0.wp.com/www.ultimatepocket.com/wp-content/uploads/2022/02/bloodborne-psx-re-imagines-the-original-as-a-low-poly-masterpiece.png?fit=800%2C602&ssl=1">About Section Image 2</a></li>
+        <li><a href="https://images.squarespace-cdn.com/content/v1/5f8a35d9d0c2ed0c6152c115/eef91d62-c6f4-4f9e-aabe-705364ea3e7f/bbpsxCover.png?format=1000w">Graphics Section Image</a></li>
+        <li><a href="https://cdn.vox-cdn.com/thumbor/RkscsFMyMYFxl10G4VDlAyox8_A=/0x0:1315x773/920x613/filters:focal(553x282:763x492):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/69200644/Ez73PxXUcAQDTPF.0.jpeg">Development Section Image 1</a></li>
+        <li><a href="https://twitter.com/art_mino/status/1380692179580973056/photo/1">Development Section Image 2</a></li>
+        <li><a href="https://gaymingmag.com/wp-content/uploads/2022/03/bloodbornepsx2-1536x864.jpg">New Features Section Image 4</a></li>
+        <li><a href="https://cdn.mos.cms.futurecdn.net/yU3wecVAp48jPg844bc5qi-650-80.jpg.webp">New Features Section Image 5</a></li>
+        <li><a href="https://cdn.tomshw.it/storage/wp/new-images/2021/11/bloodborne-195355.jpg?width=896">New Features Section Image 7</a></li>
+    </ul>
+
+    <br>
 
     <h2>Goal</h2>
     <p>
@@ -35,7 +63,10 @@
 
     </p>
 
+    <br>
+
     <h2>Lessons Learned & Other Notes</h2>
+    <h3>Phase 1:</h3>
     <p>
         I quickly discovered that only using a single grid wouldn't be enough and that in order to
         manipulate each element I would need to use grids-within-grids (gridception).
@@ -58,6 +89,32 @@
         <br>
         <br>
         Overall, while it's not perfect, I'm proud of what I was able to accomplish with this design!
+    </p>
+
+    <br>
+
+    <h3>Phase 2:</h3>
+    <p>
+        I really enjoyed stylizing my page to fit the content, and I think that it turned out great visually!
+        <br>
+        <br>
+        Making the navigation bar was much easier than I thought it would be. By refering to the code I wrote for one 
+        of the tetris exercises, I was even able to animate the "buttons" when they are hovered over.
+        <br>
+        <br>
+        However, making the page responsive for mobile was a bit of a nightmare. I mostly blame myself, since I used a 
+        ton of pixel values for the original design. That being said, I think the structure of the page itself made 
+        implementing responsiveness difficult due to using grids-within-grids and grids/sections that are intentionally
+        not alligned with one another. I had to change a number of style rules for each individual section's grid (and subgrids) 
+        since they were using properties such as negative margins and had images placed in different areas with different sizes. This turned out to be
+        an extremely time consuming process of trial and error, but I did end up with a mobile breakpoint that keeps all of the original
+        content (okay, I did hide one image in the last section in order to make a symmetrical grid of images).
+        <br>
+        <br>
+        Although I'm happy with my mobile layout, I admit that I ran out of time to fully implement responsiveness at any width.
+        I managed to implement some responsiveness at any width, however, I would likely had to completely remake my original 
+        page using relative values in order for it to work at any width, and I simply did not have time. I did learn a 
+        valuble lesson though - don't hardcode pixel values into your layout!!!
     </p>
 
 </body>
