@@ -637,6 +637,11 @@ footer p {
         "navbar";
     }
 
+    .menu li {
+        border: 1px outset rgba(255, 255, 255, 0.274);
+
+    }
+
     #percent {
         border: none;
         margin: auto;
