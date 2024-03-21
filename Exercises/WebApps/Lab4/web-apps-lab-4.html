@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Web Apps-4-HW</title>
+	<style>
+		body{border:1px solid gray;}
+	</style>
+</head>
+<body>
+<h1>My Favorites</h1>
+<h2>My Favorite Colors</h2>
+
+<ol id="colorsList">
+	
+</ol>
+
+<h2>My Favorite Foods</h2>
+
+<ol id="foodsList">
+	
+</ol>
+
+<h2>My Favorite Links</h2>
+
+<ol id="linksList">
+	
+</ol>
+
+<script>
+"use strict";
+let colors = ["red","green","blue","purple","pink"];
+let foods = ["pizza", "pasta", "french fries", "hamburger", "hotdog"]; // add some foods
+
+
+function createList(listElement, array) {
+    let defaultArray = ["puppydogs", "butterflies", "lollipops"];
+    array = (typeof array !== 'undefined') ? array : defaultArray;
+    for (const iterator of array) {
+        let currentList = document.querySelector(listElement);
+        let listItem = document.createElement("li");
+        listItem.innerHTML = iterator;
+        currentList.appendChild(listItem);
+    }
+}
+
+createList("#colorsList", colors);
+createList("#foodsList", foods);
+createList("#linksList");
+
+
+</script>
+</body>
+</html>
