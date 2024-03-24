@@ -1,0 +1,79 @@
+body {
+    font-family: 'Roboto', Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #0c043a;
+    background-image: url('images/8-Ball.png');
+    background-size: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 90vh;
+    color: #fff;
+    text-align: center;
+    padding-top: 50px;
+}
+
+header {
+    font-size: 5rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px #000000;
+    background-color: #242424af;
+}
+
+#content {
+    margin: 20px;
+}
+
+#phrase {
+    width: 20vw;
+    font-size: 2rem;
+    margin: auto;
+    margin-top: 25vh;
+    margin-bottom: 20px;
+}
+
+footer {
+    margin-top: 10vh;
+}
+
+button {
+    background-color: black;
+    border: 2px solid white;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    display: inline-block;
+    font-size: 3rem;
+    margin: auto;
+    margin-top: 25vh;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+button:hover {
+    background-color: #333;
+}
+
+button:active {
+    background-color: #666;
+}
+
+/* MOBILE */
+@media screen and (max-width: 850px) {
+    
+    body {
+        background-size: cover;
+    }
+
+    header {
+        font-size: 2.25rem;
+    }
+
+    #phrase {
+        width: auto;
+        font-size: 2rem;
+        margin-top: 30vh;
+    }
+
+
+}

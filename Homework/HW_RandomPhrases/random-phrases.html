@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <title>Magic 8-Ball</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>Magic 8-Ball Generator</header>
+
+
+    <div id="content">
+        <div id="phrase"></div>
+
+
+        <button onclick="displayPhrase()">Shake the Magic 8-Ball</button>
+    </div>
+
+
+    <footer>
+        <p>
+            Made by Lucas Mendrick 2024
+        </p>
+    </footer>
+
+    <script>
+        "use strict";
+
+
+        function displayPhrase() {
+
+            let phrases = [
+                "It is certain", "Reply hazy, try again", "Don’t count on it",
+                "It is decidedly so", "Ask again later", "My reply is no",
+                "Without a doubt", "Better not tell you now", "My sources say no",
+                "Yes definitely", "Cannot predict now", "Outlook not so good",
+                "You may rely on it", "Concentrate and ask again", "Very doubtful",
+                "As I see it, yes", "Most likely", "Outlook good", "Yes",
+                "Signs point to yes"
+            ];
+
+            // Get a random index of the array
+            let randomIndex = Math.floor(Math.random() * phrases.length);
+
+            // Store the string
+            let randomPhrase = phrases[randomIndex];
+
+            // Set phrase to the string (uppercase)
+            document.getElementById("phrase").textContent = randomPhrase.toUpperCase();
+        }
+
+        // Display when page loads
+        window.onload = displayPhrase; 
+
+    </script>
+</body>
+
+</html>
