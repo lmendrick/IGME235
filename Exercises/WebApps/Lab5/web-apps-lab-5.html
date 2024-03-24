@@ -44,18 +44,35 @@
 let button = document.querySelector("button");
 let info = document.querySelector("#info");
 // Reference to all radio buttons
-let radios = document.querySelectorAll('input[name*="colorGroup"]');
+let radios = document.querySelectorAll('input[name="colorGroup"]');
+let legend = document.querySelector("legend");
 
 
+function radioChange(e) {
+	// Set text to radio value text
+	info.textContent = "You have selected: " + e.target.value;
+}
+
+function buttonClick() {
+	let currentColor;
+
+	for (const iterator of radios) {
+		if (iterator.checked) {
+			currentColor = iterator.value;
+		}
+	}
+
+	info.textContent = "Your FINAL CHOICE is " + currentColor;
+	// Set color using same value
+	legend.style.color = currentColor;
+}
+
+// Event handlers
 for (const iterator of radios) {
-    
+	iterator.addEventListener("change", radioChange);
 }
 
-button.onclick = function(e) {
-    info.innerHTML = radios[1].value;
-
-
-}
+button.addEventListener("click", buttonClick);
 
 
 
