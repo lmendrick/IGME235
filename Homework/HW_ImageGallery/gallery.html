@@ -52,7 +52,7 @@
 		  box-shadow: 7px 7px 5px #888;
 		  border:1px solid #aaa;
 		  transition-property: opacity;
-   		transition-duration: 0.5s;
+   		  transition-duration: 0.5s;
 		}
 
 		footer{
@@ -62,7 +62,7 @@
 		}
    </style>
   
-    </script>
+
 </head>
 <body>
   <section id="main">
@@ -99,8 +99,13 @@
 	// reference to description
 	let description = document.querySelector("#description");
 
-	// arrow function for when a span is clicked
+	// arrow function to update image when a span is clicked
 	let buttonClick = (e) => {
+
+		// Reset each spans style
+		buttons.forEach(button => {
+			button.style = "border: none";
+		});
 
 		// the data-image property in the span
 		let buttonImg = e.target.dataset.image;
@@ -108,11 +113,16 @@
 		// the image title in the span
 		let buttonDescription = e.target.title;
 
+		let buttonText = e.target.innerHTML;
+
 		// Set the img src
 		currentImage.src = "images/" + buttonImg;
 
 		// Set the description
 		description.innerHTML = buttonDescription;
+
+		// Add a border around the currently selected span because why not
+		e.target.style = "border: 2px solid orange";
 
 	}
 
