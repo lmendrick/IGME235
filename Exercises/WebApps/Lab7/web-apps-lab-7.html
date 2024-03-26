@@ -22,7 +22,8 @@
          */
         window.onload = function () {
             makeSampleMonsters();
-            showMonsters();
+            showMonsters("Goomba", "#goombas");
+            showMonsters("Boo", "#boos");
         }
 
         /**
@@ -32,28 +33,48 @@
         function makeSampleMonsters() {
             let monster;
 
-            monster = makeGoomba("John", 20, 30, 100);
+            monster = makeGoomba("John", 20, 30, 100, "Goomba");
             monsters.push(monster);
-            monster = makeGoomba("Fred", 30, 100, 150);
+            monster = makeGoomba("Fred", 30, 100, 150, "Goomba");
             monsters.push(monster);
-            monster = makeGoomba("Alice", 40, 150, 200);
+            monster = makeGoomba("Alice", 40, 150, 200, "Goomba");
             monsters.push(monster);
+
+            // Add boos to monster list
+            let boo;
+            boo = makeBoo("Luke", 50, 10, 300, "Boo");
+            monsters.push(boo);
+            boo = makeBoo("Kyle", 75, 20, 350, "Boo");
+            monsters.push(boo);
+            boo = makeBoo("Jared", 100, 30, 400, "Boo");
+            monsters.push(boo);
         }
 
         /**
          * Function that shows our monsters (just Goombas for now)
          * 
          */
-        function showMonsters() {
-            let goombaList = document.querySelector("#goombas");
+        function showMonsters(type, querySelector) {
+            let goombaList = document.querySelector(querySelector);
 
-            for (let i = 0; i < monsters.length; i++) {
+            // Function to check monster type
+            let typeOnly = function(monster) {
+                    if (monster.type == type) {
+                        return monster;
+                    }
+            };
+
+            // filter the monsters array and get a new array of only desired types
+            let filteredArray = monsters.filter(typeOnly);
+
+            for (let i = 0; i < filteredArray.length; i++) {
                 let liStr = "";
                 let li = document.createElement("li");
 
-                for (let key in monsters[i]) {
-                    if (typeof monsters[i][key] !== "function") {
-                        liStr += `<b>${key}:</b> ${monsters[i][key]}<br />`;
+                
+                for (let key in filteredArray[i]) {
+                    if (typeof filteredArray[i][key] !== "function") {
+                        liStr += `<b>${key}:</b> ${filteredArray[i][key]}<br />`;
                     }
                 }
                 li.innerHTML = liStr;
@@ -71,8 +92,9 @@
                 hp: 100,
                 speed: 10,
                 score: 100,
+                type: "",
                 status: function () {
-                    console.log("name: " + this.name + ", hp: " + this.hp + ", speed: " + this.speed + ", score: " + this.score);
+                    console.log("name: " + this.name + ", hp: " + this.hp + ", speed: " + this.speed + ", score: " + this.score + ", type: " + this.type);
                 }
             }
         }
@@ -81,12 +103,13 @@
          * Create a Goomba.
          * 
          */
-        function makeGoomba(name, hp, speed, score) {
+        function makeGoomba(name, hp, speed, score, type) {
             let goomba = createBaseMonster();
             goomba.name = name;
             goomba.hp = hp;
             goomba.speed = speed;
             goomba.score = score;
+            goomba.type = type;
             goomba.takeDamage = function (dmgVal) {
                 goomba.hp -= dmgVal;
             }
@@ -94,6 +117,27 @@
 
             Object.seal(goomba);
             return goomba;
+        }
+
+
+        /**
+         * Create a Boo.
+         * 
+         */
+        function makeBoo(name, hp, speed, score, type) {
+            let boo = createBaseMonster();
+            boo.name = name;
+            boo.hp = hp;
+            boo.speed = speed;
+            boo.score = score;
+            boo.type = type;
+            boo.takeDamage = function (dmgVal) {
+                boo.hp -= dmgVal;
+            }
+            boo.powerUp = powerUp;
+
+            Object.seal(boo);
+            return boo;
         }
 
         /**
@@ -113,6 +157,10 @@
     <div id="lineUp">
         <h1>Goombas</h1>
         <ul id="goombas">
+        </ul>
+        <h1>Boos</h1>
+        <ul id="boos">
+
         </ul>
     </div>
 </body>
