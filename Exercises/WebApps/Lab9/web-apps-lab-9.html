@@ -50,11 +50,19 @@ if (storedColor){
 	colorSelect.querySelector(`option[value='${storedColor}']`).selected = true;
 }
 
+
+
 /* This stuff happens later when the user does something */
 // when the user changes their favorites, update localStorage
 nameField.onchange = e=>{ localStorage.setItem(nameKey, e.target.value); };
-colorSelect.onchange = e=>{ localStorage.setItem(colorKey, e.target.value); };
+colorSelect.onchange = e=>{ 
+    localStorage.setItem(colorKey, e.target.value);
+    // Set color when selection changes
+    document.querySelector("html").style.backgroundColor = (colorKey, e.target.value);
+};
 
+// Set color based on stored color
+document.querySelector("html").style.backgroundColor = localStorage.getItem(colorKey);
 
 </script>
 </html>
