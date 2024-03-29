@@ -106,6 +106,42 @@
 	// 3
 	function searchButtonClicked(){
 		console.log("searchButtonClicked() called");
+
+        // 1 
+        const GIPHY_URL = "https://api.giphy.com/v1/gifs/search?";
+
+        // 2 
+        let GIPHY_KEY = "5PuWjWVnwpHUQPZK866vd7wQ2qeCeqg7";
+
+        // 3 - Build URL String
+        let url = GIPHY_URL;
+        url += "api_key=" + GIPHY_KEY;
+
+        // 4 - parse the user entered term we wish to search
+        let term = document.querySelector("#searchterm").value;
+        displayTerm = term;
+
+        // 5 - get rid of any leading or trailing spaces
+        term = term.trim();
+
+        // 6 - encode spaces and special characters
+        term = encodeURIComponent(term);
+
+        // 7 - if there's no term to search then bail out of the function
+        if(term.length < 1) return;
+
+        // 8 - append the search term to the URL - the parameter name is "q"
+        url += "&q=" + term;
+
+        // 9 - grab the user chosen search 'limit' from the <select> and append it to the URL
+            let limit = document.querySelector("#limit").value;
+            url += "&limit=" + limit;
+
+        // 10 - update the UI 
+        document.querySelector("#status").innerHTML = "<b>Searching for '" + displayTerm + "'</b>";
+
+        // 11 - see what the URL looks like
+        console.log(url);
 		
 	}
 	
