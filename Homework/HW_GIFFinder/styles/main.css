@@ -17,10 +17,48 @@ header h1 {
 
 #status {
     font-style: italic;
-    height: 32px;
+    /* height: 32px; */
+}
+
+.widgets {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    align-items: center;
+}
+
+#content {
+    margin: 0 auto;
+    width: 90%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+    gap: 40px 20px;
 }
 
 .result {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    height: fit-content;
+    box-shadow: 0 10px 20px 0 rgba(0,0,0,0.4);
+}
+
+.result img {
+    width: 100%;
+    /* box-shadow: 0 10px 20px 0 rgba(0,0,0,0.4); */
+}
+
+.result span {
+    order: -1;
+    text-align: center;
+}
+
+.result p {
+    font-style: italic;
+}
+
+
+/* .result {
     position: relative;
     height: 175px;
     width: 100px;
@@ -47,12 +85,11 @@ header h1 {
 
 .result audio {
     width: 130px;
-}
+} */
 
 button {
     display: inline-block;
     cursor: pointer;
-
     border-style: solid;
     border-width: 1px;
     border-radius: 50px;
