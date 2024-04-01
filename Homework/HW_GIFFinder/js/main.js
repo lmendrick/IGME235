@@ -102,7 +102,13 @@ function dataLoaded(e){
 
         // 13 Build a <div> to hold each result
         // ES6 String Templating
-        let line = `<div class='result'><img src='${smallURL}' title='${result.id}' />`; line += `<span><a target='_blank' href='${url}'>View on Giphy</a></span></div>`;
+        let line = `<div class='result'><img src='${smallURL}' title='${result.id}' />`;
+        line += 
+            `<span>
+                <a target='_blank' href='${url}'>View on Giphy</a>
+                <br>
+                <p>Rating: ${result.rating.toUpperCase()}</p>
+                </span></div>`;
 
         // 14 another way of doing the same thing above
         // Replaces this:
