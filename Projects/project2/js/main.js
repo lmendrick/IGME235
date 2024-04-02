@@ -9,14 +9,15 @@ function searchButtonClicked(){
     console.log("searchButtonClicked() called");
 
     // 1 
-    const GIPHY_URL = "https://api.giphy.com/v1/gifs/search?";
+    const CHEAPSHARK_URL = "https://www.cheapshark.com/api/1.0/deals?";
 
-    // 2 
-    let GIPHY_KEY = "5PuWjWVnwpHUQPZK866vd7wQ2qeCeqg7";
+    // // 2 
+    // let GIPHY_KEY = "5PuWjWVnwpHUQPZK866vd7wQ2qeCeqg7";
 
-    // 3 - Build URL String
-    let url = GIPHY_URL;
-    url += "api_key=" + GIPHY_KEY;
+    // // 3 - Build URL String
+    let url = CHEAPSHARK_URL;
+    // No api key needed
+    // url += "api_key=" + GIPHY_KEY;
 
     // 4 - parse the user entered term we wish to search
     let term = document.querySelector("#searchterm").value;
@@ -32,7 +33,7 @@ function searchButtonClicked(){
     if(term.length < 1) return;
 
     // 8 - append the search term to the URL - the parameter name is "q"
-    url += "&q=" + term;
+    url += "&title=" + term;
 
     // 9 - grab the user chosen search 'limit' from the <select> and append it to the URL
         let limit = document.querySelector("#limit").value;
