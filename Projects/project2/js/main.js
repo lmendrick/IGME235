@@ -37,7 +37,7 @@ function searchButtonClicked(){
 
     // 9 - grab the user chosen search 'limit' from the <select> and append it to the URL
         let limit = document.querySelector("#limit").value;
-        url += "&limit=" + limit;
+        url += "&pageSize=" + limit;
 
     // 10 - update the UI 
     document.querySelector("#status").innerHTML = "<b>Searching for '" + displayTerm + "'</b>";
@@ -74,19 +74,23 @@ function dataLoaded(e){
 
     // 6 xhr.responseText is the JSON file we just downloaded
     console.log(xhr.responseText);
+    console.log(typeof xhr.responseText);
 
     
     // 7 - turn the text into a parsable JavaScript object 
     let obj = JSON.parse(xhr.responseText);
+    // for(index in obj) {
+    //     alert(JSON.stringify(obj[index]));
+    // }
 
     // 8 if there are no results, print a message and return
-    if (!obj.data || obj.data.length == 0) {
+    if (!obj || obj.length == 0) {
     document.querySelector("#status").innerHTML = "<b>No results found for '" + displayTerm + "'</b>"; 
     return; // Bail out
     }
 
     // 9 Start building an HTML string we will display to the user
-    let results = obj.data
+    let results = obj
     console.log("results.length = " + results.length);
     let bigString = "";
 
@@ -95,7 +99,8 @@ function dataLoaded(e){
         let result = results[i];
 
         // 11 get the URL to the GIF
-        let smallURL = result.images.fixed_width_downsampled.url;
+        let smallURL = result.thumb;
+        console.log(smallURL);
         if (!smallURL) smallURL = "images/no-image-found.png";
 
         // 12 get the URL to the GIPHY Page
@@ -107,7 +112,7 @@ function dataLoaded(e){
         line += 
             `<span>
                 <a target='_blank' href='${url}'>View on Giphy</a>
-                <p>Rating: ${result.rating.toUpperCase()}</p>
+                <p>Rating: ${result.title.toUpperCase()}</p>
             </span>
             </div>`;
 
