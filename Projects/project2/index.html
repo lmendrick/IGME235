@@ -19,13 +19,43 @@
 	</div>
 
 	<div class="widgets">
+		Minimum Price
+		<input id="lowerPrice" type="text" size="20" maxlength="20" autofocus value="0" />
+	</div>
+
+	<div class="widgets">
+		Maximum Price
+		<input id="upperPrice" type="text" size="20" maxlength="20" autofocus value="100" />
+	</div>
+
+	<div class="widgets">
+		Minimum Metacritic Rating
+		<input id="metacritic" type="text" size="20" maxlength="20" autofocus value="0" />
+	</div>
+
+	<div class="widgets">
+		Sort By
+		<select id="sortBy">
+			<option value="DealRating">Deal Rating</option>
+			<option value="Price">Price</option>
+			<option value="Savings">Savings</option>
+			<option value="Metacritic">Metacritic Rating</option>
+			<option value="Recent">Recent</option>
+		</select>
+	</div>
+
+	<div class="widgets">
+		Limit to Steam Listings?
+		<input type="checkbox" name="steamBox" value="1" />
+	</div>
+
+	<div class="widgets">
 		Max # results
-		<select id="limit">
+		<select id="pageSize">
 			<option value="5">5</option>
 			<option value="10" selected>10</option>
 			<option value="25">25</option>
 			<option value="50">50</option>
-			<option value="100">100</option>
 		</select>
 	</div>
 

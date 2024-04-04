@@ -4,6 +4,28 @@ window.onload = (e) => {document.querySelector("#search").onclick = searchButton
 // 2
 let displayTerm = "";
 
+let steamValue = 0;
+
+var checkbox = document.querySelector('input[name=steamBox]');
+
+
+function steamCheckbox(e) {
+    if (e.checked) {
+        steamValue = "1";
+        console.log("CHECKBOX CHECKED" + " Value: " + steamValue)
+    }
+    else {
+        steamValue = "0";
+        console.log("CHECKBOX NOT CHECKED" + " Value: " + steamValue)
+    }
+}
+
+if (checkbox) {
+    checkbox.addEventListener('change', steamCheckbox);
+}
+checkbox.addEventListener('change', steamCheckbox);
+
+
 // 3
 function searchButtonClicked(){
     console.log("searchButtonClicked() called");
@@ -36,8 +58,49 @@ function searchButtonClicked(){
     url += "&title=" + term;
 
     // 9 - grab the user chosen search 'limit' from the <select> and append it to the URL
-        let limit = document.querySelector("#limit").value;
+        let limit = document.querySelector("#pageSize").value;
         url += "&pageSize=" + limit;
+
+
+
+    ///////////////////////////////
+
+    // get minimum price
+    let lowerPrice = document.querySelector("#lowerPrice").value;
+    url += "&lowerPrice=" + lowerPrice;
+
+    // get maximum price
+    let upperPrice = document.querySelector("#upperPrice").value;
+    url += "&upperPrice=" + upperPrice;
+
+    // get minimum metacritic rating
+    let metacritic = document.querySelector("#metacritic").value;
+    url += "&metacritic=" + metacritic;
+
+    // 9.5 get the user chosen sort option and add it to url
+    let sortBy = document.querySelector('#sortBy').value;
+    url += "&sortBy=" + sortBy;
+
+    // let steamWorksBox = document.querySelector("#steamworks");
+    // steamWorksBox.addEventListener("change", steamWorksChange);
+    // let steamValue;
+
+    // let steamWorksBox = document.querySelector("input[name=steamBox]");
+    // steamWorksBox.addEventListener("change", function() {
+    //     if (this.checked) {
+    //         steamValue = "1";
+    //         console.log("CHECKBOX CHECKED" + " Value: " + steamValue)
+    //     }
+    //     else {
+    //         steamValue = "0";
+    //         console.log("CHECKBOX NOT CHECKED" + " Value: " + steamValue)
+    //     }
+    // });
+
+    console.log(steamValue);
+    url += "&steamworks=" + steamValue;
+
+    /////////////////////////
 
     // 10 - update the UI 
     document.querySelector("#status").innerHTML = "<b>Searching for '" + displayTerm + "'</b>";
@@ -142,3 +205,16 @@ function dataLoaded(e){
 function dataError(e){
     console.log("An error occurred");
 }
+
+// function steamCheckbox(e) {
+//     if (e.checked) {
+//         steamValue = "1";
+//         console.log("CHECKBOX CHECKED" + " Value: " + steamValue)
+//     }
+//     else {
+//         steamValue = "0";
+//         console.log("CHECKBOX NOT CHECKED" + " Value: " + steamValue)
+//     }
+// }
+
+// steamWorksBox.addEventListener("change", steamCheckbox);
