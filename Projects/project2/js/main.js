@@ -6,11 +6,12 @@ let displayTerm = "";
 
 let steamValue = 0;
 
+// get checkbox
 var checkbox = document.querySelector('input[name=steamBox]');
 
-
+// Change steam value if checkbox is checked or not
 function steamCheckbox(e) {
-    if (e.checked) {
+    if (this.checked) {
         steamValue = "1";
         console.log("CHECKBOX CHECKED" + " Value: " + steamValue)
     }
@@ -20,9 +21,7 @@ function steamCheckbox(e) {
     }
 }
 
-if (checkbox) {
-    checkbox.addEventListener('change', steamCheckbox);
-}
+// Add event listener to steam checkbox
 checkbox.addEventListener('change', steamCheckbox);
 
 
@@ -32,6 +31,7 @@ function searchButtonClicked(){
 
     // 1 
     const CHEAPSHARK_URL = "https://www.cheapshark.com/api/1.0/deals?";
+
 
     // // 2 
     // let GIPHY_KEY = "5PuWjWVnwpHUQPZK866vd7wQ2qeCeqg7";
@@ -52,7 +52,7 @@ function searchButtonClicked(){
     term = encodeURIComponent(term);
 
     // 7 - if there's no term to search then bail out of the function
-    if(term.length < 1) return;
+    // if(term.length < 1) return;
 
     // 8 - append the search term to the URL - the parameter name is "q"
     url += "&title=" + term;
@@ -81,24 +81,11 @@ function searchButtonClicked(){
     let sortBy = document.querySelector('#sortBy').value;
     url += "&sortBy=" + sortBy;
 
-    // let steamWorksBox = document.querySelector("#steamworks");
-    // steamWorksBox.addEventListener("change", steamWorksChange);
-    // let steamValue;
-
-    // let steamWorksBox = document.querySelector("input[name=steamBox]");
-    // steamWorksBox.addEventListener("change", function() {
-    //     if (this.checked) {
-    //         steamValue = "1";
-    //         console.log("CHECKBOX CHECKED" + " Value: " + steamValue)
-    //     }
-    //     else {
-    //         steamValue = "0";
-    //         console.log("CHECKBOX NOT CHECKED" + " Value: " + steamValue)
-    //     }
-    // });
-
     console.log(steamValue);
-    url += "&steamworks=" + steamValue;
+    if (steamValue == 1) {
+        url += "&storeID=1";
+    }
+    
 
     /////////////////////////
 
@@ -132,19 +119,19 @@ function getData(url){
 // Called when the data is successfully loaded
 function dataLoaded(e){
 
+    const DEAL_URL = "https://www.cheapshark.com/redirect?dealID=";
+
+
     // 5 - event.target is the xhr object 
     let xhr = e.target;
 
     // 6 xhr.responseText is the JSON file we just downloaded
-    console.log(xhr.responseText);
-    console.log(typeof xhr.responseText);
-
-    
+    // console.log(xhr.responseText);
+    // console.log(typeof xhr.responseText);
+  
     // 7 - turn the text into a parsable JavaScript object 
     let obj = JSON.parse(xhr.responseText);
-    // for(index in obj) {
-    //     alert(JSON.stringify(obj[index]));
-    // }
+
 
     // 8 if there are no results, print a message and return
     if (!obj || obj.length == 0) {
@@ -171,12 +158,24 @@ function dataLoaded(e){
 
         // 13 Build a <div> to hold each result
         // ES6 String Templating
+        let dealURL = DEAL_URL + result.dealID;
         let line = `<div class='result'><img src='${smallURL}' title='${result.id}' />`;
         line += 
             `<span>
-                <a target='_blank' href='${url}'>View on Giphy</a>
-                <p>Rating: ${result.title.toUpperCase()}</p>
+                <p>Title: ${result.title.toUpperCase()}</p>
             </span>
+            <p>
+            Deal Rating: ${result.dealRating}
+            <br>
+            Normal Price: $${result.normalPrice}
+            <br>
+            Sale Price: $${result.salePrice}
+            <br>
+            Savings: ${Math.round(result.savings * 100) / 100}%
+            <br>
+            Metacritic Score: ${result.metacriticScore}
+            </p>
+            <a target='_blank' href='${dealURL}'>Buy Now</a>
             </div>`;
 
         // 14 another way of doing the same thing above
@@ -205,16 +204,3 @@ function dataLoaded(e){
 function dataError(e){
     console.log("An error occurred");
 }
-
-// function steamCheckbox(e) {
-//     if (e.checked) {
-//         steamValue = "1";
-//         console.log("CHECKBOX CHECKED" + " Value: " + steamValue)
-//     }
-//     else {
-//         steamValue = "0";
-//         console.log("CHECKBOX NOT CHECKED" + " Value: " + steamValue)
-//     }
-// }
-
-// steamWorksBox.addEventListener("change", steamCheckbox);
