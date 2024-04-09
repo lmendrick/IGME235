@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="utf-8" />
-	<title>Giphy Finder</title>
+	<title>Game Deal Finder</title>
 	<link href="styles/main.css" rel="stylesheet" type="text/css">
 	<!-- <script src="js/main.js"></script> -->
 </head>
@@ -13,56 +13,69 @@
 		<h1>Game Deal Finder</h1>
 	</header>
 
-	<div class="widgets">
-		Search Term
-		<input id="searchterm" type="text" size="20" maxlength="20" autofocus value="deus ex" />
-	</div>
 
-	<div class="widgets">
-		Minimum Price
-		<input id="lowerPrice" type="text" size="20" maxlength="20" autofocus value="0" />
-	</div>
+	<div class="widgetContainer">
 
-	<div class="widgets">
-		Maximum Price
-		<input id="upperPrice" type="text" size="20" maxlength="20" autofocus value="100" />
-	</div>
 
-	<div class="widgets">
-		Minimum Metacritic Rating
-		<input id="metacritic" type="text" size="20" maxlength="20" autofocus value="0" />
-	</div>
+		<div class="searchParams1">
+			<div class="widgets">
+				Search Term:
+				<input id="searchterm" type="text" size="20" maxlength="20" autofocus value="deus ex" />
+			</div>
 
-	<div class="widgets">
-		Sort By
-		<select id="sortBy">
-			<option value="DealRating">Deal Rating</option>
-			<option value="Price">Price</option>
-			<option value="Savings">Savings</option>
-			<option value="Metacritic">Metacritic Rating</option>
-			<option value="Recent">Recent</option>
-		</select>
-	</div>
+			<div class="widgets">
+				Minimum Price:
+				<input id="lowerPrice" type="text" size="5" maxlength="5" autofocus value="0" />
+			</div>
 
-	<div class="widgets">
-		Limit to Steam Listings?
-		<input type="checkbox" name="steamBox" value="1" />
-	</div>
+			<div class="widgets">
+				Maximum Price:
+				<input id="upperPrice" type="text" size="5" maxlength="5" autofocus value="100" />
+			</div>
 
-	<div class="widgets">
-		Max # results
-		<select id="pageSize">
-			<option value="5">5</option>
-			<option value="10" selected>10</option>
-			<option value="25">25</option>
-			<option value="50">50</option>
-		</select>
-	</div>
+			<div class="widgets">
+				Minimum Metacritic Rating:
+				<input id="metacritic" type="text" size="5" maxlength="5" autofocus value="0" />
+			</div>
 
-	<div class="widgets">
-		<button type="button" id="search" class="green">Find some Games!<br />:-)</button>
+			<div class="widgets">
+				Sort By:
+				<select id="sortBy">
+					<option value="DealRating">Deal Rating</option>
+					<option value="Price">Price</option>
+					<option value="Savings">Savings</option>
+					<option value="Metacritic">Metacritic Rating</option>
+					<option value="Recent">Recent</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="searchParams2">
+			<div class="widgets">
+				Limit to Steam Listings?
+				<input type="checkbox" name="steamBox" value="1" />
+			</div>
+
+			<div class="widgets">
+				Max results:
+				<select id="pageSize">
+					<option value="5">5</option>
+					<option value="10" selected>10</option>
+					<option value="25">25</option>
+					<option value="50">50</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="searchButton">
+			<div class="widgets">
+				<button type="button" id="search" class="green">Find some Games!<br /></button>
+			</div>
+		</div>
+		<br>
+		<div id="status">Ready to Search!</div>
+
 	</div>
-	<div id="status">Ready to Search!</div>
 	<hr>
 
 	<h2>Results</h2>

@@ -7,23 +7,31 @@ let displayTerm = "";
 let steamValue = 0;
 
 // get checkbox
-var checkbox = document.querySelector('input[name=steamBox]');
+let checkbox = document.querySelector('input[name=steamBox]');
 
 // Change steam value if checkbox is checked or not
-function steamCheckbox(e) {
-    if (this.checked) {
-        steamValue = "1";
-        console.log("CHECKBOX CHECKED" + " Value: " + steamValue)
+// function steamCheckbox(e) {
+//     if (this.checked) {
+//         steamValue = "1";
+//         console.log("CHECKBOX CHECKED" + " Value: " + steamValue)
+//     }
+//     else {
+//         steamValue = "0";
+//         console.log("CHECKBOX NOT CHECKED" + " Value: " + steamValue)
+//     }
+// }
+
+// // Add event listener to steam checkbox
+// checkbox.addEventListener('change', steamCheckbox);
+
+checkbox.onchange = e=>{
+    if (steamValue == 1) {
+        steamValue = 0;
     }
     else {
-        steamValue = "0";
-        console.log("CHECKBOX NOT CHECKED" + " Value: " + steamValue)
+        steamValue = 1;
     }
 }
-
-// Add event listener to steam checkbox
-checkbox.addEventListener('change', steamCheckbox);
-
 
 // 3
 function searchButtonClicked(){
