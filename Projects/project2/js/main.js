@@ -1,6 +1,24 @@
 // 1
 window.onload = (e) => {document.querySelector("#search").onclick = searchButtonClicked};
+
+
+const searchField = document.querySelector("#searchterm");
+
+const prefix = "abc1234-"; // change 'abc1234' to your banjo id
+const termKey = prefix + "term"
+
+// stored search term
+const storedTerm = localStorage.getItem(termKey);
+
+if (storedTerm) {
+    searchField.value = storedTerm;
+}
+else {
+    searchField.value = "Deus ex";
+}
 	
+searchField.onchange = e=>{ localStorage.setItem(termKey, e.target.value); };
+
 // 2
 let displayTerm = "";
 
@@ -8,6 +26,7 @@ let steamValue = 0;
 
 // get checkbox
 let checkbox = document.querySelector('input[name=steamBox]');
+
 
 // Change steam value if checkbox is checked or not
 // function steamCheckbox(e) {
