@@ -1,22 +1,17 @@
 // 1
 window.onload = (e) => {document.querySelector("#search").onclick = searchButtonClicked};
 
-
+// Handle storing search term
 const searchField = document.querySelector("#searchterm");
-
 const prefix = "abc1234-"; // change 'abc1234' to your banjo id
 const termKey = prefix + "term"
-
-// stored search term
 const storedTerm = localStorage.getItem(termKey);
-
 if (storedTerm) {
     searchField.value = storedTerm;
 }
 else {
     searchField.value = "Deus ex";
-}
-	
+}	
 searchField.onchange = e=>{ localStorage.setItem(termKey, e.target.value); };
 
 // 2
@@ -43,6 +38,7 @@ let checkbox = document.querySelector('input[name=steamBox]');
 // // Add event listener to steam checkbox
 // checkbox.addEventListener('change', steamCheckbox);
 
+// Update checkbox valuewhen changed
 checkbox.onchange = e=>{
     if (steamValue == 1) {
         steamValue = 0;
@@ -189,20 +185,25 @@ function dataLoaded(e){
         let line = `<div class='result'><img src='${smallURL}' title='${result.id}' />`;
         line += 
             `<span>
-                <p>Title: ${result.title.toUpperCase()}</p>
+                <h3>${result.title.toUpperCase()}</h3>
             </span>
-            <p>
+            <div class='data'>
+            <p class='data1'>
             Deal Rating: ${result.dealRating}
             <br>
-            Normal Price: $${result.normalPrice}
-            <br>
             Sale Price: $${result.salePrice}
+            </p>
+            <p class='data2'>
+            Normal Price: $${result.normalPrice}
             <br>
             Savings: ${Math.round(result.savings * 100) / 100}%
             <br>
             Metacritic Score: ${result.metacriticScore}
             </p>
+            </div>
+            <div class='link'>
             <a target='_blank' href='${dealURL}'>Buy Now</a>
+            </div>
             </div>`;
 
         // 14 another way of doing the same thing above
