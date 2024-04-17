@@ -9,9 +9,9 @@ const storedTerm = localStorage.getItem(termKey);
 if (storedTerm) {
     searchField.value = storedTerm;
 }
-else {
-    searchField.value = "Deus ex";
-}	
+// else {
+//     searchField.value = "";
+// }	
 searchField.onchange = e=>{ localStorage.setItem(termKey, e.target.value); };
 
 // 2
@@ -50,7 +50,7 @@ checkbox.onchange = e=>{
 
 // 3
 function searchButtonClicked(){
-    console.log("searchButtonClicked() called");
+    // console.log("searchButtonClicked() called");
 
     // 1 
     const CHEAPSHARK_URL = "https://www.cheapshark.com/api/1.0/deals?";
@@ -104,7 +104,7 @@ function searchButtonClicked(){
     let sortBy = document.querySelector('#sortBy').value;
     url += "&sortBy=" + sortBy;
 
-    console.log(steamValue);
+    // console.log(steamValue);
     if (steamValue == 1) {
         url += "&storeID=1";
     }
@@ -116,7 +116,7 @@ function searchButtonClicked(){
     document.querySelector("#status").innerHTML = "<b>Searching for '" + displayTerm + "'</b>";
 
     // 11 - see what the URL looks like
-    console.log(url);
+    // console.log(url);
 
     // 12 Request data!
     getData(url);
@@ -164,7 +164,7 @@ function dataLoaded(e){
 
     // 9 Start building an HTML string we will display to the user
     let results = obj
-    console.log("results.length = " + results.length);
+    // console.log("results.length = " + results.length);
     let bigString = "";
 
     // 10 loop through the array of results
@@ -173,7 +173,7 @@ function dataLoaded(e){
 
         // 11 get the URL to the GIF
         let smallURL = result.thumb;
-        console.log(smallURL);
+        // console.log(smallURL);
         if (!smallURL) smallURL = "images/no-image-found.png";
 
         // 12 get the URL to the GIPHY Page
@@ -192,11 +192,11 @@ function dataLoaded(e){
                 <h3>${result.title.toUpperCase()}</h3>
                 <p class='data'>
                     <br>
-                    Deal Rating: ${result.dealRating}
+                    Deal Rating: <strong>${result.dealRating}</strong>
                     <br>
-                    Savings: ${Math.round(result.savings * 100) / 100}%
+                    Savings: <strong>${Math.round(result.savings * 100) / 100}%</strong>
                     <br>
-                    Metacritic Score: ${result.metacriticScore}
+                    Metacritic Score: <strong>${result.metacriticScore}</strong>
                 </p>
             </div>
             <div class='price'>
