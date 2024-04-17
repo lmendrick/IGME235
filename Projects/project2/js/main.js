@@ -182,29 +182,38 @@ function dataLoaded(e){
         // 13 Build a <div> to hold each result
         // ES6 String Templating
         let dealURL = DEAL_URL + result.dealID;
-        let line = `<div class='result'><img src='${smallURL}' title='${result.id}' />`;
+        let line = `<div class='result'>`;
         line += 
-            `<span>
+            `
+            <div class='image'>
+                <img src='${smallURL}' title='${result.id}' />
+            </div>
+            <div class='title'>
                 <h3>${result.title.toUpperCase()}</h3>
-            </span>
-            <div class='data'>
-            <p class='data1'>
-            Deal Rating: ${result.dealRating}
-            <br>
-            Sale Price: $${result.salePrice}
-            </p>
-            <p class='data2'>
-            Normal Price: $${result.normalPrice}
-            <br>
-            Savings: ${Math.round(result.savings * 100) / 100}%
-            <br>
-            Metacritic Score: ${result.metacriticScore}
-            </p>
+                <p class='data'>
+                    <br>
+                    Deal Rating: ${result.dealRating}
+                    <br>
+                    Savings: ${Math.round(result.savings * 100) / 100}%
+                    <br>
+                    Metacritic Score: ${result.metacriticScore}
+                </p>
             </div>
-            <div class='link'>
-            <a target='_blank' href='${dealURL}'>Buy Now</a>
+            <div class='price'>
+                <p>
+                    $${result.salePrice}
+                </p>
+                <p class='normalPrice'>
+                $${result.normalPrice}
+                </p>
+            
             </div>
+            <a target='_blank' href='${dealURL}'></a>
             </div>`;
+
+            // <div class='link'>
+            // <a target='_blank' href='${dealURL}'>Buy Now</a>
+            // </div>
 
         // 14 another way of doing the same thing above
         // Replaces this:
@@ -226,7 +235,11 @@ function dataLoaded(e){
     document.querySelector("#content").innerHTML = bigString;
 
     // 17 update the status
-    document.querySelector("#status").innerHTML = "<b>Success! </b> <p><i>Here are " + results.length + " results for '" + displayTerm + "'</i></p>";
+    document.querySelector("#status").innerHTML = "<b>Success! </b>";
+
+    document.querySelector("#results").innerHTML = "<p><i> '" + displayTerm + "' - " + results.length + " search results:</i></p>"
+
+    // <b>Success! </b> <p><i>Here are " + results.length + " results for '" + displayTerm + "'</i></p>
 }
 
 function dataError(e){

@@ -1,21 +1,60 @@
+.roboto-regular {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.orbitron-bold {
+    font-family: "Orbitron", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+  }
+  
+
 * {
-    font-family: verdana, tahoma, sans-serif;
+    font-family: Roboto, tahoma, sans-serif;
 }
 
 header {
-    background: url(../images/cats.jpg);
-    height: 195px;
+    /* background: url(../images/cats.jpg); */
+    background-color: rgb(27, 27, 27);
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.title-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    margin-right: 0;
 }
 
 header h1 {
-    margin: 0;
-    color: blue;
-    text-align: center;
+    margin: auto;
+    color: rgb(255, 255, 255);
     font-size: 5rem;
-    padding-top: 35px;
+    font-family: "Orbitron", sans-serif;
 }
 
 
+body {
+    background-color: #e2dfdf;
+}
+
+h2 {
+    color: black;
+}
+
+.subtitle {
+    font-size: 1rem;
+    margin-top: 0;
+    color: #949494;
+}
 
 .widgetContainer {
     display: grid;
@@ -28,6 +67,18 @@ header h1 {
     margin-top: 2%;
     /* flex-direction: column;
     margin: auto; */
+}
+
+input {
+    font-size: 1rem;
+    height: 25px;
+    width: auto;
+}
+
+select {
+    font-size: 1rem;
+    height: 25px;
+    width: auto;
 }
 
 .searchParams1 {
@@ -56,22 +107,39 @@ header h1 {
     margin: auto;
     font-style: italic;
     text-align: center;   
+    font-size: 1.5rem;
 }
 
 .widgets {
     margin: 0;
     width: fit-content;
     font-weight: bold;
-    font-size: 1.25rem;
+    font-size: 1.5rem;
+    color: #141414;
 }
 
+.searchBar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    margin-left: 5%;
+}
+
+.searchBar input {
+    height: 35px;
+    font-size: 1.5rem;
+}
 
 #content {
     margin: 0 auto;
     width: 90%;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
-    gap: 40px 20px;
+    grid-template-rows: repeat(auto-fit, minmax(200px,1fr));
+    gap: 0px 20px;
+    background-color: #f1f1f1;
+    padding: 2%;
+    border-radius: 10px;
 }
 
 /* .result {
@@ -84,78 +152,122 @@ header h1 {
 
 .result {
     display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 0.5fr 0.5fr 0.5fr 0.1fr;
-    grid-template-areas: 
-        "title"
-        "image"
-        "data"
-        "link";
-    border: 1px solid black;
-}
-
-/* Title */
-.result span {
-    grid-area: title;
-    order: -1;
-    text-align: center;
-    text-decoration: underline;
-    font-size: 0.8rem;
-    margin: auto;
-}
-
-/* price info */
-.data {
-    
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 0.5fr 1fr 1fr;
     grid-template-rows: 1fr;
     grid-template-areas: 
-        "data2 data1";
-
-    grid-area: data;
-    font-size: 0.75rem;
-    text-align: center;
-    height: 100%;
-    margin:auto;
+        "image title price";
+    border: 1px solid rgba(107, 107, 107, 0.267);
+    border-style: inset;
+    position: relative;
+    max-height: 100%;
 }
 
-.data1 {
-    grid-area: data1;
-    border-left: 1px solid black;
-    margin:0;
-    font-size: 1rem;
+.result:hover {
+    /* box-shadow: 3px 3px black, -1em 0 .4em black; */
+    /* box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset; */
+    box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+    transition: 0.1s;
+}
+
+
+
+/* Title */
+.title {
+    grid-area: title;
+    
+    font-size: 0.8rem;
+    margin-top: 2%;
+    margin-left: 5%;
+    margin-bottom: 5%;
+}
+
+.title h3 {
+    font-size: 1.5rem;
+    text-decoration: underline;
+}
+
+.title p {
+    font-size: 1.25rem;
+    line-height: 3vh;
+}
+
+/* .data {
+    margin-top: 50%;
+} */
+
+.price {
+    grid-area: price;
+    font-size: 2rem;
+    /* margin: auto; */
+    margin-right: 5%;
+    text-align: right;
+    align-content: center;
+    
+    font-weight: bold;
+
+}
+
+.price p.normalPrice {
+    font-size: 1.25rem;
+    text-decoration: line-through;
+    font-weight: lighter;
+    color: red;
+}
+
+.data {
+    grid-area: title;
     margin: auto;
 }
 
-.data2 {
-    grid-area: data2;
-    margin: auto;
-}
-
-.result img {
+.image {
     grid-area: image;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
+    margin: auto;
+    margin-left: 10%;
+    width: 90%;
+    height: 90%;
+    align-content: center;
+    /* border-top: 1px solid black;
+    border-bottom: 1px solid black; */
     /* box-shadow: 0 10px 20px 0 rgba(0,0,0,0.4); */
 }
 
-.link {
+.image img {
+    margin: auto;
+    width: 250px;
+    height: 150px;
+}
+
+/* .link {
     grid-area: link;
     text-align: center;
     border-top: 1px solid black;
     font-size: 1.5rem;
-    /* height: 100%; */
+
     margin-bottom: 0;
+} */
+
+.result a {
+    position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        text-decoration: none; /* No underlines on the link */
+        z-index: 10; /* Places the link above everything else in the div */
+        background-color: #FFF; /* Fix to make div clickable in IE */
+        opacity: 0; /* Fix to make div clickable in IE */
+        filter: alpha(opacity=1); /* Fix to make div clickable in IE */
 }
 
-.result p {
-    /* font-style: italic; */
-}
+/* .result span {
+    position: absolute; 
+    width:100%;
+    height:100%;
+    top:0;
+    left: 0;
 
+    z-index: 1;
+} */
 
 /* .result {
     position: relative;
@@ -204,17 +316,17 @@ button {
 }
 
 button.green {
-    border-color: #8fc800;
-    background: #8fc800;
+    border-color: #464646;
+    background: #1f1f1f;
     background: linear-gradient(top, #8fc800 0%, #438c00 100%);
 }
 
 button:hover {
-    background: #8fDD00;
+    background: #949494;
 }
 
 button:active {
-    background: #8fFF00;
+    background: #fcfcfc;
     box-shadow: 0 0 6px rgba(0, 0, 0, .6);
 }
 
