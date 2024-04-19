@@ -1,0 +1,44 @@
+body {
+    margin-left: 1rem;
+    text-align: justify;
+    font-family: sans-serif;
+    background-color: beige;
+    color: black;
+}
+
+ul {
+    text-align: justify;
+}
+
+p {
+    margin-right: 50%;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    text-decoration: underline;
+}
+
+h4 {
+    margin-left: 1%;
+}
+
+
+a:link {
+    color: orange;
+}
+a:visited {
+    color:burlywood;
+}
+a:focus {
+    color: red;
+}
+a:hover {
+    color: orangered;
+}
+a:active {
+    color: red;
+}

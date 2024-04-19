@@ -87,6 +87,7 @@ function searchButtonClicked(){
 
 
     ///////////////////////////////
+    /// CheapShark URL //////
 
     // get minimum price
     let lowerPrice = document.querySelector("#lowerPrice").value;
