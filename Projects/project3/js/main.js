@@ -1,21 +1,22 @@
 "use strict";
 
-window.onload = (e) => {document.querySelector("#wagerButton").onclick = wagerButtonClicked, 
-document.querySelector("#cashoutButton").onclick = cashoutButtonClicked};
+window.onload = (e) => {
+    document.querySelector("#wagerButton").onclick = wagerButtonClicked,
+        document.querySelector("#cashoutButton").onclick = cashoutButtonClicked
+};
 
 
 let gameWindow = document.querySelector("#gameWindow");
-console.log(gameWindow);
 
 const app = new PIXI.Application({
-    width: 800,
+    width: 1500,
     height: 800
 });
-document.body.appendChild(app.view);
+gameWindow.appendChild(app.view);
 
 // constants
 const sceneWidth = app.view.width;
-const sceneHeight = app.view.height;	
+const sceneHeight = app.view.height;
 
 // pre-load the images (this code works with PIXI v6)
 app.loader.
@@ -34,7 +35,7 @@ let stage;
 
 // game variables
 let startScene;
-let gameScene,ship,scoreLabel,lifeLabel,shootSound,hitSound,fireballSound;
+let gameScene, ship, scoreLabel, lifeLabel, shootSound, hitSound, fireballSound;
 let gameOverScene;
 let input;
 
@@ -46,31 +47,35 @@ let isGameStarted = false;
 let currentMultiplier;
 let isCashedOut = false;
 let isTimerUp = false;
+let credits = 100;
+let profit;
+let creditsText;
+let winText;
 
 function setup() {
-	stage = app.stage;
-	// #1 - Create the `start` scene
+    stage = app.stage;
+    // #1 - Create the `start` scene
     startScene = new PIXI.Container();
     stage.addChild(startScene);
-	
-	// #2 - Create the main `game` scene and make it invisible
+
+    // #2 - Create the main `game` scene and make it invisible
     gameScene = new PIXI.Container();
     gameScene.visible = false;
     stage.addChild(gameScene);
 
-	// #3 - Create the `gameOver` scene and make it invisible
+    // #3 - Create the `gameOver` scene and make it invisible
     gameOverScene = new PIXI.Container();
     gameOverScene.visible = false;
     stage.addChild(gameOverScene);
-	
-	// // #4 - Create labels for all 3 scenes
+
+    // // #4 - Create labels for all 3 scenes
     // createLabelsAndButtons();
-	
-	// // #5 - Create ship
+
+    // // #5 - Create ship
     // ship = new Ship();
     // gameScene.addChild(ship);
-	
-	// // #6 - Load Sounds
+
+    // // #6 - Load Sounds
     // shootSound = new Howl({
     //     src: ['sounds/shoot.wav']
     // });
@@ -82,18 +87,18 @@ function setup() {
     // fireballSound = new Howl({
     //     src: ['sounds/fireball.mp3']
     // });
-	
-	// // #7 - Load sprite sheet
-    // explosionTextures = loadSpriteSheet();
-		
-	// // #8 - Start update loop
-    // app.ticker.add(gameLoop);
-	
-	// // #9 - Start listening for click events on the canvas
-	// app.view.onclick = fireBullet;
 
-	// Now our `startScene` is visible
-	// Clicking the button calls startGame()
+    // // #7 - Load sprite sheet
+    // explosionTextures = loadSpriteSheet();
+
+    // // #8 - Start update loop
+    // app.ticker.add(gameLoop);
+
+    // // #9 - Start listening for click events on the canvas
+    // app.view.onclick = fireBullet;
+
+    // Now our `startScene` is visible
+    // Clicking the button calls startGame()
 
     // input = new PIXI.TextInput({
     //     input: {
@@ -133,35 +138,50 @@ function setup() {
 
     currentMultiplier = new PIXI.Text(timer.toFixed(2) + "x");
     currentMultiplier.style = textStyle;
-    currentMultiplier.x = 300;
-    currentMultiplier.y = sceneHeight - 100;
+    currentMultiplier.x = sceneWidth / 2;
+    currentMultiplier.y = sceneHeight / 2;
     // currentMultiplier.interactive = true;
     // currentMultiplier.buttonMode = true;
     // currentMultiplier.on("pointerup", startGame);     // startGame is a function reference
     // currentMultiplier.on("pointerover", e => e.target.alpha = 0.7);       // concise arrow function with no brackets
     // currentMultiplier.on("pointerout", e => e.currentTarget.alpha = 1.0);
     startScene.addChild(currentMultiplier);
-    
+
+    creditsText = new PIXI.Text("Credits: $" + credits.toFixed(2));
+    creditsText.style = textStyle;
+    creditsText.x = 100;
+    creditsText.y = 20;
+    startScene.addChild(creditsText);
+
+
+    winText = new PIXI.Text();
+    winText.style = textStyle;
+    winText.x = 200;
+    winText.y = 100;
+    startScene.addChild(winText);
+
 }
 
 // function startGame() {
 
-    
 
-    
+
+
 
 //     let inputValue = input.value.trim();
 //     wager = parseFloat(inputValue);
 
 
-    
+
 // }
 
-function wagerButtonClicked(){
+function wagerButtonClicked() {
 
+    // reset variables
     timer = 1;
     isTimerUp = false;
     isCashedOut = false;
+    winText.text = null;
 
     // get wager input object
     let wagerInput = document.querySelector("#wager");
@@ -176,13 +196,30 @@ function wagerButtonClicked(){
     console.log(multiplier);
 
 
+    if (wager <= 0) {
+        alert("Wager must be greater than 0.")
+    }
+    else if (credits - wager < 0)
+    {
+        alert("You don't have enough credits.")
+    }
+    else {
+        // Start the timer
+        incrementTimer();
 
-    // Start the timer
-    incrementTimer();
+        isGameStarted = true;
 
-    isGameStarted = true;
+        document.querySelector("#cashoutButton").disabled = false;
+        document.querySelector("#wagerButton").disabled = true;
+    }
 
-    // gameLoop();
+    // // Start the timer
+    // incrementTimer();
+
+    // isGameStarted = true;
+
+    // document.querySelector("#cashoutButton").disabled = false;
+    // document.querySelector("#wagerButton").disabled = true;
 
 }
 
@@ -192,16 +229,16 @@ function wagerButtonClicked(){
 function generateMultiplier() {
 
 
-    // // First decide if the game will be a "winner"
-    // let winRandom = Math.random();
+    // First decide if the game could be a "winner"
+    let winRandom = Math.random();
 
-    // // LOSE
-    // // 5% chance that the multiplyer is under 1x
-    // if (winRandom <= 0.05) {
-        
-    //     let loseMultiplyer = Math.random();
-    //     return loseMultiplyer;
-    // }
+    // LOSE
+    // 5% chance that the multiplyer is under 1x
+    if (winRandom <= 0.05) {
+
+        let loseMultiplyer = Math.random() + 1;
+        return loseMultiplyer;
+    }
 
     // WIN
     // Generate a random float between 0 and 1
@@ -218,48 +255,55 @@ function generateMultiplier() {
 // increment the timer and update the displayed multiplier
 function incrementTimer() {
 
-        // Calculate "delta time"
-        let dt = 1 / app.ticker.FPS;
+    // Calculate "delta time"
+    let dt = 1 / app.ticker.FPS;
 
     timer += dt;
 
+    // GAME RUNNING
     if (timer < multiplier && !isCashedOut) {
         console.log("Timer:", timer);
         console.log("Multiplier:", multiplier);
 
         // convert to miliseconds and increment
-        setTimeout(incrementTimer, dt * 1000); 
-    } 
+        setTimeout(incrementTimer, dt * 1000);
+    }
+
+    // WIN
     else if (timer <= multiplier && isCashedOut) {
         console.log("YOU WIN: " + wager);
+        winText.text = "YOU WIN: $" + wager;
     }
+
+    // LOSE
     else {
+        credits -= wager;
         console.log("Time's up!");
-        
+        console.log("You lost: " + wager);
+        isGameStarted = false;
         isTimerUp = true;
-        
+
+        // Toggle buttons
+        document.querySelector("#cashoutButton").disabled = true;
+        document.querySelector("#wagerButton").disabled = false;
     }
 
     // Update displayed multiplier
     currentMultiplier.text = timer.toFixed(2) + "x";
 
 
-    // Lose money
-    if (isTimerUp && !isCashedOut) {
-        console.log("You lost: " + wager);
-        isGameStarted = false;
-    }
-
-    // // Win money
-    // if (!isTimerUp && isCashedOut) {
-    //     wager = multiplier * wager;
-    //     isGameStarted = false;
-    // }
+    // Update credits
+    creditsText.text = "Credits: $" + credits.toFixed(2);
 }
 
 function cashoutButtonClicked() {
 
     isCashedOut = true;
     wager = (wager * timer).toFixed(2);
+    credits += parseFloat(wager);
     // console.log(wager);
+
+    // Toggle buttons
+    document.querySelector("#cashoutButton").disabled = true;
+    document.querySelector("#wagerButton").disabled = false;
 }

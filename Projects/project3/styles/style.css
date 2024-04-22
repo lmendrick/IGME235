@@ -1,23 +1,44 @@
 
 
-.wrapper {
+/* .wrapper {
     display: grid;
     grid-template-areas: 
         "game"
         "UI";
+} */
+
+
+/* .game-window {
+    grid-area: game;
+} */
+
+
+.UI {
+    display: inline-flex;
+    gap: 10px;
 }
 
-
-.game-window {
-    grid-area: game;
+.cashoutButton {
+    display: inline-flex;
 }
 
 canvas {
-    display: grid;
+    display: block;
     margin: 0 auto;
     /* grid-area: game; */
 }
 
-.UI {
-    grid-area: UI;
+button {
+    /* background-color: #04AA6D;
+    border: none;
+    color: white; */
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
 }
+
+/* .UI {
+    grid-area: UI;
+} */
