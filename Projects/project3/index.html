@@ -11,20 +11,30 @@
 <script type="text/javascript" src="js/pixi-text-input-master/dist/PIXI.TextInput.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
 
-<div class="game-window">
+
+<div class="wrapper">
+
+<div class="game-window" id="#gameWindow">
 
 </div>
 
 
-<div class="input">
-    Enter Wager:
-    <input id="wager" type="number" size="5" maxlength="7" value="0">
-</div>
+<div class="UI">
 
-<div class="wagerButton">
-    <button type="button" id="wagerButton">Enter Wager!</button>
-</div>
+    <div class="input">
+        Enter Wager:
+        <input id="wager" type="number" size="5" maxlength="7" value="0">
+    </div>
 
+    <div class="wagerButton">
+        <button type="button" id="wagerButton">Enter Wager!</button>
+    </div>
+
+    <div class="cashoutButton">
+        <button type="button" id="cashoutButton">Cash Out!</button>
+    </div>
+</div>
+</div>
 
 <!-- My JS files -->
 <!-- <script src="js/utilities.js"></script>

@@ -1,7 +1,11 @@
 "use strict";
 
-window.onload = (e) => {document.querySelector("#wagerButton").onclick = wagerButtonClicked};
+window.onload = (e) => {document.querySelector("#wagerButton").onclick = wagerButtonClicked, 
+document.querySelector("#cashoutButton").onclick = cashoutButtonClicked};
 
+
+let gameWindow = document.querySelector("#gameWindow");
+console.log(gameWindow);
 
 const app = new PIXI.Application({
     width: 800,
@@ -37,7 +41,7 @@ let input;
 // Game variables
 let wager = 0;
 let multiplier = 0.00;
-let timer = 0.00;
+let timer = 1.00;
 let isGameStarted = false;
 let currentMultiplier;
 let isCashedOut = false;
@@ -91,22 +95,22 @@ function setup() {
 	// Now our `startScene` is visible
 	// Clicking the button calls startGame()
 
-    input = new PIXI.TextInput({
-        input: {
-            fontSize: '24px',
-            padding: '12px',
-            width: '200px',
-            color: '#26272E'
-        },
-        box: {
-            default: {fill: 0xE8E9F3, rounded: 12, stroke: {color: 0xCBCEE0, width: 3}},
-            focused: {fill: 0xDFE1EC, rounded: 12, stroke: {color: 0xABAFC6, width: 3}},
-            disabled: {fill: 0xDBDBDB, rounded: 12}
-        }
-    });
-    input.placeholder = 'Enter Text';
-    input.position.set(300, 600);
-    startScene.addChild(input);
+    // input = new PIXI.TextInput({
+    //     input: {
+    //         fontSize: '24px',
+    //         padding: '12px',
+    //         width: '200px',
+    //         color: '#26272E'
+    //     },
+    //     box: {
+    //         default: {fill: 0xE8E9F3, rounded: 12, stroke: {color: 0xCBCEE0, width: 3}},
+    //         focused: {fill: 0xDFE1EC, rounded: 12, stroke: {color: 0xABAFC6, width: 3}},
+    //         disabled: {fill: 0xDBDBDB, rounded: 12}
+    //     }
+    // });
+    // input.placeholder = 'Enter Text';
+    // input.position.set(300, 600);
+    // startScene.addChild(input);
 
 
     let textStyle = new PIXI.TextStyle({
@@ -131,32 +135,31 @@ function setup() {
     currentMultiplier.style = textStyle;
     currentMultiplier.x = 300;
     currentMultiplier.y = sceneHeight - 100;
-    currentMultiplier.interactive = true;
-    currentMultiplier.buttonMode = true;
-    currentMultiplier.on("pointerup", startGame);     // startGame is a function reference
-    currentMultiplier.on("pointerover", e => e.target.alpha = 0.7);       // concise arrow function with no brackets
-    currentMultiplier.on("pointerout", e => e.currentTarget.alpha = 1.0);
+    // currentMultiplier.interactive = true;
+    // currentMultiplier.buttonMode = true;
+    // currentMultiplier.on("pointerup", startGame);     // startGame is a function reference
+    // currentMultiplier.on("pointerover", e => e.target.alpha = 0.7);       // concise arrow function with no brackets
+    // currentMultiplier.on("pointerout", e => e.currentTarget.alpha = 1.0);
     startScene.addChild(currentMultiplier);
     
 }
 
-function startGame() {
-
-    console.log("Input object:", input);
+// function startGame() {
 
     
 
-    let inputValue = input.value.trim();
-    // update the wager
-    wager = parseFloat(inputValue);
+    
+
+//     let inputValue = input.value.trim();
+//     wager = parseFloat(inputValue);
 
 
-    console.log(wager);
-}
+    
+// }
 
 function wagerButtonClicked(){
 
-    timer = 0;
+    timer = 1;
     isTimerUp = false;
     isCashedOut = false;
 
@@ -179,7 +182,7 @@ function wagerButtonClicked(){
 
     isGameStarted = true;
 
-    gameLoop();
+    // gameLoop();
 
 }
 
@@ -189,16 +192,16 @@ function wagerButtonClicked(){
 function generateMultiplier() {
 
 
-    // First decide if the game will be a "winner"
-    let winRandom = Math.random();
+    // // First decide if the game will be a "winner"
+    // let winRandom = Math.random();
 
-    // LOSE
-    // 5% chance that the multiplyer is under 1x
-    if (winRandom <= 0.05) {
+    // // LOSE
+    // // 5% chance that the multiplyer is under 1x
+    // if (winRandom <= 0.05) {
         
-        let loseMultiplyer = Math.random();
-        return loseMultiplyer;
-    }
+    //     let loseMultiplyer = Math.random();
+    //     return loseMultiplyer;
+    // }
 
     // WIN
     // Generate a random float between 0 and 1
@@ -226,7 +229,11 @@ function incrementTimer() {
 
         // convert to miliseconds and increment
         setTimeout(incrementTimer, dt * 1000); 
-    } else {
+    } 
+    else if (timer <= multiplier && isCashedOut) {
+        console.log("YOU WIN: " + wager);
+    }
+    else {
         console.log("Time's up!");
         
         isTimerUp = true;
@@ -243,10 +250,16 @@ function incrementTimer() {
         isGameStarted = false;
     }
 
-    // Win money
-    if (!isTimerUp && isCashedOut) {
-        wager = multiplier * wager;
-        isGameStarted = false;
-    }
+    // // Win money
+    // if (!isTimerUp && isCashedOut) {
+    //     wager = multiplier * wager;
+    //     isGameStarted = false;
+    // }
 }
 
+function cashoutButtonClicked() {
+
+    isCashedOut = true;
+    wager = (wager * timer).toFixed(2);
+    // console.log(wager);
+}

@@ -1,4 +1,23 @@
+
+
+.wrapper {
+    display: grid;
+    grid-template-areas: 
+        "game"
+        "UI";
+}
+
+
+.game-window {
+    grid-area: game;
+}
+
 canvas {
-    display: block;
+    display: grid;
     margin: 0 auto;
+    /* grid-area: game; */
+}
+
+.UI {
+    grid-area: UI;
 }
