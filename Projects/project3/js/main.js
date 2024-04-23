@@ -11,8 +11,8 @@ window.onload = (e) => {
 let gameWindow = document.querySelector("#gameWindow");
 
 const app = new PIXI.Application({
-    width: 1500,
-    height: 700
+    width: 1000,
+    height: 500
 });
 gameWindow.appendChild(app.view);
 
@@ -55,6 +55,28 @@ let creditsText;
 let winText;
 let autoCashoutValue;
 let isAutoCashout;
+
+// Graphics
+
+const circleDefaultX = 100;
+const circleDefaultY = (sceneHeight - 50);
+
+const graphicsSpeedScale = 0.5;
+
+// Make circle (xPos, yPos, radius, color)
+const circle = makeCircle(circleDefaultX, circleDefaultY, 5, 0xFFFF00);
+app.stage.addChild(circle);
+
+// Make rectangle (width, height, color)
+const graphX = makeRectangle(sceneWidth, 5, 0xFFFF00);
+graphX.x = sceneWidth/2;
+graphX.y = sceneHeight - 50;
+app.stage.addChild(graphX);
+
+const graphY = makeRectangle(5, sceneHeight, 0xFFFF00);
+graphY.x = 100;
+graphY.y = sceneHeight/2;
+app.stage.addChild(graphY);
 
 function setup() {
     stage = app.stage;
@@ -182,11 +204,15 @@ function setup() {
 function wagerButtonClicked() {
 
     // reset variables
+    resetGraphics();
     timer = 1;
     isTimerUp = false;
     isCashedOut = false;
     winText.text = null;
     isAutoCashout = false;
+    currentMultiplier.style.fill = 'green';
+    // circle.x = circleDefaultX;
+    // circle.y = circleDefaultY;
 
     // get wager input object
     let wagerInput = document.querySelector("#wager");
@@ -291,8 +317,11 @@ function incrementTimer() {
 
     // GAME RUNNING
     if (timer < multiplier && !isCashedOut) {
-        console.log("Timer:", timer);
-        console.log("Multiplier:", multiplier);
+        console.log("xPos: " + circle.x);
+        console.log("yPos: " + circle.y);
+
+        circle.x += timer * graphicsSpeedScale;
+        circle.y -= timer * (graphicsSpeedScale / 2);
 
         // convert to miliseconds and increment
         setTimeout(incrementTimer, dt * 1000);
@@ -314,7 +343,7 @@ function incrementTimer() {
     // LOSE
     else if (!isCashedOut && timer >= multiplier){
 
-      
+        currentMultiplier.style.fill = 'red';
         credits -= wager;
         console.log("Time's up!");
         console.log("You lost: " + wager);
@@ -381,4 +410,31 @@ function updatePotentialWin() {
     } else {
         potentialWin.innerHTML = "";
     }
+}
+
+
+function makeCircle(xPos=50, yPos=50, radius=5, color){
+	let circle = new PIXI.Graphics();
+	circle.beginFill(color);
+	circle.lineStyle(4, 0xFFFF00, 1);
+	circle.drawCircle(xPos, yPos, radius);
+	circle.endFill();
+	return circle;
+}
+
+function makeRectangle(width=50,height=50,color=0xFF0000){
+	// https://pixijs.download/release/docs/PIXI.Graphics.html
+	let rect = new PIXI.Graphics();
+	rect.beginFill(color);
+	rect.lineStyle(4, 0xFFFF00, 1);
+	rect.drawRect(-width*.5, -height*.5, width, height);
+	rect.endFill();
+	return rect;
+}
+
+function resetGraphics() {
+
+    // 0 = default position
+    circle.x = 0;
+    circle.y = 0;
 }
