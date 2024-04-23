@@ -2,7 +2,9 @@
 
 window.onload = (e) => {
     document.querySelector("#wagerButton").onclick = wagerButtonClicked,
-        document.querySelector("#cashoutButton").onclick = cashoutButtonClicked
+        document.querySelector("#cashoutButton").onclick = cashoutButtonClicked,
+        document.querySelector("#autoCashout").addEventListener('input', updatePotentialWin),
+        document.querySelector("#wager").addEventListener('input', updatePotentialWin);
 };
 
 
@@ -10,7 +12,7 @@ let gameWindow = document.querySelector("#gameWindow");
 
 const app = new PIXI.Application({
     width: 1500,
-    height: 800
+    height: 700
 });
 gameWindow.appendChild(app.view);
 
@@ -51,6 +53,8 @@ let credits = 100;
 let profit;
 let creditsText;
 let winText;
+let autoCashoutValue;
+let isAutoCashout;
 
 function setup() {
     stage = app.stage;
@@ -182,6 +186,7 @@ function wagerButtonClicked() {
     isTimerUp = false;
     isCashedOut = false;
     winText.text = null;
+    isAutoCashout = false;
 
     // get wager input object
     let wagerInput = document.querySelector("#wager");
@@ -191,23 +196,46 @@ function wagerButtonClicked() {
 
     console.log(wager);
 
+    // Get auto-cashout object
+    let autoCashout = document.querySelector("#autoCashout");
+
+    autoCashoutValue = autoCashout.value;
+
+    // let potentialWin = document.querySelector("#potentialWin");
+
+    // potentialWin.onChange
+
+
+    // Get the auto value if there is one
+    if (autoCashoutValue != null) {
+        isAutoCashout = true;
+        // potentialWin.innerHTML = (autoCashoutValue * wager).toFixed(2);
+    }
+    else {
+        isAutoCashout = false;
+    }
+    
+    console.log(autoCashoutValue);
+
     multiplier = generateMultiplier();
 
     console.log(multiplier);
 
 
     if (wager <= 0) {
-        alert("Wager must be greater than 0.")
+        alert("Wager must be greater than $0.")
     }
     else if (credits - wager < 0)
     {
         alert("You don't have enough credits.")
     }
     else {
+
+        isGameStarted = true;
         // Start the timer
         incrementTimer();
 
-        isGameStarted = true;
+        // isGameStarted = true;
 
         document.querySelector("#cashoutButton").disabled = false;
         document.querySelector("#wagerButton").disabled = true;
@@ -252,6 +280,7 @@ function generateMultiplier() {
 
 }
 
+// GAME LOOP
 // increment the timer and update the displayed multiplier
 function incrementTimer() {
 
@@ -269,6 +298,13 @@ function incrementTimer() {
         setTimeout(incrementTimer, dt * 1000);
     }
 
+    // Handle autocashout
+    if (isAutoCashout && !isCashedOut && timer >= parseFloat(autoCashoutValue))
+    {
+        console.log("Autocashout triggered.");
+        handleAutoCashout();
+    }
+
     // WIN
     else if (timer <= multiplier && isCashedOut) {
         console.log("YOU WIN: " + wager);
@@ -276,7 +312,9 @@ function incrementTimer() {
     }
 
     // LOSE
-    else {
+    else if (!isCashedOut && timer >= multiplier){
+
+      
         credits -= wager;
         console.log("Time's up!");
         console.log("You lost: " + wager);
@@ -286,6 +324,8 @@ function incrementTimer() {
         // Toggle buttons
         document.querySelector("#cashoutButton").disabled = true;
         document.querySelector("#wagerButton").disabled = false;
+
+        
     }
 
     // Update displayed multiplier
@@ -306,4 +346,39 @@ function cashoutButtonClicked() {
     // Toggle buttons
     document.querySelector("#cashoutButton").disabled = true;
     document.querySelector("#wagerButton").disabled = false;
+}
+
+function handleAutoCashout() {
+
+    console.log("autocashout!");
+
+    isCashedOut = true;
+
+
+
+
+    wager = (wager * timer).toFixed(2);
+    credits += parseFloat(wager);
+
+    winText.text = "YOU WIN: $" + wager;
+
+    document.querySelector("#cashoutButton").disabled = true;
+    document.querySelector("#wagerButton").disabled = false;
+}
+
+
+// update the potential win value
+function updatePotentialWin() {
+
+    // Get values to calculate potential win
+    let autoCashoutValue = parseFloat(document.querySelector("#autoCashout").value);
+    let wager = parseFloat(document.querySelector("#wager").value);
+    let potentialWin = document.querySelector("#potentialWin");
+
+    // Check if null or less than 0 and update potential win text
+    if (!isNaN(autoCashoutValue) && autoCashoutValue > 0 && !isNaN(wager) && wager > 0) {
+        potentialWin.innerHTML = "Potential Win: $" + (autoCashoutValue * wager).toFixed(2);
+    } else {
+        potentialWin.innerHTML = "";
+    }
 }
