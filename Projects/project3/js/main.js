@@ -61,7 +61,7 @@ let isAutoCashout;
 const circleDefaultX = 100;
 const circleDefaultY = (sceneHeight - 50);
 
-const graphicsSpeedScale = 0.5;
+const graphicsSpeedScale = 0.25;
 
 // Make circle (xPos, yPos, radius, color)
 const circle = makeCircle(circleDefaultX, circleDefaultY, 5, 0xFFFF00);
@@ -77,6 +77,19 @@ const graphY = makeRectangle(5, sceneHeight, 0xFFFF00);
 graphY.x = 100;
 graphY.y = sceneHeight/2;
 app.stage.addChild(graphY);
+
+const lineRect = makeRectangle(2.5, 2.5, 0xFFFF00);
+lineRect.x = circleDefaultX;
+lineRect.y = circleDefaultY;
+lineRect.x = 0;
+lineRect.y = sceneHeight;
+app.stage.addChild(lineRect);
+
+const line = new PIXI.Graphics();
+app.stage.addChild(line);
+line.lineStyle(4, 0xffffff)
+       .moveTo(circleDefaultX, circleDefaultY)
+       .lineTo(circle.x, circle.y);
 
 function setup() {
     stage = app.stage;
@@ -313,15 +326,35 @@ function incrementTimer() {
     // Calculate "delta time"
     let dt = 1 / app.ticker.FPS;
 
-    timer += dt;
+    timer += dt / 10;
 
     // GAME RUNNING
     if (timer < multiplier && !isCashedOut) {
         console.log("xPos: " + circle.x);
         console.log("yPos: " + circle.y);
 
-        circle.x += timer * graphicsSpeedScale;
-        circle.y -= timer * (graphicsSpeedScale / 2);
+        // stop the circle from moving off the screen
+        if (timer <= 2.5) {
+            circle.x += timer * graphicsSpeedScale;
+            circle.y -= timer * (graphicsSpeedScale / 2);
+            
+            // lineRect.x = circle.x;
+            // lineRect.y = sceneHeight + circle.y;
+            // lineRect.width += timer * graphicsSpeedScale;
+            // lineRect.height -= timer * (graphicsSpeedScale / 2);
+
+
+            const line = new PIXI.Graphics();
+            app.stage.addChild(line);
+            line.lineStyle(4, 0xffffff);
+                line.moveTo(circleDefaultX, circleDefaultY);
+                line.lineTo(circle.x, circle.y);
+
+            line.clear();
+            // line.lineTo(circle.x, circle.y);
+            
+        }
+
 
         // convert to miliseconds and increment
         setTimeout(incrementTimer, dt * 1000);
@@ -437,4 +470,6 @@ function resetGraphics() {
     // 0 = default position
     circle.x = 0;
     circle.y = 0;
+    lineRect.x = circleDefaultX;
+    lineRect.y = circleDefaultY;
 }
