@@ -344,7 +344,8 @@ function incrementTimer() {
         // stop the circle from moving off the screen
         if (circle.x < sceneWidth - (sceneWidth / 5) && circle.y < sceneHeight - (sceneHeight / 2.5)) {
             circle.x += timer * graphicsSpeedScale;
-            circle.y -= timer * (graphicsSpeedScale / 2);
+            // circle.y -= timer * (graphicsSpeedScale / 2);
+            circle.y = calculateParabolicY(circle.x);
             
             // lineRect.x = circle.x;
             // lineRect.y = sceneHeight + circle.y;
@@ -484,4 +485,18 @@ function resetGraphics() {
     line.lineStyle(5, 0xffffff);
     line.position.set(circleDefaultX, circleDefaultY);
     line.lineTo(circle.x, circle.y);
+}
+
+// Calculate parabolic y for circle and line using quadratic equation
+function calculateParabolicY(x) {
+
+    // set values, a increases "curve speed"
+    let a = -0.0007;
+    let b = 0;
+    let c = 0;
+
+    // quadratic equation
+    let y = a * x * x + b * x + c;
+
+    return y;
 }
