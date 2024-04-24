@@ -1,22 +1,27 @@
-class Multiplier {
+class Label {
 
-    constructor() {
-        // Generate a random number between 0 and 1 (excluding 1)
-        const randomNumber = Math.random();
-
-        // Calculate the maximum multiplier based on the winning probability
-        let maxMultiplier = Math.floor(0.99 / randomNumber);
-
-        // Ensure the maximum multiplier does not exceed 1000
-        maxMultiplier = Math.min(maxMultiplier, 1000);
-
-        // Generate a random number between 1 and the maximum multiplier
-        const gameMultiplier = Math.floor(Math.random() * maxMultiplier) + 1;
-
-        return gameMultiplier;
+    // Make a text object to be used as a axis value
+    constructor(text, x, y, style) {
+        this.text = new PIXI.Text(text, style);
+        this.text.x = x;
+        this.text.y = y;
+        app.stage.addChild(this.text);
     }
 
+    // Update the text
+    setText(text) {
+        this.text.text = text;
+    }
 
+    // Update the position
+    setPostion(x, y) {
+        this.text.x = x;
+        this.text.y = y;
+    }
 
+    // Update the style
+    setStyle(style) {
+        this.text.style = style;
+    }
 }
 

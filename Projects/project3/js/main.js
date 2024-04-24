@@ -61,7 +61,8 @@ let isAutoCashout;
 const circleDefaultX = 100;
 const circleDefaultY = (sceneHeight - 50);
 
-const graphicsSpeedScale = 0.25;
+const graphicsSpeedScale = 0.2;
+const timerScale = 0.0004;
 
 // Make circle (xPos, yPos, radius, color)
 const circle = makeCircle(circleDefaultX, circleDefaultY, 5, 0xFFFF00);
@@ -92,6 +93,16 @@ line.position.set(circleDefaultX, circleDefaultY);
 line.lineTo(circle.x, circle.y);
 // app.stage.addChild(line);
 
+
+// Axis Labels
+const timeLabels = [];
+const multiplierLabels = [];
+const timeInterval = 3;
+const multiplierInterval = 0.3;
+let elapsedTime = 0;
+
+
+
 function setup() {
     stage = app.stage;
     // #1 - Create the `start` scene
@@ -107,6 +118,20 @@ function setup() {
     gameOverScene = new PIXI.Container();
     gameOverScene.visible = false;
     stage.addChild(gameOverScene);
+
+
+
+    // Create labels for x-axis (Time)
+    for (let i = 0; i <= 5; i++) {
+        const timeLabel = new Label((i * timeInterval).toFixed(1) + "s", (i / 5) * sceneWidth, sceneHeight - 50, { fill: 0xffffff });
+        timeLabels.push(timeLabel);
+    }
+
+    // Create labels for y-axis (Multiplier)
+    for (let i = 0; i <= 5; i++) {
+        const multiplierLabel = new Label((i * multiplierInterval + 1).toFixed(1) + "x", 50, (1 - i / 5) * sceneHeight, { fill: 0xffffff });
+        multiplierLabels.push(multiplierLabel);
+    }
 
     // // #4 - Create labels for all 3 scenes
     // createLabelsAndButtons();
@@ -300,7 +325,7 @@ function generateMultiplier() {
     // FOR TESTING 
     if (wager > 1337.13)
     {
-        let testMultiplier = 5.00;
+        let testMultiplier = 10.00;
         return testMultiplier;
     }
 
@@ -333,37 +358,47 @@ function incrementTimer() {
 
     // Calculate "delta time"
     let dt = 1 / app.ticker.FPS;
+    elapsedTime += 1 / app.ticker.FPS;
 
-    timer += dt / 10;
+    // Increment the timer to gradually increase speed over time
+    let timerIncrement = Math.pow(timer, 0.5) * timerScale;
+    timer += timerIncrement;
 
     // GAME RUNNING
     if (timer < multiplier && !isCashedOut) {
         console.log("xPos: " + circle.x);
         console.log("yPos: " + circle.y);
 
+
         // stop the circle from moving off the screen
-        if (circle.x < sceneWidth - (sceneWidth / 5) && circle.y < sceneHeight - (sceneHeight / 2.5)) {
+        if (circle.x < sceneWidth - (sceneWidth / 5) && circle.y > -sceneHeight + (sceneHeight / 3.5)) {
+
+            // Update the circle position
             circle.x += timer * graphicsSpeedScale;
-            // circle.y -= timer * (graphicsSpeedScale / 2);
             circle.y = calculateParabolicY(circle.x);
             
-            // lineRect.x = circle.x;
-            // lineRect.y = sceneHeight + circle.y;
-            // lineRect.width += timer * graphicsSpeedScale;
-            // lineRect.height -= timer * (graphicsSpeedScale / 2);
 
+            // Recalculate the line width to keep it the same
+            let lineWidth = calculateLineWidth(circle.x);
 
-            // const line = new PIXI.Graphics();
-            // app.stage.addChild(line);
-            // line.lineStyle(4, 0xffffff);
-            line.moveTo(0, 0);
-            line.lineTo(circle.x, circle.y);
-
-            // line.clear();
-            // line.lineTo(circle.x, circle.y);
+            // Get midpoint of the line to use as a control point for quadratic curve
+            let cpX = (circle.x) / 2;
+            let cpY = calculateParabolicY(cpX);
             
+            // Update the line every frame with it's width and curve
+            line.clear();
+            line.lineStyle(lineWidth, 0xffffff);
+            line.moveTo(0, 0);
+            line.quadraticCurveTo(cpX, cpY, circle.x, circle.y);
+        }
+        else {
+            // Update axis values
+            updateAxisValues(multiplier, elapsedTime);
         }
 
+
+        // // Update axis values
+        // updateAxisValues(multiplier, timer);
 
         // convert to miliseconds and increment
         setTimeout(incrementTimer, dt * 1000);
@@ -379,7 +414,7 @@ function incrementTimer() {
     // WIN
     else if (timer <= multiplier && isCashedOut) {
         console.log("YOU WIN: " + wager);
-        winText.text = "YOU WIN: $" + wager;
+        winText.text = "YOU WIN: $" + wager;2
     }
 
     // LOSE
@@ -485,6 +520,7 @@ function resetGraphics() {
     line.lineStyle(5, 0xffffff);
     line.position.set(circleDefaultX, circleDefaultY);
     line.lineTo(circle.x, circle.y);
+    updateAxisValues(0, 1);
 }
 
 // Calculate parabolic y for circle and line using quadratic equation
@@ -499,4 +535,26 @@ function calculateParabolicY(x) {
     let y = a * x * x + b * x + c;
 
     return y;
+}
+
+// Function to calculate the line width based on the position of the circle
+function calculateLineWidth(x) {
+    // Adjust this calculation as needed to maintain a constant line width
+    return Math.min(5, Math.pow(x, 0.5));
+}
+
+function updateAxisValues(time, multiplier) {
+
+    // Update x-axis labels (Time)
+    for (let i = 0; i <= 5; i++) {
+        const label = timeLabels[i];
+        label.setText(((i * timeInterval) + time).toFixed(1) + "s"); // Update label text
+    }
+
+    // Update y-axis labels (Multiplier)
+    const baseMultiplier = 1; // First y-axis value should be 1
+    for (let i = 0; i <= 5; i++) {
+        const label = multiplierLabels[i];
+        label.setText(((i * multiplierInterval) + baseMultiplier * multiplier).toFixed(1) + "x"); // Update label text
+    }
 }
