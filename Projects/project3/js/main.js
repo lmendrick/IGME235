@@ -49,7 +49,7 @@ let isGameStarted = false;
 let currentMultiplier;
 let isCashedOut = false;
 let isTimerUp = false;
-let credits = 100;
+let credits = 2000;
 let profit;
 let creditsText;
 let winText;
@@ -78,18 +78,19 @@ graphY.x = 100;
 graphY.y = sceneHeight/2;
 app.stage.addChild(graphY);
 
-const lineRect = makeRectangle(2.5, 2.5, 0xFFFF00);
-lineRect.x = circleDefaultX;
-lineRect.y = circleDefaultY;
-lineRect.x = 0;
-lineRect.y = sceneHeight;
-app.stage.addChild(lineRect);
+// const lineRect = makeRectangle(2.5, 2.5, 0xFFFF00);
+// lineRect.x = circleDefaultX;
+// lineRect.y = circleDefaultY;
+// lineRect.x = 0;
+// lineRect.y = sceneHeight;
+// app.stage.addChild(lineRect);
 
 const line = new PIXI.Graphics();
 app.stage.addChild(line);
-line.lineStyle(4, 0xffffff)
-       .moveTo(circleDefaultX, circleDefaultY)
-       .lineTo(circle.x, circle.y);
+line.lineStyle(5, 0xffffff);
+line.position.set(circleDefaultX, circleDefaultY);
+line.lineTo(circle.x, circle.y);
+// app.stage.addChild(line);
 
 function setup() {
     stage = app.stage;
@@ -296,6 +297,13 @@ function wagerButtonClicked() {
 function generateMultiplier() {
 
 
+    // FOR TESTING 
+    if (wager > 1337.13)
+    {
+        let testMultiplier = 5.00;
+        return testMultiplier;
+    }
+
     // First decide if the game could be a "winner"
     let winRandom = Math.random();
 
@@ -334,7 +342,7 @@ function incrementTimer() {
         console.log("yPos: " + circle.y);
 
         // stop the circle from moving off the screen
-        if (timer <= 2.5) {
+        if (circle.x < sceneWidth - (sceneWidth / 5) && circle.y < sceneHeight - (sceneHeight / 2.5)) {
             circle.x += timer * graphicsSpeedScale;
             circle.y -= timer * (graphicsSpeedScale / 2);
             
@@ -344,13 +352,13 @@ function incrementTimer() {
             // lineRect.height -= timer * (graphicsSpeedScale / 2);
 
 
-            const line = new PIXI.Graphics();
-            app.stage.addChild(line);
-            line.lineStyle(4, 0xffffff);
-                line.moveTo(circleDefaultX, circleDefaultY);
-                line.lineTo(circle.x, circle.y);
+            // const line = new PIXI.Graphics();
+            // app.stage.addChild(line);
+            // line.lineStyle(4, 0xffffff);
+            line.moveTo(0, 0);
+            line.lineTo(circle.x, circle.y);
 
-            line.clear();
+            // line.clear();
             // line.lineTo(circle.x, circle.y);
             
         }
@@ -470,6 +478,10 @@ function resetGraphics() {
     // 0 = default position
     circle.x = 0;
     circle.y = 0;
-    lineRect.x = circleDefaultX;
-    lineRect.y = circleDefaultY;
+    // lineRect.x = circleDefaultX;
+    // lineRect.y = circleDefaultY;
+    line.clear();
+    line.lineStyle(5, 0xffffff);
+    line.position.set(circleDefaultX, circleDefaultY);
+    line.lineTo(circle.x, circle.y);
 }
