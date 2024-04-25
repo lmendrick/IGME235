@@ -49,7 +49,7 @@ let isGameStarted = false;
 let currentMultiplier;
 let isCashedOut = false;
 let isTimerUp = false;
-let credits = 2000;
+let credits = 200;
 let profit;
 let creditsText;
 let winText;
@@ -61,7 +61,7 @@ let isAutoCashout;
 const circleDefaultX = 100;
 const circleDefaultY = (sceneHeight - 50);
 
-const graphicsSpeedScale = 0.2;
+const graphicsSpeedScale = 0.55;
 const timerScale = 0.0004;
 
 // Make circle (xPos, yPos, radius, color)
@@ -69,14 +69,14 @@ const circle = makeCircle(circleDefaultX, circleDefaultY, 5, 0xFFFF00);
 app.stage.addChild(circle);
 
 // Make rectangle (width, height, color)
-const graphX = makeRectangle(sceneWidth, 5, 0xFFFF00);
-graphX.x = sceneWidth/2;
+const graphX = makeRectangle(sceneWidth, 5, 0x4c525e);
+graphX.x = sceneWidth / 2;
 graphX.y = sceneHeight - 50;
 app.stage.addChild(graphX);
 
-const graphY = makeRectangle(5, sceneHeight, 0xFFFF00);
+const graphY = makeRectangle(5, sceneHeight, 0x4c525e);
 graphY.x = 100;
-graphY.y = sceneHeight/2;
+graphY.y = sceneHeight / 2;
 app.stage.addChild(graphY);
 
 // const lineRect = makeRectangle(2.5, 2.5, 0xFFFF00);
@@ -88,7 +88,7 @@ app.stage.addChild(graphY);
 
 const line = new PIXI.Graphics();
 app.stage.addChild(line);
-line.lineStyle(5, 0xffffff);
+line.lineStyle(5, 0xFFFF00);
 line.position.set(circleDefaultX, circleDefaultY);
 line.lineTo(circle.x, circle.y);
 // app.stage.addChild(line);
@@ -97,10 +97,11 @@ line.lineTo(circle.x, circle.y);
 // Axis Labels
 const timeLabels = [];
 const multiplierLabels = [];
-const timeInterval = 3;
-const multiplierInterval = 0.3;
+const timeInterval = 2;
+let multiplierInterval = 0.2;
 let elapsedTime = 0;
 
+let hasCircleStopped = false;
 
 
 function setup() {
@@ -123,13 +124,26 @@ function setup() {
 
     // Create labels for x-axis (Time)
     for (let i = 0; i <= 5; i++) {
-        const timeLabel = new Label((i * timeInterval).toFixed(1) + "s", (i / 5) * sceneWidth, sceneHeight - 50, { fill: 0xffffff });
+        const timeLabel = new Label((i * timeInterval).toFixed(0) + "s", (i / 5) * sceneWidth + 50, sceneHeight - 50, { fill: 0xffffff });
+        if (i == 0) {
+            timeLabel.setText("");
+        }
         timeLabels.push(timeLabel);
     }
 
+
+
+
     // Create labels for y-axis (Multiplier)
-    for (let i = 0; i <= 5; i++) {
-        const multiplierLabel = new Label((i * multiplierInterval + 1).toFixed(1) + "x", 50, (1 - i / 5) * sceneHeight, { fill: 0xffffff });
+    for (let i = 0; i < 5; i++) {
+
+        let multiplierValue;
+        if (i === 0) {
+            multiplierValue = 1.0.toFixed(1); // First label is always 1
+        } else {
+            multiplierValue = (i * multiplierInterval + 1).toFixed(1); // Calculate multiplier value
+        }
+        const multiplierLabel = new Label(multiplierValue + "x", 40, (0.8 - i / 5) * sceneHeight, { fill: 0xffffff });
         multiplierLabels.push(multiplierLabel);
     }
 
@@ -184,7 +198,7 @@ function setup() {
 
 
     let textStyle = new PIXI.TextStyle({
-        fill: 0xFF0000,
+        fill: 0xffffff,
         fontSize: 48,
         fontFamily: "Futura"
     });
@@ -204,7 +218,7 @@ function setup() {
     currentMultiplier = new PIXI.Text(timer.toFixed(2) + "x");
     currentMultiplier.style = textStyle;
     currentMultiplier.x = sceneWidth / 2;
-    currentMultiplier.y = sceneHeight / 2;
+    currentMultiplier.y = sceneHeight / 2 - 100;
     // currentMultiplier.interactive = true;
     // currentMultiplier.buttonMode = true;
     // currentMultiplier.on("pointerup", startGame);     // startGame is a function reference
@@ -214,15 +228,15 @@ function setup() {
 
     creditsText = new PIXI.Text("Credits: $" + credits.toFixed(2));
     creditsText.style = textStyle;
-    creditsText.x = 100;
+    creditsText.x = 125;
     creditsText.y = 20;
     startScene.addChild(creditsText);
 
 
     winText = new PIXI.Text();
     winText.style = textStyle;
-    winText.x = 200;
-    winText.y = 100;
+    winText.x = 400;
+    winText.y = sceneHeight - 110;
     startScene.addChild(winText);
 
 }
@@ -279,7 +293,7 @@ function wagerButtonClicked() {
     else {
         isAutoCashout = false;
     }
-    
+
     console.log(autoCashoutValue);
 
     multiplier = generateMultiplier();
@@ -290,9 +304,12 @@ function wagerButtonClicked() {
     if (wager <= 0) {
         alert("Wager must be greater than $0.")
     }
-    else if (credits - wager < 0)
-    {
+    else if (credits - wager < 0) {
         alert("You don't have enough credits.")
+    }
+    else if (autoCashoutValue != '' && autoCashoutValue < 1.1)
+    {
+        alert("Cashout value must be greater than 1.1.")
     }
     else {
 
@@ -322,21 +339,20 @@ function wagerButtonClicked() {
 function generateMultiplier() {
 
 
-    // FOR TESTING 
-    if (wager > 1337.13)
-    {
-        let testMultiplier = 10.00;
-        return testMultiplier;
-    }
+    // // FOR TESTING 
+    // if (wager > 1337.13) {
+    //     let testMultiplier = 10.00;
+    //     return testMultiplier;
+    // }
 
     // First decide if the game could be a "winner"
     let winRandom = Math.random();
 
     // LOSE
-    // 5% chance that the multiplyer is under 1x
+    // 5% chance that the multiplyer is under 2x
     if (winRandom <= 0.05) {
 
-        let loseMultiplyer = Math.random() + 1;
+        let loseMultiplyer = Math.random() * 0.1 + 1;
         return loseMultiplyer;
     }
 
@@ -364,10 +380,11 @@ function incrementTimer() {
     let timerIncrement = Math.pow(timer, 0.5) * timerScale;
     timer += timerIncrement;
 
+
     // GAME RUNNING
     if (timer < multiplier && !isCashedOut) {
-        console.log("xPos: " + circle.x);
-        console.log("yPos: " + circle.y);
+        // console.log("xPos: " + circle.x);
+        // console.log("yPos: " + circle.y);
 
 
         // stop the circle from moving off the screen
@@ -376,7 +393,7 @@ function incrementTimer() {
             // Update the circle position
             circle.x += timer * graphicsSpeedScale;
             circle.y = calculateParabolicY(circle.x);
-            
+
 
             // Recalculate the line width to keep it the same
             let lineWidth = calculateLineWidth(circle.x);
@@ -384,29 +401,27 @@ function incrementTimer() {
             // Get midpoint of the line to use as a control point for quadratic curve
             let cpX = (circle.x) / 2;
             let cpY = calculateParabolicY(cpX);
-            
+
             // Update the line every frame with it's width and curve
             line.clear();
-            line.lineStyle(lineWidth, 0xffffff);
+            line.lineStyle(lineWidth, 0xFFFF00);
             line.moveTo(0, 0);
             line.quadraticCurveTo(cpX, cpY, circle.x, circle.y);
         }
         else {
             // Update axis values
-            updateAxisValues(multiplier, elapsedTime);
+            hasCircleStopped = true;
         }
 
 
-        // // Update axis values
-        // updateAxisValues(multiplier, timer);
+
 
         // convert to miliseconds and increment
         setTimeout(incrementTimer, dt * 1000);
     }
 
     // Handle autocashout
-    if (isAutoCashout && !isCashedOut && timer >= parseFloat(autoCashoutValue))
-    {
+    if (isAutoCashout && !isCashedOut && timer >= parseFloat(autoCashoutValue)) {
         console.log("Autocashout triggered.");
         handleAutoCashout();
     }
@@ -414,11 +429,11 @@ function incrementTimer() {
     // WIN
     else if (timer <= multiplier && isCashedOut) {
         console.log("YOU WIN: " + wager);
-        winText.text = "YOU WIN: $" + wager;2
+        winText.text = "YOU WIN: $" + wager; 2
     }
 
     // LOSE
-    else if (!isCashedOut && timer >= multiplier){
+    else if (!isCashedOut && timer >= multiplier) {
 
         currentMultiplier.style.fill = 'red';
         credits -= wager;
@@ -431,11 +446,18 @@ function incrementTimer() {
         document.querySelector("#cashoutButton").disabled = true;
         document.querySelector("#wagerButton").disabled = false;
 
-        
+
     }
 
     // Update displayed multiplier
     currentMultiplier.text = timer.toFixed(2) + "x";
+
+    // if (hasCircleStopped) {
+    // Update axis values
+    updateAxisValues(elapsedTime, timer);
+    // }
+    // // Update axis values
+    // updateAxisValues(elapsedTime, timer);
 
 
     // Update credits
@@ -490,23 +512,23 @@ function updatePotentialWin() {
 }
 
 
-function makeCircle(xPos=50, yPos=50, radius=5, color){
-	let circle = new PIXI.Graphics();
-	circle.beginFill(color);
-	circle.lineStyle(4, 0xFFFF00, 1);
-	circle.drawCircle(xPos, yPos, radius);
-	circle.endFill();
-	return circle;
+function makeCircle(xPos = 50, yPos = 50, radius = 5, color) {
+    let circle = new PIXI.Graphics();
+    circle.beginFill(color);
+    circle.lineStyle(4, 0xFFFF00, 1);
+    circle.drawCircle(xPos, yPos, radius);
+    circle.endFill();
+    return circle;
 }
 
-function makeRectangle(width=50,height=50,color=0xFF0000){
-	// https://pixijs.download/release/docs/PIXI.Graphics.html
-	let rect = new PIXI.Graphics();
-	rect.beginFill(color);
-	rect.lineStyle(4, 0xFFFF00, 1);
-	rect.drawRect(-width*.5, -height*.5, width, height);
-	rect.endFill();
-	return rect;
+function makeRectangle(width = 50, height = 50, color = 0xFF0000) {
+    // https://pixijs.download/release/docs/PIXI.Graphics.html
+    let rect = new PIXI.Graphics();
+    rect.beginFill(color);
+    rect.lineStyle(4, 0x4c525e, 1);
+    rect.drawRect(-width * .5, -height * .5, width, height);
+    rect.endFill();
+    return rect;
 }
 
 function resetGraphics() {
@@ -517,17 +539,38 @@ function resetGraphics() {
     // lineRect.x = circleDefaultX;
     // lineRect.y = circleDefaultY;
     line.clear();
-    line.lineStyle(5, 0xffffff);
+    line.lineStyle(5, 0xFFFF00);
     line.position.set(circleDefaultX, circleDefaultY);
     line.lineTo(circle.x, circle.y);
-    updateAxisValues(0, 1);
+    // updateAxisValues(0, 1);
+    elapsedTime = 0;
+    hasCircleStopped = false;
+
+    // Reset time labels to default values
+    for (let i = 0; i <= 5; i++) {
+        const timeLabel = timeLabels[i];
+        timeLabel.setText((i * timeInterval).toFixed(0) + "s");
+
+    }
+    timeLabels[0].setText("");
+    // Reset multiplier labels to default values
+    for (let i = 0; i < 5; i++) {
+        let multiplierValue;
+        if (i === 0) {
+            multiplierValue = 1.0.toFixed(1); // First label is always 1
+        } else {
+            multiplierValue = (i * multiplierInterval + 1).toFixed(1); // Calculate multiplier value
+        }
+        const multiplierLabel = multiplierLabels[i];
+        multiplierLabel.setText(multiplierValue + "x");
+    }
 }
 
 // Calculate parabolic y for circle and line using quadratic equation
 function calculateParabolicY(x) {
 
     // set values, a increases "curve speed"
-    let a = -0.0007;
+    let a = -0.0006;
     let b = 0;
     let c = 0;
 
@@ -537,24 +580,58 @@ function calculateParabolicY(x) {
     return y;
 }
 
-// Function to calculate the line width based on the position of the circle
+// Calculate the line width based on the position of the circle
 function calculateLineWidth(x) {
-    // Adjust this calculation as needed to maintain a constant line width
     return Math.min(5, Math.pow(x, 0.5));
 }
 
 function updateAxisValues(time, multiplier) {
 
+    console.log("Updating axis values...");
+    console.log("Time:", time);
+    console.log("Multiplier:", multiplier);
+
+
     // Update x-axis labels (Time)
-    for (let i = 0; i <= 5; i++) {
-        const label = timeLabels[i];
-        label.setText(((i * timeInterval) + time).toFixed(1) + "s"); // Update label text
+    const baseTimer = 0;
+    const maxTimerValue = time + 3;
+    const timeStepSize = (maxTimerValue - baseTimer) / 4;
+
+    if (hasCircleStopped) {
+        for (let i = 0; i < 5; i++) {
+            const label = timeLabels[i];
+            let updatedTime;
+
+
+            // Calculate multiplier value based on the base multiplier and step size
+            updatedTime = (baseTimer + i * timeStepSize).toFixed(0);
+            label.setText(updatedTime + "s");
+
+            // Hide first label
+            timeLabels[0].setText("");
+        }
     }
 
-    // Update y-axis labels (Multiplier)
-    const baseMultiplier = 1; // First y-axis value should be 1
-    for (let i = 0; i <= 5; i++) {
+
+    const baseMultiplier = 1;
+    // Calculate the maximum value for the multiplier labels based on the current timer
+    const maxMultiplierValue = multiplier + 0.3; // Top Y-Axis value will always be 0.3 more than current multiplier
+
+    // Calculate the step size between each multiplier label
+    const stepSize = (maxMultiplierValue - baseMultiplier) / 4;
+    for (let i = 0; i < 5; i++) {
+        let multiplierValue;
+        if (i == 0) {
+            multiplierValue = baseMultiplier.toFixed(1); // First label should always be 1
+        } else {
+
+            // Calculate multiplier value based on the base multiplier and step size
+            multiplierValue = (baseMultiplier + i * stepSize).toFixed(1);
+        }
         const label = multiplierLabels[i];
-        label.setText(((i * multiplierInterval) + baseMultiplier * multiplier).toFixed(1) + "x"); // Update label text
+
+        if (label) {
+            label.setText(multiplierValue + "x"); // Update label text
+        }
     }
 }
