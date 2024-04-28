@@ -104,6 +104,12 @@ let elapsedTime = 0;
 let hasCircleStopped = false;
 
 
+// Historic Data
+let previousMultipliers = [];
+
+let previousRounds = [];
+
+
 function setup() {
     stage = app.stage;
     // #1 - Create the `start` scene
@@ -239,6 +245,7 @@ function setup() {
     winText.y = sceneHeight - 110;
     startScene.addChild(winText);
 
+    displayPreviousMultipliers();
 }
 
 // function startGame() {
@@ -408,9 +415,34 @@ function incrementTimer() {
             line.moveTo(0, 0);
             line.quadraticCurveTo(cpX, cpY, circle.x, circle.y);
         }
+        else if (circle.x > sceneWidth || circle.y < -450)
+        {
+            hasCircleStopped = true;
+        }
+        // Slow down circle
         else {
             // Update axis values
             hasCircleStopped = true;
+
+            let slowScale = 0.005;
+
+            // Update the circle position
+            circle.x += timer * slowScale;
+            circle.y = calculateParabolicY(circle.x);
+
+
+            // Recalculate the line width to keep it the same
+            let lineWidth = calculateLineWidth(circle.x);
+
+            // Get midpoint of the line to use as a control point for quadratic curve
+            let cpX = (circle.x) / 2;
+            let cpY = calculateParabolicY(cpX);
+
+            // Update the line every frame with it's width and curve
+            line.clear();
+            line.lineStyle(lineWidth, 0xFFFF00);
+            line.moveTo(0, 0);
+            line.quadraticCurveTo(cpX, cpY, circle.x, circle.y);
         }
 
 
@@ -424,12 +456,25 @@ function incrementTimer() {
     if (isAutoCashout && !isCashedOut && timer >= parseFloat(autoCashoutValue)) {
         console.log("Autocashout triggered.");
         handleAutoCashout();
+
+        // Add the multiplier to the historic data
+        previousMultipliers.push(multiplier);
+        // Keep only the last 5 multipliers
+        if (previousMultipliers.length > 5) {
+            previousMultipliers.shift(); // Remove the oldest multiplier
+        }
     }
 
     // WIN
     else if (timer <= multiplier && isCashedOut) {
         console.log("YOU WIN: " + wager);
-        winText.text = "YOU WIN: $" + wager; 2
+        winText.text = "YOU WIN: $" + wager;
+
+        // Add the multiplier to the historic data
+        previousMultipliers.push(multiplier);
+        if (previousMultipliers.length > 5) {
+            previousMultipliers.shift();
+        }
     }
 
     // LOSE
@@ -446,7 +491,11 @@ function incrementTimer() {
         document.querySelector("#cashoutButton").disabled = true;
         document.querySelector("#wagerButton").disabled = false;
 
-
+        // Add the multiplier to the historic data
+        previousMultipliers.push(multiplier);
+        if (previousMultipliers.length > 5) {
+            previousMultipliers.shift();
+        }
     }
 
     // Update displayed multiplier
@@ -462,14 +511,25 @@ function incrementTimer() {
 
     // Update credits
     creditsText.text = "Credits: $" + credits.toFixed(2);
+
+    // displayPreviousMultipliers();
 }
 
 function cashoutButtonClicked() {
 
     isCashedOut = true;
     wager = (wager * timer).toFixed(2);
+    let cashoutValue = wager;
+    let profit = cashoutValue - wager;
     credits += parseFloat(wager);
     // console.log(wager);
+
+    previousRounds.push({
+        multiplier: multiplier, 
+        cashoutValue: cashoutValue, 
+        profit: profit});
+
+    displayPreviousRounds();
 
     // Toggle buttons
     document.querySelector("#cashoutButton").disabled = true;
@@ -633,5 +693,51 @@ function updateAxisValues(time, multiplier) {
         if (label) {
             label.setText(multiplierValue + "x"); // Update label text
         }
+    }
+
+
+}
+
+function displayPreviousMultipliers() {
+
+    // Get the list element
+    let multiplierList = document.getElementById("multiplierList");
+
+    multiplierList.innerHTML = "";
+
+    // Create list items
+    for (let i = 0; i < previousMultipliers.length; i++) {
+        let listItem = document.createElement("li");
+        // Set its text to the multiplier value
+        listItem.textContent = previousMultipliers[i].toFixed(2) + "x";
+        // Use prepend - adds new value to top and other values shift down
+        multiplierList.prepend(listItem);
+    }
+}
+
+function displayPreviousRounds() {
+
+    // Get the list element
+    let roundList = document.getElementById("multiplierList");
+
+    // Clear the list
+    roundList.innerHTML = "";
+
+    // Loop through the previousRounds array
+    for (let i = 0; i < previousRounds.length; i++) {
+        // Create a new li element
+        let listItem = document.createElement("li");
+        
+        // Extract data from the round object
+        let round = previousRounds[i];
+        let multiplier = round.multiplier.toFixed(2);
+        let cashoutValue = parseFloat(round.cashoutValue).toFixed(2);
+        let profit = round.profit.toFixed(2);
+        
+        // Set the text content to display multiplier, cashed-out value, and profit
+        listItem.textContent = `Multiplier: ${multiplier}x, Cashed Out: $${cashoutValue}, Profit: $${profit}`;
+        
+        // Prepend the li element to the ul element
+        roundList.prepend(listItem);
     }
 }

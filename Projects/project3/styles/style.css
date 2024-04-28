@@ -1,19 +1,85 @@
+* {
+    box-sizing: border-box;
+}
 
+html, body {
+    margin: 0;
+}
 
-/* .wrapper {
+header, footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.UI, .game-window, .data {
+    padding: 0.5rem;
+}
+
+.wrapper {
     display: grid;
+    height: 100vh;
+    grid-template-rows: 1fr 10fr 1fr;
+    grid-template-columns: 20% 1fr 20%;
     grid-template-areas: 
-        "game"
-        "UI";
-} */
+        "header header header"
+        "UI game-window data"
+        "footer footer footer";
 
+    height: 96vh;
+    margin: 2vh auto;
+}
 
-/* .game-window {
-    grid-area: game;
-} */
-
+header {
+    grid-area: header;
+}
 
 .UI {
+    grid-area: UI;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(209, 212, 28);
+}
+
+canvas {
+    grid-area: game-window;
+}
+
+.data {
+    grid-area: data;
+}
+
+footer {
+    grid-area: footer;
+}
+
+
+
+.input {
+    margin-bottom: 10px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+button {
+    background-color: #a3a3a3;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+
+/* .UI {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -32,28 +98,28 @@
     gap: 10px;
     align-items: center;
     justify-content: center;
-}
+} */
 
-.cashoutButton {
-    /* display: inline-flex; */
-}
+/* .cashoutButton {
+    display: inline-flex;
+} */
 
-canvas {
+/* canvas {
     display: block;
     margin: 0 auto;
-    /* grid-area: game; */
-}
+    grid-area: game;
+} */
 
-button {
-    /* background-color: #04AA6D;
+/* button {
+    background-color: #04AA6D;
     border: none;
-    color: white; */
+    color: white;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-}
+}  */
 
 /* .UI {
     grid-area: UI;

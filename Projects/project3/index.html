@@ -16,6 +16,40 @@
 
     <div class="wrapper">
 
+        <header>
+            <h1>Crash!</h1>
+        </header>
+
+        <div class="UI">
+
+            <div class="input">
+                Bet Amount:
+                <br>
+                <input id="wager" type="number" size="5" maxlength="7" value="0">
+                <br>
+                <br>
+                Cashout At:
+                <br>
+                <input id="autoCashout" type="number" size="5" maxlength="7" placeholder="1.00x">
+                <br>
+                <br>
+                <div id="potentialWin">
+                    
+                </div>
+            </div>
+            <br>
+            <div class="buttons">
+
+                <div class="wagerButton">
+                    <button type="button" id="wagerButton">Enter Wager!</button>
+                </div>
+                <br>
+                <div class="cashoutButton">
+                    <button type="button" id="cashoutButton">Cash Out!</button>
+                </div>
+            </div>
+        </div>
+
         <div class="game-window" id="gameWindow">
 
         </div>
@@ -23,7 +57,20 @@
         <br>
         <br>
 
-        <div class="UI">
+        <div class="data">
+            Actual Cashout Profit
+            <ul id="multiplierList">
+                
+            </ul>
+
+        </div>
+
+
+        <footer>
+            Made by Lucas Mendrick 2024
+        </footer>
+
+        <!-- <div class="UI">
 
             <div class="input">
                 Enter Wager:
@@ -47,7 +94,7 @@
                     <button type="button" id="cashoutButton">Cash Out!</button>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 
     <!-- My JS files -->
