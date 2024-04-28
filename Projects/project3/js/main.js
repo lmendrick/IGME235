@@ -768,7 +768,14 @@ function displayPreviousRounds() {
         let multiplierCell = row.insertCell();
         multiplierCell.textContent = multiplier + "x";
         let cashedOutCell = row.insertCell();
-        cashedOutCell.textContent = cashoutValue + "x";
+        // Handle losses
+        if (cashoutValue >= multiplier) {
+            cashedOutCell.textContent = "Crash!";
+        }
+        else {
+            cashedOutCell.textContent = cashoutValue + "x";
+        }
+        // cashedOutCell.textContent = cashoutValue + "x";
         
         let profitCell = row.insertCell();
         profitCell.textContent = "$" + profit;
