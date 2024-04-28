@@ -245,7 +245,7 @@ function setup() {
     winText.y = sceneHeight - 110;
     startScene.addChild(winText);
 
-    displayPreviousMultipliers();
+    // displayPreviousMultipliers();
 }
 
 // function startGame() {
@@ -279,6 +279,8 @@ function wagerButtonClicked() {
 
     // set wager equal to input value
     wager = wagerInput.value;
+
+    // credits -= wager;
 
     console.log(wager);
 
@@ -320,6 +322,8 @@ function wagerButtonClicked() {
     }
     else {
 
+        credits -= wager;
+
         isGameStarted = true;
         // Start the timer
         incrementTimer();
@@ -356,7 +360,7 @@ function generateMultiplier() {
     let winRandom = Math.random();
 
     // LOSE
-    // 5% chance that the multiplyer is under 2x
+    // 5% chance that game ends almost instantly
     if (winRandom <= 0.05) {
 
         let loseMultiplyer = Math.random() * 0.1 + 1;
@@ -481,7 +485,7 @@ function incrementTimer() {
     else if (!isCashedOut && timer >= multiplier) {
 
         currentMultiplier.style.fill = 'red';
-        credits -= wager;
+        // credits -= wager;
         console.log("Time's up!");
         console.log("You lost: " + wager);
         isGameStarted = false;
@@ -491,11 +495,17 @@ function incrementTimer() {
         document.querySelector("#cashoutButton").disabled = true;
         document.querySelector("#wagerButton").disabled = false;
 
-        // Add the multiplier to the historic data
-        previousMultipliers.push(multiplier);
-        if (previousMultipliers.length > 5) {
-            previousMultipliers.shift();
-        }
+
+        // Add round data to array
+        let cashoutValue = timer;
+        let profit = -wager;
+        previousRounds.push({
+            multiplier: multiplier,
+            cashoutValue: cashoutValue,
+            profit: profit
+        });
+
+        displayPreviousRounds();
     }
 
     // Update displayed multiplier
@@ -519,11 +529,12 @@ function cashoutButtonClicked() {
 
     isCashedOut = true;
     wager = (wager * timer).toFixed(2);
-    let cashoutValue = wager;
-    let profit = cashoutValue - wager;
+    let cashoutValue = timer;
+    let profit = parseFloat(wager);
     credits += parseFloat(wager);
     // console.log(wager);
 
+    // Add round data to array
     previousRounds.push({
         multiplier: multiplier, 
         cashoutValue: cashoutValue, 
@@ -549,6 +560,16 @@ function handleAutoCashout() {
     credits += parseFloat(wager);
 
     winText.text = "YOU WIN: $" + wager;
+
+    // Add round data to array
+    let cashoutValue = timer;
+    let profit = parseFloat(wager);
+    previousRounds.push({
+        multiplier: multiplier, 
+        cashoutValue: cashoutValue, 
+        profit: profit});
+
+    displayPreviousRounds();
 
     document.querySelector("#cashoutButton").disabled = true;
     document.querySelector("#wagerButton").disabled = false;
@@ -718,26 +739,52 @@ function displayPreviousMultipliers() {
 function displayPreviousRounds() {
 
     // Get the list element
-    let roundList = document.getElementById("multiplierList");
+    let table = document.getElementById("roundData");
 
-    // Clear the list
-    roundList.innerHTML = "";
+    
 
-    // Loop through the previousRounds array
-    for (let i = 0; i < previousRounds.length; i++) {
-        // Create a new li element
-        let listItem = document.createElement("li");
+    // Remove the oldest data once there are 5 rows
+    if (table.rows.length >= 10) {
+        table.deleteRow(0); 
+        previousRounds.shift();
+    }
+
+    table.innerHTML = "";
+
+    // Add round data to list
+    for (let i = previousRounds.length - 1; i >= 0; i--) {
+
         
-        // Extract data from the round object
+        // get round data
         let round = previousRounds[i];
         let multiplier = round.multiplier.toFixed(2);
         let cashoutValue = parseFloat(round.cashoutValue).toFixed(2);
-        let profit = round.profit.toFixed(2);
+        let profit = parseFloat(round.profit).toFixed(2);
+
+        // Make a new row
+        let row = table.insertRow();
+
+        // Add cells for each value
+        let multiplierCell = row.insertCell();
+        multiplierCell.textContent = multiplier + "x";
+        let cashedOutCell = row.insertCell();
+        cashedOutCell.textContent = cashoutValue + "x";
         
-        // Set the text content to display multiplier, cashed-out value, and profit
-        listItem.textContent = `Multiplier: ${multiplier}x, Cashed Out: $${cashoutValue}, Profit: $${profit}`;
+        let profitCell = row.insertCell();
+        profitCell.textContent = "$" + profit;
+
+        // Change color of row based on profit
+        if (profit > 0) {
+            row.style.backgroundColor = 'lightgreen';
+        }
+        else if (profit <= 0){
+            row.style.backgroundColor = 'lightcoral';
+        }
         
-        // Prepend the li element to the ul element
-        roundList.prepend(listItem);
+        // // Set the text content to display multiplier, cashed-out value, and profit
+        // listItem.textContent = `Actual: ${multiplier}x, Cashed Out: ${cashoutValue}x, Profit: $${profit}`;
+        
+        // Use prepend - adds new value to top and other values shift down
+        // roundList.prepend(listItem);
     }
 }

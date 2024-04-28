@@ -12,6 +12,14 @@ header, footer {
     align-items: center;
 }
 
+header {
+    background-color: aquamarine;
+}
+
+h1 {
+    font-size: 3.5rem;
+}
+
 .UI, .game-window, .data {
     padding: 0.5rem;
 }
@@ -40,15 +48,26 @@ header {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: rgb(209, 212, 28);
+    background-color: aqua;
+}
+
+.game-window {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 canvas {
     grid-area: game-window;
+    margin: auto;
 }
 
 .data {
     grid-area: data;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: aqua;
 }
 
 footer {
@@ -77,6 +96,34 @@ button {
     display: inline-block;
     font-size: 16px;
 }
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #dddddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+    font-size: 1rem;
+}
+
+.data th {
+    /* background-color: #6c93ff; */
+    /* color: white; */
+}
+
+/* Style for alternating rows */
+#roundData tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+  
 
 
 /* .UI {
