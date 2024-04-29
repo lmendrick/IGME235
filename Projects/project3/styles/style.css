@@ -2,10 +2,34 @@
     box-sizing: border-box;
 }
 
+.roboto-regular {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+
+.roboto-mono {
+  font-family: "Roboto Mono", monospace;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.bungee-shade-regular {
+    font-family: "Bungee Shade", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+  
+  
+
 html, body {
     margin: 0;
     background-color: #203340;
     color: white;
+    font-family: "Roboto Mono", sans-serif;
 }
 
 header, footer {
@@ -15,12 +39,17 @@ header, footer {
 }
 
 header {
+    font-family: "Bungee Shade", sans-serif;
     background-color: #203340;
     border-bottom: 2px solid gray;
+    /* height: 600px; */
 }
 
 h1 {
-    font-size: 3.5rem;
+    font-size: 8rem;
+    margin: auto;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 .UI, .game-window, .data {
@@ -30,7 +59,7 @@ h1 {
 .wrapper {
     display: grid;
     height: 100vh;
-    grid-template-rows: 1fr 10fr 1fr;
+    grid-template-rows: 1fr 3fr 0.25fr;
     grid-template-columns: 20% 1fr 20%;
     grid-template-areas: 
         "header header header"
@@ -53,6 +82,7 @@ header {
     justify-content: center;
     font-size: 1.5rem;
     background-color: #2c4151;
+    margin: 7.5%;
 }
 
 .game-window {
@@ -71,6 +101,8 @@ canvas {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 7.5%;
+    padding: 50px;
     background-color: #2c4151;
 }
 
@@ -82,9 +114,25 @@ input {
     font-size: 1.5rem;
 }
 
-.input {
-    margin-bottom: 10px;
+.input p {
+    background-color: #203340;
+    padding: 2%;
+    border: 1px solid #203340;
+    border-radius: 25px;
+    /* margin-top: 0; */
 }
+
+#credits {
+    font-size: 2.25rem;
+}
+
+.input {
+    /* margin-bottom: 10px; */
+    justify-content: center;
+    align-items: center;
+    /* margin: auto; */
+}
+
 
 .buttons {
     display: flex;
@@ -100,8 +148,27 @@ button {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 2rem;
+    width: 15vw;
 }
+
+
+button:hover {
+    background-color: #00ff04;
+    border: #0ed811;
+    cursor: pointer;
+}
+
+button:disabled {
+    background-color: #9cf79e;
+    cursor: auto;
+}
+
+/* button:hover {
+    background-color: #00ff04;
+    border: #0ed811;
+    cursor: pointer;
+} */
 
 
 table {
@@ -118,7 +185,12 @@ th, td {
 
 th {
     background-color: #203340;
-    font-size: 1rem;
+    font-size: 1.25rem;
+    /* background-color: #d44747; */
+}
+
+footer {
+    border-top: 2px solid gray;
 }
 
 .data th {

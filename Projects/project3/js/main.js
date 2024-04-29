@@ -9,6 +9,7 @@ window.onload = (e) => {
 
 
 let gameWindow = document.querySelector("#gameWindow");
+let creditDisplay = document.querySelector("#credits");
 
 const app = new PIXI.Application({
     width: 1000,
@@ -69,14 +70,14 @@ const circle = makeCircle(circleDefaultX, circleDefaultY, 5, 0xFFFF00);
 app.stage.addChild(circle);
 
 // Make rectangle (width, height, color)
-const graphX = makeRectangle(sceneWidth, 5, 0x4c525e);
-graphX.x = sceneWidth / 2;
+const graphX = makeRectangle((sceneWidth * 2), 5, 0x4c525e);
+graphX.x = sceneWidth + 100;
 graphX.y = sceneHeight - 50;
 app.stage.addChild(graphX);
 
 const graphY = makeRectangle(5, sceneHeight, 0x4c525e);
 graphY.x = 100;
-graphY.y = sceneHeight / 2;
+graphY.y = (sceneHeight / 2) - 50;
 app.stage.addChild(graphY);
 
 // const lineRect = makeRectangle(2.5, 2.5, 0xFFFF00);
@@ -97,7 +98,7 @@ line.lineTo(circle.x, circle.y);
 // Axis Labels
 const timeLabels = [];
 const multiplierLabels = [];
-const timeInterval = 2;
+const timeInterval = 1;
 let multiplierInterval = 0.2;
 let elapsedTime = 0;
 
@@ -133,7 +134,7 @@ function setup() {
 
     // Create labels for x-axis (Time)
     for (let i = 0; i <= 5; i++) {
-        const timeLabel = new Label((i * timeInterval).toFixed(0) + "s", (i / 5) * sceneWidth + 50, sceneHeight - 50, { fill: 0xffffff });
+        const timeLabel = new Label((i * timeInterval).toFixed(0) + "s", (i / 5) * sceneWidth + 50, sceneHeight - 40, { fill: 0xffffff, fontFamily: "Roboto Mono" });
         if (i == 0) {
             timeLabel.setText("");
         }
@@ -152,7 +153,7 @@ function setup() {
         } else {
             multiplierValue = (i * multiplierInterval + 1).toFixed(1); // Calculate multiplier value
         }
-        const multiplierLabel = new Label(multiplierValue + "x", 40, (0.8 - i / 5) * sceneHeight, { fill: 0xffffff });
+        const multiplierLabel = new Label(multiplierValue + "x", 20, (0.8 - i / 5) * sceneHeight, { fill: 0xffffff, fontFamily: "Roboto Mono" });
         multiplierLabels.push(multiplierLabel);
     }
 
@@ -207,9 +208,9 @@ function setup() {
 
 
     let textStyle = new PIXI.TextStyle({
-        fill: 0xffffff,
+        fill: 'white',
         fontSize: 48,
-        fontFamily: "Futura"
+        fontFamily: "Roboto Mono"
     });
 
     // let wagerButton = new PIXI.Text("Place Bet!");
@@ -235,17 +236,21 @@ function setup() {
     // currentMultiplier.on("pointerout", e => e.currentTarget.alpha = 1.0);
     startScene.addChild(currentMultiplier);
 
-    creditsText = new PIXI.Text("Credits: $" + credits.toFixed(2));
-    creditsText.style = textStyle;
-    creditsText.x = 125;
-    creditsText.y = 20;
-    startScene.addChild(creditsText);
+    // creditsText = new PIXI.Text("Credits: $" + credits.toFixed(2));
+    // creditsText.style = textStyle;
+    // creditsText.x = 125;
+    // creditsText.y = 20;
+    // startScene.addChild(creditsText);
+    creditDisplay.innerHTML = "Credits: $" + credits.toFixed(2);
+    
 
 
-    winText = new PIXI.Text();
+    winText = new PIXI.Text("");
     winText.style = textStyle;
-    winText.x = 400;
-    winText.y = sceneHeight - 110;
+    // winText.pivot.x = winText.width / 2;
+    // winText.pivot.y = winText.height / 2;
+    winText.x = (sceneWidth / 2) - (winText.width / 2);
+    winText.y = winText.height;
     startScene.addChild(winText);
 
     // displayPreviousMultipliers();
@@ -273,7 +278,7 @@ function wagerButtonClicked() {
     isCashedOut = false;
     winText.text = null;
     isAutoCashout = false;
-    currentMultiplier.style.fill = 'green';
+    currentMultiplier.style.fill = 'white';
     hasLost = false;
     // circle.x = circleDefaultX;
     // circle.y = circleDefaultY;
@@ -475,8 +480,13 @@ function incrementTimer() {
 
     // WIN
     else if (timer <= multiplier && isCashedOut) {
-        console.log("YOU WIN: " + wager);
-        winText.text = "YOU WIN: $" + wager;
+        console.log("CASH OUT: " + wager);
+        winText.text = "CASH OUT: $" + wager;
+        winText.x = (sceneWidth / 2) - (winText.width / 2) + 50;
+        winText.y = winText.height / 2;
+
+        // set multiplier text to green on win
+        currentMultiplier.style.fill = 'green';
 
         // Add the multiplier to the historic data
         previousMultipliers.push(multiplier);
@@ -492,6 +502,10 @@ function incrementTimer() {
         // credits -= wager;
         console.log("Time's up!");
         console.log("You lost: " + wager);
+        winText.text = "CRASH: $-" + parseFloat(wager).toFixed(2);
+        winText.x = (sceneWidth / 2) - (winText.width / 2) + 50;
+        winText.y = winText.height / 2;
+        // winText.text.style.color = 'red';
         isGameStarted = false;
         isTimerUp = true;
         hasLost = true;
@@ -525,7 +539,8 @@ function incrementTimer() {
 
 
     // Update credits
-    creditsText.text = "Credits: $" + credits.toFixed(2);
+    // creditsText.text = "Credits: $" + credits.toFixed(2);
+    creditDisplay.innerHTML = "Credits: $" + credits.toFixed(2);
 
     // displayPreviousMultipliers();
 }
@@ -558,13 +573,16 @@ function handleAutoCashout() {
 
     isCashedOut = true;
 
+    currentMultiplier.style.fill = 'green';
 
 
 
     wager = (wager * timer).toFixed(2);
     credits += parseFloat(wager);
 
-    winText.text = "YOU WIN: $" + wager;
+    winText.text = "CASH OUT: $" + wager;
+    winText.x = (sceneWidth / 2) - (winText.width / 2) + 50;
+    winText.y = winText.height / 2;
 
     // Add round data to array
     let cashoutValue = timer;
@@ -680,7 +698,7 @@ function updateAxisValues(time, multiplier) {
 
     // Update x-axis labels (Time)
     const baseTimer = 0;
-    const maxTimerValue = time + 3;
+    const maxTimerValue = time;
     const timeStepSize = (maxTimerValue - baseTimer) / 4;
 
     if (hasCircleStopped) {
@@ -774,7 +792,7 @@ function displayPreviousRounds() {
         multiplierCell.textContent = multiplier + "x";
         let cashedOutCell = row.insertCell();
         // Handle losses
-        if (cashoutValue >= multiplier && hasLost) {
+        if (cashoutValue == multiplier) {
             cashedOutCell.textContent = "Crash!";
         }
         else {
@@ -787,10 +805,10 @@ function displayPreviousRounds() {
 
         // Change color of row based on profit
         if (profit > 0) {
-            row.style.backgroundColor = 'lightgreen';
+            row.style.backgroundColor = '#0ed811';
         }
         else if (profit <= 0){
-            row.style.backgroundColor = 'lightcoral';
+            row.style.backgroundColor = '#d44747';
         }
         
         // // Set the text content to display multiplier, cashed-out value, and profit
