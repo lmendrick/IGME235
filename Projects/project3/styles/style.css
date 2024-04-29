@@ -4,6 +4,8 @@
 
 html, body {
     margin: 0;
+    background-color: #203340;
+    color: white;
 }
 
 header, footer {
@@ -13,7 +15,8 @@ header, footer {
 }
 
 header {
-    background-color: aquamarine;
+    background-color: #203340;
+    border-bottom: 2px solid gray;
 }
 
 h1 {
@@ -48,7 +51,8 @@ header {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: aqua;
+    font-size: 1.5rem;
+    background-color: #2c4151;
 }
 
 .game-window {
@@ -67,14 +71,16 @@ canvas {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: aqua;
+    background-color: #2c4151;
 }
 
 footer {
     grid-area: footer;
 }
 
-
+input {
+    font-size: 1.5rem;
+}
 
 .input {
     margin-bottom: 10px;
@@ -87,7 +93,7 @@ footer {
 }
 
 button {
-    background-color: #a3a3a3;
+    background-color: #0ed811;
     border: none;
     color: white;
     padding: 15px 32px;
@@ -101,16 +107,17 @@ button {
 table {
     width: 100%;
     border-collapse: collapse;
+    font-size: 1.25rem;
 }
 
 th, td {
-    border: 1px solid #dddddd;
+    border: 1px solid #203340;
     padding: 8px;
     text-align: left;
 }
 
 th {
-    background-color: #f2f2f2;
+    background-color: #203340;
     font-size: 1rem;
 }
 
@@ -120,9 +127,9 @@ th {
 }
 
 /* Style for alternating rows */
-#roundData tr:nth-child(even) {
+/* #roundData tr:nth-child(even) {
     background-color: #f2f2f2;
-}
+} */
   
 
 

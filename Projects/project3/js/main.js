@@ -61,8 +61,8 @@ let isAutoCashout;
 const circleDefaultX = 100;
 const circleDefaultY = (sceneHeight - 50);
 
-const graphicsSpeedScale = 0.55;
-const timerScale = 0.0004;
+const graphicsSpeedScale = 1;
+const timerScale = 0.001;
 
 // Make circle (xPos, yPos, radius, color)
 const circle = makeCircle(circleDefaultX, circleDefaultY, 5, 0xFFFF00);
@@ -109,11 +109,14 @@ let previousMultipliers = [];
 
 let previousRounds = [];
 
+let hasLost;
+
 
 function setup() {
     stage = app.stage;
     // #1 - Create the `start` scene
     startScene = new PIXI.Container();
+    app.renderer.backgroundColor = 0x203340;
     stage.addChild(startScene);
 
     // #2 - Create the main `game` scene and make it invisible
@@ -271,6 +274,7 @@ function wagerButtonClicked() {
     winText.text = null;
     isAutoCashout = false;
     currentMultiplier.style.fill = 'green';
+    hasLost = false;
     // circle.x = circleDefaultX;
     // circle.y = circleDefaultY;
 
@@ -490,6 +494,7 @@ function incrementTimer() {
         console.log("You lost: " + wager);
         isGameStarted = false;
         isTimerUp = true;
+        hasLost = true;
 
         // Toggle buttons
         document.querySelector("#cashoutButton").disabled = true;
@@ -769,7 +774,7 @@ function displayPreviousRounds() {
         multiplierCell.textContent = multiplier + "x";
         let cashedOutCell = row.insertCell();
         // Handle losses
-        if (cashoutValue >= multiplier) {
+        if (cashoutValue >= multiplier && hasLost) {
             cashedOutCell.textContent = "Crash!";
         }
         else {
