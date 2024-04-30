@@ -569,8 +569,6 @@ function resetGraphics() {
     // 0 = default position
     circle.x = 0;
     circle.y = 0;
-    // lineRect.x = circleDefaultX;
-    // lineRect.y = circleDefaultY;
     line.clear();
     line.lineStyle(5, 0xFFFF00);
     line.position.set(circleDefaultX, circleDefaultY);

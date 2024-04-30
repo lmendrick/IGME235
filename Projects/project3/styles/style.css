@@ -2,6 +2,9 @@
     box-sizing: border-box;
 }
 
+
+/* FONTS */
+
 .roboto-regular {
     font-family: "Roboto", sans-serif;
     font-weight: 400;
@@ -9,10 +12,9 @@
 }
 
 
-
 .roboto-mono {
   font-family: "Roboto Mono", monospace;
-  font-optical-sizing: auto;
+  /* font-optical-sizing: auto; */
   font-weight: 400;
   font-style: normal;
 }
@@ -23,7 +25,7 @@
     font-style: normal;
 }
   
-  
+  /* GENERAL */
 
 html, body {
     margin: 0;
@@ -38,6 +40,9 @@ header, footer {
     align-items: center;
 }
 
+
+/* HEADER */
+
 header {
     font-family: "Bungee Shade", sans-serif;
     background-color: #203340;
@@ -51,6 +56,9 @@ h1 {
     margin-top: 0;
     margin-bottom: 0;
 }
+
+
+/* CONTENT */
 
 .UI, .game-window, .data {
     padding: 0.5rem;
@@ -74,6 +82,9 @@ header {
     grid-area: header;
 }
 
+
+/* LEFT PANEL */
+
 .UI {
     grid-area: UI;
     display: flex;
@@ -84,6 +95,9 @@ header {
     background-color: #2c4151;
     margin: 7.5%;
 }
+
+
+/* GAME */
 
 .game-window {
     display: flex;
@@ -96,6 +110,8 @@ canvas {
     margin: auto;
 }
 
+/* RIGHT PANEL */
+
 .data {
     grid-area: data;
     display: flex;
@@ -105,6 +121,8 @@ canvas {
     padding: 50px;
     background-color: #2c4151;
 }
+
+/* FOOTER */
 
 footer {
     grid-area: footer;
@@ -133,6 +151,8 @@ input {
     /* margin: auto; */
 }
 
+
+/* BUTTONS */
 
 .buttons {
     display: flex;
@@ -164,12 +184,7 @@ button:disabled {
     cursor: auto;
 }
 
-/* button:hover {
-    background-color: #00ff04;
-    border: #0ed811;
-    cursor: pointer;
-} */
-
+/* TABLE */
 
 table {
     width: 100%;
@@ -191,62 +206,40 @@ th {
 
 footer {
     border-top: 2px solid gray;
-}
-
-.data th {
-    /* background-color: #6c93ff; */
-    /* color: white; */
-}
-
-/* Style for alternating rows */
-/* #roundData tr:nth-child(even) {
-    background-color: #f2f2f2;
-} */
-  
-
-
-/* .UI {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    justify-items: center;
-    gap: 10px;
 }
 
-.input {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+footer a {
+    margin-right: 0;
 }
 
-.buttons {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    justify-content: center;
-} */
 
-/* .cashoutButton {
-    display: inline-flex;
-} */
-
-/* canvas {
-    display: block;
-    margin: 0 auto;
-    grid-area: game;
-} */
-
-/* button {
-    background-color: #04AA6D;
-    border: none;
+a:link {
+    color: rgb(255, 255, 255);
+}
+a:visited {
+    color: rgb(128, 128, 128);
+}
+a:focus {
+    color: #2c4151;
+}
+a:hover {
+    color: #2c4151;
+}
+a:active {
     color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-}  */
+}
 
-/* .UI {
-    grid-area: UI;
-} */
+
+
+/* Change font size for smaller resolutions */
+@media screen and (max-width: 1500px) {
+
+
+    html {
+        font-size: 0.5rem;
+    }
+
+}
