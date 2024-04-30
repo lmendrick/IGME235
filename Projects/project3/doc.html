@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation</title>
+    <link rel="stylesheet" href="styles/docstyle.css">
+</head>
+
+<body>
+    <h1>Project 3 Documentation</h1>
+
+
+    <a href="images/mockup1.png">Prototype Sketch 1</a>
+    <br>
+    <a href="images/mockup_lose.png">Prototype Sketch 2</a>
+    <br>
+    <a href="images/prototype.png">Prototype Screenshot</a>
+
+
+    <br>
+    <br>
+
+    <h2>Resources Used</h2>
+
+    <ul>
+        
+        <li><a href="https://mixkit.co/free-sound-effects/casino/">mixkit Free Sound Effects</a></li>
+        <li><a href="https://fonts.google.com/specimen/Bungee+Shade">Bungee Shade Font</a></li>
+        <li><a href="https://fonts.google.com/specimen/Roboto+Mono">Roboto Mono Font</a></li>
+        <li><a href="https://www.w3schools.com/">W3Schools (referenced a ton)</a></li>
+        <li><a href="https://stackoverflow.com/">Stack Overflow (referenced a ton)</a></li>
+        <li><a href="https://playtoday.co/blog/gaming-basics/crash-gambling-odds/">Online Casino Gambling Odds Reference</a></li>
+    </ul>
+
+
+    <br>
+
+    <h2>Goal</h2>
+    <p>
+        As detailed in my <a href="proposal.html">Proposal</a>, the goal of this page was to make a Casino game using PixiJS that would feel fun and rewarding to play.
+
+    </p>
+
+    <br>
+
+    <h2>Lessons Learned & Other Notes</h2>
+    <h3>Prototype:</h3>
+    <p>
+        It took me a long time to finally settle on an idea! I realized I've made numerous games in the past, but had never tried making a casino game/game of chance, so I decided to try it!
+        <br>
+        <br>
+        I really enjoyed researching similair casino games and learning how they calculate the odds behind the scenes. I was surprised to find out that real online casinos actually don't have the odds stacked in their favor that much (usually only 1% or 2%)
+        but these odds accumulate profits over time. It turns out that the online casinos that are regulated (such as "Stake") actually publish their odds and parts of their algorithms. I tried my best to model my system after a real one, although
+        I decided to keep 5% for the house! 
+
+        <br>
+        <br>
+        The way my algorithm works (can be seen in the generateMultiplier function in main) is:
+        <ul>
+            <li>First there is a check to see if the user will instantly lose. This has a 5% chance of happening.</li>
+            <li>If this check is passed, then a positive multiplier is generated that follows a normal distribution with 1 as the median.</li>
+            <li>Because of this, you can roughly calculate the odds of getting any given multiplier by dividing 95% by the multiplier. For example, the odds of getting a 2x multiplier is 95% / 2 = 47.5%</li>
+        </ul>
+            
+        <br>
+        <br>
+        Honestly the toughest part of the prototype (and probably the whole project) was making the graph using PixiJS. I had to do a lot of research online to figure out how to use certain aspects of PixiJS, and making the graph look even somewhat accurate
+        was a huge pain. Unfortunately, I never could figure out how to make the graph and its labels completely accurate, especially since the graph seems to change depending on screen resolution. I did do some cool stuff to make the graph look more interesting 
+        than just a straight line though. For example, I used the quadratic formula (I wish I could go back in time to highschool and tell myself I'd actually use that one day) in order to make the path of the line curve upwards to simulate exponential growth and I used
+        a step function to update the axis label values.
+    </p>
+
+    <br>
+
+    <h3>Style & Final Page:</h3>
+    <p>
+        I got some solid feedback during the critiques in class and tried my best to make the game more easily understood.
+        <br>
+        <br>
+        First of all, I completely redesigned the style of the page, and actually ended up going with a format similair to the "holy grail css grid" which I thought was a nice bookend to this course! I also realized I was trying to display a lot of information
+        all within the PixiJS window so I decided to move a lot of it into the actual page. My goal with this layout was to have it sort of read left to right, as in, you place your bet, you watch the graph, then you see the round data.
+        <br>
+        <br>
+        Speaking of round data, I thought it would be cool to be able to see the random multipliers of previous rounds. I noticed that a lot of online casinos have this feature, and although it has no bearing whatsoever on the future random values, I thought
+        it would be a nice feature to have. In order to implement this, I researched a lot about HTML tables, and it actually ended up being pretty easy to do!
+        <br>
+        <br>
+        It was also somewhere during this time that I realized that I was actually returning way more profits to the user than I should be. I don't know how I didn't catch this before, but I fixed this issue by deducting the user's bet from their credits 
+        ahead of time rather than when the round ended.
+        <br>
+        <br>
+        Overall, I think this project turned out pretty well! It was really interesting learning about "games of chance", as that was an area of game development that I had never explored before! It's a bummer I couldn't get the graph to be
+        100% accurate, but in my mind, the dynamic table of data makes up for it!
+    </p>
+
+</body>
+
+</html>

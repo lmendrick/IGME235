@@ -80,12 +80,7 @@ graphY.x = 100;
 graphY.y = (sceneHeight / 2) - 50;
 app.stage.addChild(graphY);
 
-// const lineRect = makeRectangle(2.5, 2.5, 0xFFFF00);
-// lineRect.x = circleDefaultX;
-// lineRect.y = circleDefaultY;
-// lineRect.x = 0;
-// lineRect.y = sceneHeight;
-// app.stage.addChild(lineRect);
+let instructions;
 
 const line = new PIXI.Graphics();
 app.stage.addChild(line);
@@ -112,17 +107,34 @@ let previousRounds = [];
 
 let hasLost;
 
+// Sound
+let winSound;
+let coinSound;
+let loseSound;
+
 
 function setup() {
     stage = app.stage;
     // #1 - Create the `start` scene
-    startScene = new PIXI.Container();
+    gameScene = new PIXI.Container();
     app.renderer.backgroundColor = 0x203340;
-    stage.addChild(startScene);
+    stage.addChild(gameScene);
+
+    let startText = new PIXI.TextStyle({
+        fill: 'white',
+        fontSize: 20,
+        fontFamily: "Roboto Mono"
+    });
+
+    instructions = new PIXI.Text("INSTRUCTIONS: \n\nEnter your bet and the multiplier you wish to cashout at. \n\nThe multiplier can crash at any time. \n\nIf you cashout before the multiplier crashes, \nthe multiplier is applied to your bet. \n\nIf it crashes before you cashout, you lose your bet. \n\nPress Bet to begin.");
+    instructions.style = startText;
+    instructions.x = 150;
+    gameScene.addChild(instructions);
+
 
     // #2 - Create the main `game` scene and make it invisible
     gameScene = new PIXI.Container();
-    gameScene.visible = false;
+    gameScene.visible = true;
     stage.addChild(gameScene);
 
     // #3 - Create the `gameOver` scene and make it invisible
@@ -156,6 +168,19 @@ function setup() {
         const multiplierLabel = new Label(multiplierValue + "x", 20, (0.8 - i / 5) * sceneHeight, { fill: 0xffffff, fontFamily: "Roboto Mono" });
         multiplierLabels.push(multiplierLabel);
     }
+
+    winSound = new Howl({
+        src: ['sounds/casino_bling.wav']
+    });
+
+    coinSound = new Howl({
+        src: ['sounds/coins.wav']
+    });
+
+    loseSound = new Howl({
+        src: ['sounds/crash.wav']
+    });
+
 
     // // #4 - Create labels for all 3 scenes
     // createLabelsAndButtons();
@@ -225,7 +250,7 @@ function setup() {
     // startScene.addChild(wagerButton);
 
 
-    currentMultiplier = new PIXI.Text(timer.toFixed(2) + "x");
+    currentMultiplier = new PIXI.Text();
     currentMultiplier.style = textStyle;
     currentMultiplier.x = sceneWidth / 2;
     currentMultiplier.y = sceneHeight / 2 - 100;
@@ -234,7 +259,7 @@ function setup() {
     // currentMultiplier.on("pointerup", startGame);     // startGame is a function reference
     // currentMultiplier.on("pointerover", e => e.target.alpha = 0.7);       // concise arrow function with no brackets
     // currentMultiplier.on("pointerout", e => e.currentTarget.alpha = 1.0);
-    startScene.addChild(currentMultiplier);
+    gameScene.addChild(currentMultiplier);
 
     // creditsText = new PIXI.Text("Credits: $" + credits.toFixed(2));
     // creditsText.style = textStyle;
@@ -251,7 +276,7 @@ function setup() {
     // winText.pivot.y = winText.height / 2;
     winText.x = (sceneWidth / 2) - (winText.width / 2);
     winText.y = winText.height;
-    startScene.addChild(winText);
+    gameScene.addChild(winText);
 
     // displayPreviousMultipliers();
 }
@@ -271,7 +296,10 @@ function setup() {
 
 function wagerButtonClicked() {
 
+    
+
     // reset variables
+    instructions.text = "";
     resetGraphics();
     timer = 1;
     isTimerUp = false;
@@ -282,6 +310,8 @@ function wagerButtonClicked() {
     hasLost = false;
     // circle.x = circleDefaultX;
     // circle.y = circleDefaultY;
+
+    coinSound.play();
 
     // get wager input object
     let wagerInput = document.querySelector("#wager");
@@ -476,6 +506,8 @@ function incrementTimer() {
         if (previousMultipliers.length > 5) {
             previousMultipliers.shift(); // Remove the oldest multiplier
         }
+        
+        winSound.play();
     }
 
     // WIN
@@ -493,6 +525,7 @@ function incrementTimer() {
         if (previousMultipliers.length > 5) {
             previousMultipliers.shift();
         }
+        winSound.play();
     }
 
     // LOSE
@@ -523,6 +556,8 @@ function incrementTimer() {
             cashoutValue: cashoutValue,
             profit: profit
         });
+
+        loseSound.play();
 
         displayPreviousRounds();
     }
@@ -792,7 +827,7 @@ function displayPreviousRounds() {
         multiplierCell.textContent = multiplier + "x";
         let cashedOutCell = row.insertCell();
         // Handle losses
-        if (cashoutValue == multiplier) {
+        if (cashoutValue >= multiplier) {
             cashedOutCell.textContent = "Crash!";
         }
         else {
